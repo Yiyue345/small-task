@@ -1,0 +1,48 @@
+package com.example.smalltask
+
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+class SomethingAdapter(private val context: Context, private val somethingList: List<Something>) :
+    RecyclerView.Adapter<SomethingAdapter.ViewHolder>() {
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+            val somethingImage : ImageView = view.findViewById(R.id.somethingImage)
+            val somethingTextView : TextView = view.findViewById(R.id.somethingTextview)
+            val somethingButton : Button = view.findViewById(R.id.somethingButton)
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.something_item, parent, false)
+        val viewHolder = ViewHolder(view)
+//        viewHolder.itemView.setOnClickListener{
+//            val position = viewHolder.adapterPosition
+//            val something = somethingList[position]
+//
+//        }
+        return viewHolder
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val something = somethingList[position]
+        holder.somethingImage.setImageResource(something.imageId)
+        holder.somethingTextView.text = something.name
+
+        holder.somethingButton.setOnClickListener{
+            val intent = Intent(context, something.jumpTo)
+            context.startActivity(intent)
+        }
+
+    }
+
+    override fun getItemCount() = somethingList.size
+
+}

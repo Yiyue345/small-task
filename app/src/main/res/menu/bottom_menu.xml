@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homepage"
+        android:title="房子"
+        android:icon="@drawable/homepage"/>
+    <item
+        android:id="@+id/nothing"
+        android:title="这是一个圆"
+        android:icon="@drawable/circle"/>
+    <item
+        android:id="@+id/me"
+        android:title="齿轮"
+        android:icon="@drawable/settings"/>
+</menu>

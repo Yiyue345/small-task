@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:hint="用户名"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="144dp"
+
+        android:background="@drawable/yes_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancel_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:background="@drawable/no_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/register"
+        app:layout_constraintTop_toTopOf="@+id/register" />
+
+    <TextView
+        android:id="@+id/username_is_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名不能为空"
+        android:textColor="#EB3324"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <TextView
+        android:id="@+id/password_is_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码不能为空"
+        android:textColor="#EB3324"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back" />
+
+    <EditText
+        android:id="@+id/password1"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:hint="重复密码"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/wrong_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="两次输入密码不同"
+        android:visibility="gone"
+        android:textColor="#EB3324"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/password1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
