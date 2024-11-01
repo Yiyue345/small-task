@@ -1,5 +1,6 @@
 package com.example.smalltask
 
+import android.R.attr.password
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,44 +13,41 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.example.smalltask.databinding.ActivityMainBinding
 
 class MainActivity : ComponentActivity() {
+
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MainActivity", "Ciallo!")
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        val login: Button = findViewById(R.id.login)
-        val register: Button = findViewById(R.id.register)
-        val username: EditText = findViewById(R.id.username)
-        val password: EditText = findViewById(R.id.password)
-        val usernameIsEmpty: TextView = findViewById(R.id.username_is_empty)
-        val passwordIsEmpty: TextView = findViewById(R.id.password_is_empty)
-        val rememberPassword : CheckBox = findViewById(R.id.remember_password)
+        setContentView(binding.root)
 
         val getPassword = getSharedPreferences("latest", Context.MODE_PRIVATE)
         if (getPassword.getBoolean("isChecked", false)){
-            username.setText(getPassword.getString("username", ""))
-            password.setText(getPassword.getString("password", ""))
-            rememberPassword.isChecked = true
+            binding.username.setText(getPassword.getString("username", ""))
+            binding.password.setText(getPassword.getString("password", ""))
+            binding.rememberPassword.isChecked = true
         }
         else{
-            username.setText(getPassword.getString("username", ""))
+            binding.username.setText(getPassword.getString("username", ""))
         }
 
-        register.setOnClickListener {
+        binding.register.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
-        login.setOnClickListener {
-            val inputUsername = username.text.toString()
-            val inputPassword = password.text.toString()
+        binding.login.setOnClickListener {
+            val inputUsername = binding.username.text.toString()
+            val inputPassword = binding.password.text.toString()
 
-            if (inputUsername.isBlank()) usernameIsEmpty.visibility = View.VISIBLE
-            else usernameIsEmpty.visibility = View.GONE
-            if (inputPassword.isBlank()) passwordIsEmpty.visibility = View.VISIBLE
-            else passwordIsEmpty.visibility = View.GONE
+            if (inputUsername.isBlank()) binding.usernameIsEmpty.visibility = View.VISIBLE
+            else binding.usernameIsEmpty.visibility = View.GONE
+            if (inputPassword.isBlank()) binding.passwordIsEmpty.visibility = View.VISIBLE
+            else binding.passwordIsEmpty.visibility = View.GONE
 
             if (inputUsername.isBlank() or inputPassword.isBlank()) {
                 Toast.makeText(this, "用户名与密码不可为空", Toast.LENGTH_SHORT).show()
@@ -65,11 +63,11 @@ class MainActivity : ComponentActivity() {
                     Toast.makeText(this, "密码错误", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    usernameIsEmpty.visibility = View.GONE
-                    passwordIsEmpty.visibility = View.GONE
+                    binding.usernameIsEmpty.visibility = View.GONE
+                    binding.passwordIsEmpty.visibility = View.GONE
                     Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Homepage::class.java)
-                    if (rememberPassword.isChecked){
+                    if (binding.rememberPassword.isChecked){
                         val savePassword = getSharedPreferences("latest", Context.MODE_PRIVATE).edit()
                         savePassword.putBoolean("isChecked", true)
                         savePassword.putString("username", inputUsername)

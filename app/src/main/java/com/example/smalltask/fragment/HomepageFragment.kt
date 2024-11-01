@@ -4,44 +4,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.smalltask.R
-import org.w3c.dom.Text
+import com.example.smalltask.databinding.HomepageFragmentBinding
 
 class HomepageFragment : Fragment() {
+
+    private var _binding: HomepageFragmentBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.homepage_fragment, container, false)
+        _binding = HomepageFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val cannotDoAnymore : ImageButton = view.findViewById(R.id.cannotDoAnymore)
-        val tired : TextView = view.findViewById(R.id.tired)
-        val cry : ImageButton = view.findViewById(R.id.cry)
-        val say : TextView = view.findViewById(R.id.say)
-        cannotDoAnymore.setOnClickListener{
-            say.visibility = View.GONE
-            cannotDoAnymore.visibility = View.GONE
-            cry.visibility = View.VISIBLE
-            tired.visibility = View.VISIBLE
+        binding.cannotDoAnymore.setOnClickListener{
+            binding.say.visibility = View.GONE
+            binding.cannotDoAnymore.visibility = View.GONE
+            binding.cry.visibility = View.VISIBLE
+            binding.tired.visibility = View.VISIBLE
         }
 
-        cry.setOnClickListener{
-            cry.visibility = View.GONE
-            tired.visibility = View.GONE
-            cannotDoAnymore.visibility = View.VISIBLE
-            say.visibility = View.VISIBLE
+        binding.cry.setOnClickListener{
+            binding.cry.visibility = View.GONE
+            binding.tired.visibility = View.GONE
+            binding.cannotDoAnymore.visibility = View.VISIBLE
+            binding.say.visibility = View.VISIBLE
         }
 
 
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
