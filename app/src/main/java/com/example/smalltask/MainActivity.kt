@@ -3,6 +3,7 @@ package com.example.smalltask
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
@@ -11,13 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.transition.Visibility
 
 class MainActivity : ComponentActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("MainActivity", "Ciallo!")
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -120,4 +119,3 @@ class MainActivity : ComponentActivity() {
 
 }
 
-//去D:\user\wendang\Tencent Files\3434468622\nt_qq\nt_data\Emoji\emoji-recv\2024-10\Ori
