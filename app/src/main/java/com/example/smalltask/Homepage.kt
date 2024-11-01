@@ -1,12 +1,8 @@
 package com.example.smalltask
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -31,6 +27,10 @@ class Homepage : BaseActivity() {
             insets
         }
 
+//        setSupportActionBar(binding.toolbar)
+
+
+
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
         replaceFragment(HomepageFragment())
@@ -54,6 +54,11 @@ class Homepage : BaseActivity() {
 
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
     }
 
     private fun replaceFragment(fragment: Fragment){

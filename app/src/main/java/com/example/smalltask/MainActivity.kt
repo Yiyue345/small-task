@@ -1,15 +1,11 @@
 package com.example.smalltask
 
-import android.R.attr.password
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -26,7 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val getPassword = getSharedPreferences("latest", Context.MODE_PRIVATE)
+        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
         if (getPassword.getBoolean("isChecked", false)){
             binding.username.setText(getPassword.getString("username", ""))
             binding.password.setText(getPassword.getString("password", ""))
@@ -53,7 +49,7 @@ class MainActivity : ComponentActivity() {
                 Toast.makeText(this, "用户名与密码不可为空", Toast.LENGTH_SHORT).show()
             }
             else {
-                val prefs = getSharedPreferences("password", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("password", MODE_PRIVATE)
                 val checker = prefs.getString(inputUsername, "")
 
                 if (checker?.isBlank() == true) {
@@ -68,14 +64,14 @@ class MainActivity : ComponentActivity() {
                     Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Homepage::class.java)
                     if (binding.rememberPassword.isChecked){
-                        val savePassword = getSharedPreferences("latest", Context.MODE_PRIVATE).edit()
+                        val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
                         savePassword.putBoolean("isChecked", true)
                         savePassword.putString("username", inputUsername)
                         savePassword.putString("password", inputPassword)
                         savePassword.apply()
                     }
                     else{
-                        val savePassword = getSharedPreferences("latest", Context.MODE_PRIVATE).edit()
+                        val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
                         savePassword.putBoolean("isChecked", false)
                         savePassword.putString("username", inputUsername)
                         savePassword.putString("password", "")
@@ -100,14 +96,14 @@ class MainActivity : ComponentActivity() {
         val rememberPassword : CheckBox = findViewById(R.id.remember_password)
 
         if (rememberPassword.isChecked){
-            val savePassword = getSharedPreferences("latest", Context.MODE_PRIVATE).edit()
+            val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
             savePassword.putBoolean("isChecked", true)
             savePassword.putString("username", inputUsername)
             savePassword.putString("password", inputPassword)
             savePassword.apply()
         }
         else{
-            val savePassword = getSharedPreferences("latest", Context.MODE_PRIVATE).edit()
+            val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
             savePassword.putBoolean("isChecked", false)
             savePassword.putString("username", inputUsername)
             savePassword.putString("password", "")

@@ -10,19 +10,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.EndAll
 import com.example.smalltask.R
 import com.example.smalltask.ResetPassword
-import com.example.smalltask.Something
-import com.example.smalltask.SomethingAdapter
+import com.example.smalltask.items.Something
+import com.example.smalltask.items.SomethingAdapter
+import com.example.smalltask.databinding.SettingsFragmentBinding
 
 class SettingsFragment : Fragment() {
 
     private val somethingList = ArrayList<Something>()
+
+    private var _binding: SettingsFragmentBinding? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.settings_fragment, container, false)
+        _binding = SettingsFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +43,11 @@ class SettingsFragment : Fragment() {
     private fun initSomething(){
         somethingList.add(Something("修改密码", R.drawable.user, ResetPassword::class.java))
         somethingList.add(Something("关掉", R.drawable.leave, EndAll::class.java))
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
