@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.smalltask.databinding.ActivityHomepageBinding
 import com.example.smalltask.fragment.EditingFragment
+import com.example.smalltask.fragment.FileListFragment
 import com.example.smalltask.fragment.HomepageFragment
 import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
@@ -34,7 +35,7 @@ class Homepage : BaseActivity() {
 
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
-        replaceFragment(EditingFragment())
+        replaceFragment(FileListFragment())
 
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -43,7 +44,7 @@ class Homepage : BaseActivity() {
                     true
                 }
                 R.id.homepage -> {
-                    replaceFragment(EditingFragment())
+                    replaceFragment(FileListFragment())
                     true
                 }
                 R.id.nothing -> {

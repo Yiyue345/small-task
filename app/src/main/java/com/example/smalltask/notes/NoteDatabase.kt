@@ -5,23 +5,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(version = 1, entities = [Note::class])
+@Database(version = 2, entities = [Note::class])
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
 
     companion object {
-        private var instance: NoteDatabase? = null
+        @Volatile
+        private var INSTANCE: NoteDatabase? = null
 
         fun getDatabase(context: Context): NoteDatabase {
-            instance?.let {
-                return it
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    NoteDatabase::class.java,
+                    "note_database"
+                ).fallbackToDestructiveMigration().build()
+                INSTANCE = instance
+                instance
             }
-            return Room.databaseBuilder(context.applicationContext,
-                NoteDatabase::class.java, "note_database")
-                .build().apply {
-                    instance = this
-                }
         }
     }
 
