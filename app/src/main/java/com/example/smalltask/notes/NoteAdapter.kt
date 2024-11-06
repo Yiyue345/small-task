@@ -15,7 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class NoteAdapter(private val context: Context, private val noteList: List<Note>) :
+class NoteAdapter(private val context: Context, private val noteList: List<Note>,
+                  private val onNoteClicked: (Note) -> Unit) : // 回调接口，用于点击笔记时通知 Fragment 或 Activity
     RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,9 +39,10 @@ class NoteAdapter(private val context: Context, private val noteList: List<Note>
         val formattedDate = formatter.format(date)
         holder.editTime.text = formattedDate
         holder.fileTextview.text = note.title
+
+        // 设置按钮点击事件
         holder.fileButton.setOnClickListener {
-            val intent = Intent(context, EditingActivity::class.java)
-            context.startActivity(intent)
+            onNoteClicked(note) // 调用回调接口
         }
     }
 

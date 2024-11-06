@@ -12,6 +12,7 @@ import com.example.smalltask.fragment.FileListFragment
 import com.example.smalltask.fragment.HomepageFragment
 import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
+import com.example.smalltask.notes.NoteDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Homepage : BaseActivity() {
@@ -58,10 +59,6 @@ class Homepage : BaseActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
 
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
