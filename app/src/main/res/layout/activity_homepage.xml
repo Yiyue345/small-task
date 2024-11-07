@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Homepage">
+    tools:context=".activities.Homepage">
 
 
     <FrameLayout
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@id/navigationView"
         android:layout_gravity="top"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_weight="200"
+        android:layout_weight="1000"
          />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

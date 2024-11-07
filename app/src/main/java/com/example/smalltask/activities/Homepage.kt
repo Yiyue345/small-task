@@ -1,18 +1,16 @@
-package com.example.smalltask
+package com.example.smalltask.activities
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.smalltask.BaseActivity
+import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
-import com.example.smalltask.fragment.EditingFragment
-import com.example.smalltask.fragment.FileListFragment
 import com.example.smalltask.fragment.HomepageFragment
 import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
-import com.example.smalltask.notes.NoteDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Homepage : BaseActivity() {
@@ -36,7 +34,7 @@ class Homepage : BaseActivity() {
 
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
-        replaceFragment(FileListFragment())
+        replaceFragment(HomepageFragment())
 
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -45,7 +43,7 @@ class Homepage : BaseActivity() {
                     true
                 }
                 R.id.homepage -> {
-                    replaceFragment(FileListFragment())
+                    replaceFragment(HomepageFragment())
                     true
                 }
                 R.id.nothing -> {

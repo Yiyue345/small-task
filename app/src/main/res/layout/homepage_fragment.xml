@@ -6,51 +6,38 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/tired"
+    <Button
+        android:id="@+id/learn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="做不动了，真做不动了"
-        android:visibility="gone"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:layout_marginTop="588dp"
+        android:text="学"
+        app:layout_constraintEnd_toStartOf="@+id/review"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cry" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/cannotDoAnymore"
+    <Button
+        android:id="@+id/review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:text="复习"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home_image" />
-
-
-    <ImageButton
-        android:id="@+id/cry"
-        android:layout_width="457dp"
-        android:layout_height="420dp"
-        android:visibility="gone"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cry" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/learn"
+        app:layout_constraintTop_toTopOf="@+id/learn" />
 
     <TextView
-        android:id="@+id/say"
+        android:id="@+id/randomWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="DDL到力"
-        android:textSize="20sp"
-        android:visibility="gone"
+        android:text="test"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cannotDoAnymore" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.301" />
 </androidx.constraintlayout.widget.ConstraintLayout>
