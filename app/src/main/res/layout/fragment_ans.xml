@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AnsFragment">
+
+
+    <Button
+        android:id="@+id/showAnsBtn2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/wordName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:text="TEST"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/accentBtn"
+        android:layout_width="17dp"
+        android:layout_height="19dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="@+id/wordName"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/accentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/test/"
+        app:layout_constraintStart_toEndOf="@+id/accentBtn"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/meaningTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="n.测试"
+        app:layout_constraintStart_toStartOf="@+id/wordName"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/sentenceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="If you study for the test, it will be easy."
+        app:layout_constraintStart_toStartOf="@+id/meaningTextView"
+        app:layout_constraintTop_toBottomOf="@+id/meaningTextView" />
+
+    <TextView
+        android:id="@+id/sentenceTransTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="如果认真准备了，考试会很简单。"
+        app:layout_constraintStart_toStartOf="@+id/sentenceTextView"
+        app:layout_constraintTop_toBottomOf="@+id/sentenceTextView" />
+
+    <TextView
+        android:id="@+id/meaningEnTextView"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="32dp"
+        android:text="a set of questions or problems that are designed to measure a person's knowledge, skills, or abilities"
+
+        android:layout_marginStart="48dp"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sentenceTransTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

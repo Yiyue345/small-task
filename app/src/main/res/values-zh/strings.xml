@@ -5,13 +5,13 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
+    <string name="next">下一步</string>
     <string name="previous">Previous</string>
-    <string name="today_counts">Today learned words</string>
-    <string name="stats_title">Stats</string>
-    <string name="today_time_title">Study time today</string>
-    <string name="all_time_title">Cumulative hours</string>
-    <string name="all_counts_title">Cumulative number</string>
+    <string name="today_counts">今日学习数</string>
+    <string name="stats_title">统计</string>
+    <string name="today_time_title">今日总时长</string>
+    <string name="all_time_title">累计学习时长</string>
+    <string name="all_counts_title">累计学习</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -49,6 +49,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="login">Login Successful</string>
-    <string name="wrong_password">Wrong password</string>
+    <string name="login">登录成功</string>
+    <string name="wrong_password">密码错误</string>
 </resources>

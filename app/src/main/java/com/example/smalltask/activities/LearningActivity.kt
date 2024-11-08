@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityLearningBinding
+import com.example.smalltask.fragment.ChooseFragment
 
 class LearningActivity : BaseActivity() {
 
@@ -31,6 +33,8 @@ class LearningActivity : BaseActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        replaceFragment(ChooseFragment())
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -39,4 +43,11 @@ class LearningActivity : BaseActivity() {
         }
         return true
     }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.learningLayout, fragment)
+            .commit()
+    }
+
 }
