@@ -1,11 +1,14 @@
-package com.example.smalltask
+package com.example.smalltask.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.smalltask.BaseActivity
+import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityResetPasswordBinding
 
 class ResetPassword : BaseActivity() {
@@ -23,12 +26,13 @@ class ResetPassword : BaseActivity() {
             insets
         }
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val getUsername = getSharedPreferences("latest", MODE_PRIVATE)
         val username = getUsername.getString("username", "")
 
-        binding.back2.setOnClickListener{
-            finish()
-        }
+
         binding.cancelButton2.setOnClickListener {
             finish()
         }
@@ -79,8 +83,12 @@ class ResetPassword : BaseActivity() {
             }
         }
 
+    }
 
-
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return true
     }
 }

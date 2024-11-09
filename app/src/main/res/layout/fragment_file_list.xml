@@ -25,9 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/file_list_menu">
 
-
-
-
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.core.widget.NestedScrollView

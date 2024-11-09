@@ -1,19 +1,21 @@
-package com.example.smalltask
+package com.example.smalltask.activities
 
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.smalltask.BaseActivity
+import com.example.smalltask.MyDatabaseHelper
+import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
-import com.example.smalltask.fragment.EditingFragment
-import com.example.smalltask.fragment.FileListFragment
 import com.example.smalltask.fragment.HomepageFragment
 import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
-import com.example.smalltask.notes.NoteDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.runBlocking
+import kotlin.math.log
 
 class Homepage : BaseActivity() {
 
@@ -32,11 +34,23 @@ class Homepage : BaseActivity() {
 
 //        setSupportActionBar(binding.toolbar)
 
+//        val dbHelper = MyDatabaseHelper(this, "words.db", 1)
+//        val db = dbHelper.writableDatabase
 
+//        runBlocking {
+//            val cursor = db.query("Word", null, null, null, null, null, null)
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    val word = cursor.getString(cursor.getColumnIndex("word"))
+//                    val id = cursor.getInt(cursor.getColumnIndex("id"))
+//                    Log.d(id.toString(), word)
+//                } while (cursor.moveToNext())
+//            }
+//        }
 
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
-        replaceFragment(FileListFragment())
+        replaceFragment(HomepageFragment())
 
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -45,7 +59,7 @@ class Homepage : BaseActivity() {
                     true
                 }
                 R.id.homepage -> {
-                    replaceFragment(FileListFragment())
+                    replaceFragment(HomepageFragment())
                     true
                 }
                 R.id.nothing -> {

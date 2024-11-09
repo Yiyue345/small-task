@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.example.smalltask.activities.Homepage
+import com.example.smalltask.activities.Register
 import com.example.smalltask.databinding.ActivityMainBinding
 
 class MainActivity : ComponentActivity() {
@@ -27,6 +29,15 @@ class MainActivity : ComponentActivity() {
             binding.username.setText(getPassword.getString("username", ""))
             binding.password.setText(getPassword.getString("password", ""))
             binding.rememberPassword.isChecked = true
+            if (getPassword.getBoolean("login", false)){
+                val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
+                savePassword.putBoolean("login", true)
+                savePassword.apply()
+                val intent = Intent(this, Homepage::class.java)
+                startActivity(intent)
+                Toast.makeText(this, getString(R.string.login), Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
         else{
             binding.username.setText(getPassword.getString("username", ""))
@@ -61,13 +72,14 @@ class MainActivity : ComponentActivity() {
                 else {
                     binding.usernameIsEmpty.visibility = View.GONE
                     binding.passwordIsEmpty.visibility = View.GONE
-                    Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.login), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Homepage::class.java)
                     if (binding.rememberPassword.isChecked){
                         val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
                         savePassword.putBoolean("isChecked", true)
                         savePassword.putString("username", inputUsername)
                         savePassword.putString("password", inputPassword)
+                        savePassword.putBoolean("login", true)
                         savePassword.apply()
                     }
                     else{

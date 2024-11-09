@@ -1,15 +1,12 @@
 package com.example.smalltask.notes
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.smalltask.EditingActivity
 import com.example.smalltask.R
 import java.text.SimpleDateFormat
 import java.util.Date

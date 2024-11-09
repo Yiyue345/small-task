@@ -1,5 +1,6 @@
 package com.example.smalltask
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,12 @@ class EndAll : BaseActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
+        savePassword.putBoolean("login", false)
+        savePassword.apply()
         ActivityCollector.finishAll()
+
     }
 }

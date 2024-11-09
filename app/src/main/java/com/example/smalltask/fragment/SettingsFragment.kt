@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.EndAll
 import com.example.smalltask.R
-import com.example.smalltask.ResetPassword
+import com.example.smalltask.activities.ResetPassword
 import com.example.smalltask.items.Something
 import com.example.smalltask.items.SomethingAdapter
 import com.example.smalltask.databinding.SettingsFragmentBinding
