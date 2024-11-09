@@ -95,6 +95,8 @@ dependencies {
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.work)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
 //    implementation(libs.androidx.room.compiler.v210)
 
 

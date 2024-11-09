@@ -1,7 +1,9 @@
 package com.example.smalltask.activities
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,17 +39,28 @@ class LearningActivity : BaseActivity() {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> finish()
-        }
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.test_menu, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            android.R.id.home -> finish()
+//            R.id.test -> {
+//                val intent = Intent(this, InitializeActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
+//        return true
+//    }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.learningLayout, fragment)
             .commit()
     }
+
+
 
 }
