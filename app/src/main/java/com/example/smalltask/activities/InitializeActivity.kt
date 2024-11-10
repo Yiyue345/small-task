@@ -1,27 +1,20 @@
 package com.example.smalltask.activities
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.d
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.bumptech.glide.RequestBuilder
 import com.example.smalltask.BaseActivity
-import com.example.smalltask.MyDatabaseHelper
+import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.R
 import com.example.smalltask.classes.AllWords
 import com.example.smalltask.databinding.ActivityInitializeBinding
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.Request
 

@@ -1,21 +1,21 @@
 package com.example.smalltask.activities
 
 import android.os.Bundle
-import android.util.Log
+import android.util.Log.d
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.room.Database
 import com.example.smalltask.BaseActivity
-import com.example.smalltask.MyDatabaseHelper
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
 import com.example.smalltask.fragment.HomepageFragment
 import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
+import com.example.smalltask.learning.MyDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.runBlocking
-import kotlin.math.log
+import java.io.File
 
 class Homepage : BaseActivity() {
 
@@ -47,6 +47,18 @@ class Homepage : BaseActivity() {
 //                } while (cursor.moveToNext())
 //            }
 //        }
+        val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
+        val userName = getInfo.getString("username", "")
+        val databaseFile = this.getDatabasePath("Database${userName}.db") // 居然还省了一步
+
+        if (!databaseFile.exists()) {
+            val dbHelper = MyDatabaseHelper(this, "Database${userName}.db", 1)
+            val db = dbHelper.writableDatabase
+            db.execSQL(dbHelper.createUserInfo)
+            db.execSQL(dbHelper.createUserWord)
+            db.execSQL("INSERT INTO UserInfo (username) VALUES (?)", arrayOf(userName))
+        }
+
 
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
@@ -72,7 +84,6 @@ class Homepage : BaseActivity() {
         }
 
     }
-
 
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
