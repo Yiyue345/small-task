@@ -1,9 +1,12 @@
 package com.example.smalltask.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -58,7 +61,9 @@ class LearningActivity : BaseActivity() {
         }
         cursor.close()
 
-        val wordDbHelper = MyDatabaseHelper(this, "words.db", 1)
+//        val wordDbHelper = MyDatabaseHelper(this, "words.db", 1)
+//        val wordDb = wordDbHelper.readableDatabase
+
 
         setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -66,63 +71,93 @@ class LearningActivity : BaseActivity() {
 
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]
 
-        wordViewModel.setLearningList(learnWordsEachTime)
+        wordViewModel.setLearningList(learnWordsEachTime) // 所有单词初始学习次数为0
+        val wordList = mutableListOf<String>()
 
-        val wordName = "adapt"
-        CoroutineScope(Dispatchers.IO).launch {
 
-            if (wordName != "Ciallo") {
-                try {
 
-                    val client = OkHttpClient()
-                    val request = Request.Builder()
-                        .url("https://cdn.jsdelivr.net/gh/lyc8503/baicizhan-word-meaning-API@master/data/words/$wordName.json")
-                        .build()
+        val startId = learnWords + 1
+        val endId = learnWords + learnWordsEachTime
 
-                    val response = client.newCall(request).execute()
-                    val responseData = response.body?.string()
-                    var word: Word? = null
-                    if (responseData != null) {
-                        word = parseWordWithMoshi(responseData)
-                        word?.let { wordViewModel.addWord(it) }
-                    }
-//                    Log.d("Word", wordViewModel.words.value.toString())
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            else {
-                Log.d("Ciallo", "Ciallo")
-            }
-
-            // 假设上面获取完了
-
-            wordViewModel.setLearningList(10)
-            Log.d("list", wordViewModel.wordLearningList.value.toString())
-
-//            for (word in wordViewModel.words.value!!) {
+//        val wordCursor = wordDb.query("Word", // GPT太强悍了
+//            arrayOf("id", "word"),
+//            "id BETWEEN ? AND ?",
+//            arrayOf("$startId", "$endId"),
+//            null, null, "id ASC") // ASC指升序(ascending)
 //
+//        if (wordCursor.moveToFirst()) {
+//            do {
+//                val word = wordCursor.getString(wordCursor.getColumnIndexOrThrow("word")) // 更安全
+//                wordList.add(word)
 //            }
-            replaceFragment(ChooseFragment())
-        }
+//                while (wordCursor.moveToNext())
+//        }
+//        wordCursor.close()
+
+
+        Log.d("test", wordList.toString())
+
+//        val wordName = "adapt"
+//        CoroutineScope(Dispatchers.IO).launch {
+//
+//            for (wordName in wordList) {
+//                if (wordName != "Ciallo") {
+//                    try {
+//
+//                        val client = OkHttpClient()
+//                        val request = Request.Builder()
+//                            .url("https://cdn.jsdelivr.net/gh/lyc8503/baicizhan-word-meaning-API@master/data/words/$wordName.json")
+//                            .build()
+//
+//                        val response = client.newCall(request).execute()
+//                        val responseData = response.body?.string()
+//                        var word: Word? = null
+//                        if (responseData != null) {
+//                            word = parseWordWithMoshi(responseData)
+//                            word?.let { wordViewModel.addWord(it) }
+//                        }
+//                    Log.d("Word", wordViewModel.words.value.toString())
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                else {
+//                    Log.d("Ciallo", "Ciallo")
+//                }
+//            }
+//
+//
+//
+//            // 假设上面获取完了
+//
+//            wordViewModel.setLearningList(10)
+//            Log.d("list", wordViewModel.wordLearningList.value.toString())
+//
+////            for (word in wordViewModel.words.value!!) {
+////
+////            }
+//            replaceFragment(ChooseFragment())
+//
+//
+//        }
 
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.test_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            android.R.id.home -> finish()
-//            R.id.test -> {
-//                val intent = Intent(this, InitializeActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
-//        return true
-//    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.test_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+            R.id.test -> {
+                val intent = Intent(this, InitializeActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return true
+    }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

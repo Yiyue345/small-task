@@ -10,15 +10,21 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int) :
 
     val saveCreateWords = """CREATE TABLE IF NOT EXISTS Word (
             |id INTEGER PRIMARY KEY AUTOINCREMENT,
-            |word TEXT
+            |word TEXT,
+            |accent TEXT,
+            |meanCn TEXT,
+            |meanEn TEXT,
+            |sentence TEXT,
+            |sentenceTrans TEXT
             |)""".trimMargin()
 
     val createUserWord = """CREATE TABLE IF NOT EXISTS UserWord (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         word TEXT, 
+        lastTime INTEGER,
         times INTEGER INTEGER NOT NULL DEFAULT 1
         )
-    """.trimIndent()
+    """.trimIndent() // 每个单词是否背过，上次什么时候背的，背了几次
 
     val createUserInfo = """CREATE TABLE IF NOT EXISTS UserInfo (
         |username TEXT,
@@ -27,6 +33,14 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int) :
         |learnWords INTEGER NOT NULL DEFAULT 0,
         |learnHours INTEGER NOT NULL DEFAULT 0
         |)""".trimMargin()
+
+    val createLearningRecords = """CREATE TABLE IF NOT EXISTS LearningRecords (
+        |type TEXT,
+        |date INTEGER,
+        |duration INTEGER,
+        |words INTEGER
+        |)
+    """.trimMargin()
 
 
 

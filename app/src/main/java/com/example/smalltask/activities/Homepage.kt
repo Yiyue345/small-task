@@ -56,6 +56,7 @@ class Homepage : BaseActivity() {
             val db = dbHelper.writableDatabase
             db.execSQL(dbHelper.createUserInfo)
             db.execSQL(dbHelper.createUserWord)
+            db.execSQL(dbHelper.createLearningRecords)
             db.execSQL("INSERT INTO UserInfo (username) VALUES (?)", arrayOf(userName))
         }
 
