@@ -3,8 +3,6 @@ package com.example.smalltask.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -14,18 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
-import com.example.smalltask.learning.Word
 import com.example.smalltask.databinding.ActivityLearningBinding
+import com.example.smalltask.fragment.AnsFragment
 import com.example.smalltask.fragment.ChooseFragment
+import com.example.smalltask.fragment.OnlyEnFragment
+import com.example.smalltask.fragment.SentenceFragment
 import com.example.smalltask.learning.MyDatabaseHelper
+import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 class LearningActivity : BaseActivity() {
 
@@ -61,86 +55,90 @@ class LearningActivity : BaseActivity() {
         }
         cursor.close()
 
-//        val wordDbHelper = MyDatabaseHelper(this, "words.db", 1)
-//        val wordDb = wordDbHelper.readableDatabase
-
+        val wordDbHelper = MyDatabaseHelper(this, "words.db", 1)
+        val wordDb = wordDbHelper.readableDatabase
 
         setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]
 
         wordViewModel.setLearningList(learnWordsEachTime) // 所有单词初始学习次数为0
-        val wordList = mutableListOf<String>()
 
+        val startId = learnWords
+        val endId = learnWords + learnWordsEachTime - 1
 
+        val wordCursor = wordDb.query("Word", // GPT太强悍了
+            null, // 我全都要
+            "id BETWEEN ? AND ?",
+            arrayOf("$startId", "$endId"),
+            null, null, "id ASC") // ASC指升序(ascending)
 
-        val startId = learnWords + 1
-        val endId = learnWords + learnWordsEachTime
+        if (wordCursor.moveToFirst()) {
+            do {
+                val word = wordCursor.getString(wordCursor.getColumnIndexOrThrow("word")) // 更安全
+                val accent = wordCursor.getString(wordCursor.getColumnIndexOrThrow("accent"))
+                val meanCn = wordCursor.getString(wordCursor.getColumnIndexOrThrow("meanCn"))
+                val meanEn = wordCursor.getString(wordCursor.getColumnIndexOrThrow("meanEn"))
+                val sentence = wordCursor.getString(wordCursor.getColumnIndexOrThrow("sentence"))
+                val sentenceTrans = wordCursor.getString(wordCursor.getColumnIndexOrThrow("sentenceTrans"))
+                val wordObject = Word(word, accent, meanCn, meanEn, sentence, sentenceTrans)
+                wordViewModel.addWord(wordObject)
 
-//        val wordCursor = wordDb.query("Word", // GPT太强悍了
-//            arrayOf("id", "word"),
-//            "id BETWEEN ? AND ?",
-//            arrayOf("$startId", "$endId"),
-//            null, null, "id ASC") // ASC指升序(ascending)
+            }
+                while (wordCursor.moveToNext())
+        }
+        wordCursor.close()
+
+        wordViewModel.setLearningList(learnWordsEachTime) // 一组多少个词
+        wordViewModel.mode = "learning"
+        wordViewModel.startId = startId
+        wordViewModel.endId = endId
+
+//            for (word in wordViewModel.words.value!!) {
 //
-//        if (wordCursor.moveToFirst()) {
-//            do {
-//                val word = wordCursor.getString(wordCursor.getColumnIndexOrThrow("word")) // 更安全
-//                wordList.add(word)
 //            }
-//                while (wordCursor.moveToNext())
-//        }
-//        wordCursor.close()
+        var flag = 1 // 丑陋但有效
+        // 虽然有点bug但无伤大雅，吧……
 
+        wordViewModel.wordLearningList.observe(this) {
+            val ansFragment = supportFragmentManager.findFragmentByTag("ansFragment")
+            val fragment = supportFragmentManager.findFragmentByTag("learningFragment")
 
-        Log.d("test", wordList.toString())
+            if (flag == 1) { // 第一次别覆盖掉了
+                flag = 0
+            }
+            else {
+                if (ansFragment != null) { //如果上一个是ans
+                    supportFragmentManager.beginTransaction()
+                        .remove(ansFragment)
+                        .commit()
+                    wordViewModel.number = (wordViewModel.number + 1) % learnWordsEachTime
+                    wordViewModel.wordLearningList.value?.let { it1 ->
+                        if (it1[wordViewModel.number] == 0) {
+                            replaceFragment(ChooseFragment())
+                        }
+                        else if (it1[wordViewModel.number] == 1) {
+                            replaceFragment(SentenceFragment())
+                        }
+                        else if (it1[wordViewModel.number] == 2) {
+                            replaceFragment(OnlyEnFragment())
+                        }
+                        else if (it1[wordViewModel.number] == 3) {
+                            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+                        }
+                    }
+                }
+                else if (fragment != null){
+                    supportFragmentManager.beginTransaction()
+                        .remove(fragment)
+                        .commit()
+                    replaceAnsFragment(AnsFragment())
+                }
+            }
 
-//        val wordName = "adapt"
-//        CoroutineScope(Dispatchers.IO).launch {
-//
-//            for (wordName in wordList) {
-//                if (wordName != "Ciallo") {
-//                    try {
-//
-//                        val client = OkHttpClient()
-//                        val request = Request.Builder()
-//                            .url("https://cdn.jsdelivr.net/gh/lyc8503/baicizhan-word-meaning-API@master/data/words/$wordName.json")
-//                            .build()
-//
-//                        val response = client.newCall(request).execute()
-//                        val responseData = response.body?.string()
-//                        var word: Word? = null
-//                        if (responseData != null) {
-//                            word = parseWordWithMoshi(responseData)
-//                            word?.let { wordViewModel.addWord(it) }
-//                        }
-//                    Log.d("Word", wordViewModel.words.value.toString())
-//                    } catch (e: Exception) {
-//                        e.printStackTrace()
-//                    }
-//                }
-//                else {
-//                    Log.d("Ciallo", "Ciallo")
-//                }
-//            }
-//
-//
-//
-//            // 假设上面获取完了
-//
-//            wordViewModel.setLearningList(10)
-//            Log.d("list", wordViewModel.wordLearningList.value.toString())
-//
-////            for (word in wordViewModel.words.value!!) {
-////
-////            }
-//            replaceFragment(ChooseFragment())
-//
-//
-//        }
-
+        }
+        replaceFragment(ChooseFragment())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -161,15 +159,21 @@ class LearningActivity : BaseActivity() {
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.learningLayout, fragment)
+            .replace(R.id.learningLayout, fragment, "learningFragment") // 这是tag！
             .commit()
     }
 
-    private fun parseWordWithMoshi(jsonData: String): Word? {
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        val jsonAdapter = moshi.adapter(Word::class.java)
-        val word = jsonAdapter.fromJson(jsonData)
-        return word
+    private fun replaceAnsFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.learningLayout, fragment, "ansFragment") // 这是tag！
+            .commit()
     }
+
+//    private fun parseWordWithMoshi(jsonData: String): Word? {
+//        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+//        val jsonAdapter = moshi.adapter(Word::class.java)
+//        val word = jsonAdapter.fromJson(jsonData)
+//        return word
+//    }
 
 }
