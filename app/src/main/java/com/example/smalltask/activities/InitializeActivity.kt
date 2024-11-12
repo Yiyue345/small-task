@@ -8,13 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.smalltask.BaseActivity
-import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.R
 import com.example.smalltask.classes.AllWords
 import com.example.smalltask.databinding.ActivityInitializeBinding
+import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +25,7 @@ import okhttp3.Response
 
 class InitializeActivity : BaseActivity() { // 生成words数据库的
 
-    private var i = 1
+    private var i = 0
 
     lateinit var binding: ActivityInitializeBinding
 
@@ -105,51 +104,36 @@ class InitializeActivity : BaseActivity() { // 生成words数据库的
                     val jsonAdapter = moshi.adapter(AllWords::class.java)
                     val allWords = jsonAdapter.fromJson(responseData)
 
-//                    val type = Types.newParameterizedType(List::class.java, String::class.java)
-//                    val jsonAdapter2 = moshi.adapter<List<String>>(type)
-//                    val words: List<String>? = allWords?.let { jsonAdapter2.fromJson(it.list) }
-                    val ciallo = ContentValues().apply { // 唉柚子厨
-                        put("word", "Ciallo")
-                        put("accent", "Ciallo")
-                        put("meanCn", "Ciallo")
-                        put("meanEn", "Ciallo")
-                        put("sentence", "Ciallo～(∠·ω< )⌒★")
-                        put("sentenceTrans", "Ciallo～(∠·ω< )⌒★")
-                    }
-
                     allWords?.let {
-//                        Log.d("Ciallo～(∠·ω< )⌒★233", "Ciallo～(∠·ω< )⌒★")
-
+                        Log.d("cia?", it.list[0])
                         while (i <= total) {
-
+                            if (allWords.list[i] == "ciallo"){
+                                allWords.let { Log.d("cia?", it.list[0]) }
+                            }
                             val word = allWords.list[i]
                             val okWord = replaceSpecialChars(word)
-                            if (okWord == "Ciallo") {
-                                db.insert("word", null, ciallo)
-                                Log.d("Ciallo～(∠·ω< )⌒★", "Ciallo～(∠·ω< )⌒★")
-                            }
-                            else{
-                                val wordUrl = "http://10.0.2.2/words/${okWord}.json"
 
-                                val response = makeRequestWithRetry(client, wordUrl)
-                                val responseData = response?.body?.string()
-                                var word1: Word? = null
-                                if (responseData != null) {
-                                    word1 = parseWordWithMoshi(responseData)
+                            val wordUrl = "http://10.0.2.2/words/${okWord}.json"
 
-                                    val values = ContentValues().apply {
-                                        put("id", i)
-                                        word1?.let { it1 -> put("word", it1.word) }
-                                        word1?.let { it1 -> put("accent", it1.accent) }
-                                        word1?.let { it1 -> put("meanCn", it1.meanCn) }
-                                        word1?.let { it1 -> put("meanEn", it1.meanEn) }
-                                        word1?.let { it1 -> put("sentence", it1.sentence) }
-                                        word1?.let { it1 -> put("sentenceTrans", it1.sentenceTrans) }
-                                    }
-                                    db.insertWithOnConflict("word", null, values, SQLiteDatabase.CONFLICT_IGNORE) // 忽略相同id
+                            val response = makeRequestWithRetry(client, wordUrl)
+                            val responseData = response?.body?.string()
+                            var word1: Word? = null
+                            if (responseData != null) {
+                                word1 = parseWordWithMoshi(responseData)
+
+                                val values = ContentValues().apply {
+                                    put("id", i)
+                                    word1?.let { it1 -> put("word", it1.word) }
+                                    word1?.let { it1 -> put("accent", it1.accent) }
+                                    word1?.let { it1 -> put("meanCn", it1.meanCn) }
+                                    word1?.let { it1 -> put("meanEn", it1.meanEn) }
+                                    word1?.let { it1 -> put("sentence", it1.sentence) }
+                                    word1?.let { it1 -> put("sentenceTrans", it1.sentenceTrans) }
                                 }
-                                Log.d("test", okWord)
+                                db.insertWithOnConflict("word", null, values, SQLiteDatabase.CONFLICT_IGNORE) // 忽略相同id
                             }
+                            Log.d("test", okWord)
+
 
                             i++
                         }

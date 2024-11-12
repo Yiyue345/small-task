@@ -1,12 +1,11 @@
 package com.example.smalltask.activities
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log.d
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.room.Database
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
@@ -15,7 +14,9 @@ import com.example.smalltask.fragment.NothingFragment
 import com.example.smalltask.fragment.SettingsFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 
 class Homepage : BaseActivity() {
 
@@ -47,6 +48,8 @@ class Homepage : BaseActivity() {
 //                } while (cursor.moveToNext())
 //            }
 //        }
+        initWordsDatabase(this) // words你在吗？
+
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
         val userName = getInfo.getString("username", "")
         val databaseFile = this.getDatabasePath("Database${userName}.db") // 居然还省了一步
@@ -92,6 +95,23 @@ class Homepage : BaseActivity() {
             .commit()
     }
 
+    private fun initWordsDatabase(context: Context) {
+        val dbFile = context.getDatabasePath("words.db")
+        if (!dbFile.exists()) {
+            val inputStream: InputStream = context.assets.open("words.db") // 创建一个assets的输入流
+            val outputStream: OutputStream = FileOutputStream(dbFile) // 再创建一个对应的输出流
+
+            val buffer = ByteArray(1024) // 一次写入这么多
+            var length: Int
+            while (inputStream.read(buffer).also { length = it } > 0) {
+                outputStream.write(buffer, 0, length) // 一次写入
+            }
+
+            outputStream.flush()
+            outputStream.close()
+            inputStream.close()
+        }
+    }
 
 
 }
