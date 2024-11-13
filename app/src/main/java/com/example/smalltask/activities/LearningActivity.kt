@@ -15,6 +15,7 @@ import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityLearningBinding
 import com.example.smalltask.fragment.AnsFragment
 import com.example.smalltask.fragment.ChooseFragment
+import com.example.smalltask.fragment.FinishFragment
 import com.example.smalltask.fragment.OnlyEnFragment
 import com.example.smalltask.fragment.SentenceFragment
 import com.example.smalltask.learning.MyDatabaseHelper
@@ -105,6 +106,8 @@ class LearningActivity : BaseActivity() {
             val ansFragment = supportFragmentManager.findFragmentByTag("ansFragment")
             val fragment = supportFragmentManager.findFragmentByTag("learningFragment")
 
+            binding.progress.text = "${wordViewModel.counts}/${learnWordsEachTime}"
+
             if (flag == 1) { // 第一次别覆盖掉了
                 flag = 0
             }
@@ -125,7 +128,12 @@ class LearningActivity : BaseActivity() {
                             replaceFragment(OnlyEnFragment())
                         }
                         else if (it1[wordViewModel.number] == 3) {
-                            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+                            if (wordViewModel.counts == learnWordsEachTime) {
+                                replaceFragment(FinishFragment())
+                            }
+                            else {
+                                wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+                            }
                         }
                     }
                 }

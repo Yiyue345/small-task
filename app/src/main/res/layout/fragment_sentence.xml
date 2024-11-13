@@ -1,9 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.SentenceFragment">
 
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/wordName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="88dp"
+        android:text="TEST"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/accentBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintEnd_toEndOf="@+id/wordName"
+        app:layout_constraintStart_toStartOf="@id/wordName"
+        app:layout_constraintTop_toTopOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/accentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/test/"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/meaningTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="n.测试"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/wordName"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/sentenceTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="start"
+        android:text="If you study for the test, it will be easy."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meaningTextView" />
+
+    <TextView
+        android:id="@+id/sentenceTransTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="start"
+        android:text="如果认真准备了，考试会很简单。"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sentenceTextView" />
+
+    <Button
+        android:id="@+id/yesBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="认识"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/noBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/noBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="不认识"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/yesBtn" />
+
+    <Button
+        android:id="@+id/showHintBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/hint"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

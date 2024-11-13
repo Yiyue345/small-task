@@ -52,7 +52,7 @@ class ChooseFragment : Fragment() {
 
 
         word?.let { binding.wordName.text = it.word }
-        word?.let { binding.phoneticTextView.text = it.accent }
+        word?.let { binding.accentTextView.text = it.accent }
 
         val options = listOf(binding.option1, binding.option2, binding.option3, binding.option4)
         word?.let { options[ans - 1].text = it.meanCn }
