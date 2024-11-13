@@ -20,24 +20,56 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/accentBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintEnd_toEndOf="@+id/wordName"
+        app:layout_constraintStart_toStartOf="@id/wordName"
+        app:layout_constraintTop_toTopOf="@+id/wordName" />
+
+    <TextView
+        android:id="@+id/accentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="/test/"
+        app:layout_constraintStart_toEndOf="@+id/soundImageView"
+        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+
+    <Button
+        android:id="@+id/yesBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="认识"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/noBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:id="@+id/noBtn"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="不认识"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/yesBtn" />
+    <ImageView
+        android:id="@+id/soundImageView"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/play_sound_black"
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toTopOf="@+id/accentTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

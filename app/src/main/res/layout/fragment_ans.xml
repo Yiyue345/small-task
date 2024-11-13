@@ -9,9 +9,13 @@
 
     <Button
         android:id="@+id/nextBtn"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginStart="96dp"
+        android:layout_marginEnd="96dp"
+        android:background="@android:color/transparent"
+        android:text="下一词"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,18 +34,21 @@
 
     <Button
         android:id="@+id/accentBtn"
-        android:layout_width="17dp"
-        android:layout_height="19dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="@+id/wordName"
-        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintEnd_toEndOf="@+id/wordName"
+        app:layout_constraintStart_toStartOf="@id/wordName"
+        app:layout_constraintTop_toTopOf="@+id/wordName" />
 
     <TextView
         android:id="@+id/accentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/test/"
-        app:layout_constraintStart_toEndOf="@+id/accentBtn"
+        app:layout_constraintStart_toEndOf="@+id/soundImageView"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
     <TextView
@@ -50,36 +57,58 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="n.测试"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/wordName"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
     <TextView
         android:id="@+id/sentenceTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="68dp"
+        android:layout_marginEnd="48dp"
         android:text="If you study for the test, it will be easy."
-        app:layout_constraintStart_toStartOf="@+id/meaningTextView"
+        android:gravity="start"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meaningTextView" />
 
     <TextView
         android:id="@+id/sentenceTransTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="start"
         android:text="如果认真准备了，考试会很简单。"
-        app:layout_constraintStart_toStartOf="@+id/sentenceTextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sentenceTextView" />
 
     <TextView
         android:id="@+id/meaningEnTextView"
-        android:layout_width="320dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="32dp"
-        android:text="a set of questions or problems that are designed to measure a person's knowledge, skills, or abilities"
-
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:layout_marginEnd="48dp"
+        android:text="a set of questions or problems that are designed to measure a person's knowledge, skills, or abilities"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sentenceTransTextView" />
 
+    <ImageView
+        android:id="@+id/soundImageView"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/play_sound_black"
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toTopOf="@+id/accentTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

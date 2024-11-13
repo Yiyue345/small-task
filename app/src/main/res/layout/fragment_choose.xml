@@ -20,19 +20,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/pronounceBtn"
-        android:layout_width="17dp"
-        android:layout_height="19dp"
+        android:id="@+id/accentBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
         android:text=""
-        app:layout_constraintStart_toStartOf="@+id/wordName"
-        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintEnd_toEndOf="@+id/wordName"
+        app:layout_constraintStart_toStartOf="@id/wordName"
+        app:layout_constraintTop_toTopOf="@+id/wordName" />
 
     <TextView
-        android:id="@+id/phoneticTextView"
+        android:id="@+id/accentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintStart_toEndOf="@+id/pronounceBtn"
+        android:text="/test/"
+        app:layout_constraintStart_toEndOf="@+id/soundImageView"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
     <TextView
@@ -48,18 +51,21 @@
 
     <Button
         android:id="@+id/option1"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="356dp"
         android:gravity="start"
         android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/showAnsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordName" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/option2"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="start"
@@ -70,7 +76,7 @@
 
     <Button
         android:id="@+id/option3"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="start"
@@ -81,7 +87,7 @@
 
     <Button
         android:id="@+id/option4"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="start"
@@ -92,11 +98,24 @@
 
     <Button
         android:id="@+id/showAnsBtn"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@android:color/transparent"
+        android:text="看答案"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/soundImageView"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/play_sound_black"
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toTopOf="@+id/accentTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
