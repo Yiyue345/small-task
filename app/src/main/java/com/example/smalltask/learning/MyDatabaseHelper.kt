@@ -35,6 +35,7 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int) :
         |)""".trimMargin()
 
     val createLearningRecords = """CREATE TABLE IF NOT EXISTS LearningRecords (
+        |id INTEGER PRIMARY KEY AUTOINCREMENT,
         |type TEXT,
         |date INTEGER,
         |duration INTEGER,

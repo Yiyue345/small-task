@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.R
 import com.example.smalltask.databinding.FragmentOnlyEnBinding
 import com.example.smalltask.learning.WordViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class OnlyEnFragment : Fragment() {
@@ -32,6 +35,10 @@ class OnlyEnFragment : Fragment() {
 
         val word = wordViewModel.words.value?.get(wordViewModel.number)
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            wordViewModel.playWordAudio(requireActivity())
+        }
+
         word?.let { binding.wordName.text = it.word }
         word?.let { binding.accentTextView.text = it.accent }
 
@@ -43,6 +50,12 @@ class OnlyEnFragment : Fragment() {
         binding.noBtn.setOnClickListener {
             wordViewModel.wrongAnswer(wordViewModel.number)
             wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+        }
+
+        binding.accentBtn.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                wordViewModel.playWordAudio(requireActivity())
+            }
         }
 
     }

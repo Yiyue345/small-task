@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.databinding.FragmentChooseBinding
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.WordViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ChooseFragment : Fragment() {
@@ -49,6 +52,9 @@ class ChooseFragment : Fragment() {
             }
 
         }
+        lifecycleScope.launch(Dispatchers.IO) {
+            wordViewModel.playWordAudio(requireActivity())
+        }
 
 
         word?.let { binding.wordName.text = it.word }
@@ -83,6 +89,12 @@ class ChooseFragment : Fragment() {
         }
         binding.showAnsBtn.setOnClickListener {
             judge()
+        }
+
+        binding.accentBtn.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                wordViewModel.playWordAudio(requireActivity())
+            }
         }
     }
 

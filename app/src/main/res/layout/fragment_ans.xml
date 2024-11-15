@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".fragment.AnsFragment">
 
+    <WebView
+        android:id="@+id/cialloView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nextBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        />
 
     <Button
         android:id="@+id/nextBtn"
@@ -25,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="36dp"
         android:text="TEST"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -111,4 +126,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
         app:layout_constraintStart_toStartOf="@+id/accentBtn"
         app:layout_constraintTop_toTopOf="@+id/accentTextView" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

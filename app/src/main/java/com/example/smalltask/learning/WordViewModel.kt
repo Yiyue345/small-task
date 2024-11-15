@@ -1,22 +1,18 @@
 package com.example.smalltask.learning
 
-import android.R.id.input
 import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.smalltask.items.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.ResponseBody
 import java.io.FileOutputStream
-import java.io.Closeable
-import java.io.OutputStream
 
 class WordViewModel : ViewModel(){
     val words = MutableLiveData<MutableList<Word>>(mutableListOf()) // 为啥我要套个livedata
@@ -26,6 +22,11 @@ class WordViewModel : ViewModel(){
 
     var startId = 0
     var endId = 0
+
+    var startTime = 0L
+    var endTime = 0L
+
+    var finish = MutableLiveData<Boolean>(false)
 
     lateinit var wordLearningList: MutableLiveData<MutableList<Int>>
 
@@ -42,7 +43,7 @@ class WordViewModel : ViewModel(){
         wordLearningList.value?.let { it[index] = 0 }
     }
 
-    suspend fun downloadAndPlayAudio(wordName: String, context: Context) {
+    private suspend fun downloadAndPlayAudio(wordName: String, context: Context) {
         val audioFile = java.io.File(context.cacheDir, "${wordName}_audio.mp3")
         val url = "http://dict.youdao.com/dictvoice?audio=$wordName"
 
@@ -80,7 +81,7 @@ class WordViewModel : ViewModel(){
         }
     }
 
-    fun playAudio(file: java.io.File) {
+    private fun playAudio(file: java.io.File) {
         val mediaPlayer = MediaPlayer()
         mediaPlayer.setDataSource(file.absolutePath)
         mediaPlayer.setOnCompletionListener {
@@ -88,6 +89,30 @@ class WordViewModel : ViewModel(){
         }
         mediaPlayer.prepare()
         mediaPlayer.start()
+    }
+
+    suspend fun playWordAudio(context: Context) {
+        val word = words.value?.get(number)
+        word?.let { it1 ->
+            if (it1.word != "Ciallo"){
+                viewModelScope.launch(Dispatchers.IO) {
+                    val audioFile = word.let { java.io.File(context.cacheDir, "${it.word}_audio.mp3") }
+                    audioFile.let {
+                        if (it.exists()) {
+                            playAudio(audioFile)
+                        }
+                        else {
+                            downloadAndPlayAudio(word.word, context)
+                        }
+                    }
+                }
+            }
+            else {
+                val audioFile = word.let { java.io.File(context.cacheDir, "${it.word}_audio.mp3") }
+                playAudio(audioFile)
+            }
+
+        }
     }
 
 
