@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="36dp"
         android:text="TEST"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -27,8 +27,10 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
         app:layout_constraintEnd_toEndOf="@+id/wordName"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/wordName"
-        app:layout_constraintTop_toTopOf="@+id/wordName" />
+        app:layout_constraintTop_toTopOf="@+id/wordName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/accentTextView"
@@ -38,16 +40,28 @@
         app:layout_constraintStart_toEndOf="@+id/soundImageView"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
+    <ImageView
+        android:id="@+id/soundImageView"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/play_sound_black"
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toTopOf="@+id/accentTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+
     <TextView
         android:id="@+id/tipTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="tip:Hello World!"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/choose_tip_textview"
         android:textColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/wordName"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
-
 
     <Button
         android:id="@+id/option1"
@@ -103,19 +117,10 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:background="@android:color/transparent"
-        android:text="看答案"
+        android:text="@string/show_ans_text"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/soundImageView"
-        android:layout_width="20dp"
-        android:layout_height="0dp"
-        android:src="@drawable/play_sound_black"
-        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
-        app:layout_constraintStart_toStartOf="@+id/accentBtn"
-        app:layout_constraintTop_toTopOf="@+id/accentTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,9 @@
         android:theme="@style/Theme.SmallTask"
         tools:targetApi="31">
         <activity
+            android:name=".activities.FinishActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.InitializeActivity"
             android:exported="false" />
         <activity

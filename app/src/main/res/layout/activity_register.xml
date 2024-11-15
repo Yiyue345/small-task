@@ -12,7 +12,7 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
-        android:hint="用户名"
+        android:hint="@string/username_hint"
         android:inputType="textPersonName"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:hint="密码"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,15 +46,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/back"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/test_menu"
+        />
 
     <Button
         android:id="@+id/cancel_button"
@@ -71,7 +75,7 @@
         android:id="@+id/username_is_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户名不能为空"
+        android:text="@string/username_is_empty_textview"
         android:textColor="#EB3324"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/username"
@@ -81,7 +85,7 @@
         android:id="@+id/password_is_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="密码不能为空"
+        android:text="@string/password_is_empty_textview"
         android:textColor="#EB3324"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/password"
@@ -91,19 +95,20 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册"
-        android:textSize="28dp"
-        app:layout_constraintBottom_toBottomOf="@+id/back"
+        android:text="@string/sign_up_textview"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/password1"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:hint="重复密码"
+        android:hint="@string/re_password_hint"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +118,7 @@
         android:id="@+id/wrong_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="两次输入密码不同"
+        android:text="@string/different_password"
         android:visibility="gone"
         android:textColor="#EB3324"
         app:layout_constraintStart_toStartOf="@+id/username"

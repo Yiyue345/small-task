@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -36,24 +37,17 @@ class AnsFragment : Fragment() {
 
         val word = wordViewModel.words.value?.get(wordViewModel.number)
 
-        word?.let { it1 ->
-            if (it1.word != "Ciallo"){
-                lifecycleScope.launch(Dispatchers.IO) {
-                    val audioFile = word.let { java.io.File(requireActivity().cacheDir, "${it.word}_audio.mp3") }
-                    audioFile.let {
-                        if (it.exists()) {
-                            wordViewModel.playAudio(audioFile)
-                        }
-                        else {
-                            wordViewModel.downloadAndPlayAudio(word.word, requireActivity())
-                        }
-                    }
-                }
+        word?.let {
+            if (it.word == "Ciallo") {
+//                binding.cialloView.settings.javaScriptEnabled = true
+                binding.cialloView.loadUrl("https://ciallo.cc/")
+                binding.cialloView.setOnTouchListener { _, _ -> true } // 禁用一切触摸事件
+                binding.cialloView.visibility = View.VISIBLE
             }
-            else {
-                // 还得加东西
-            }
+        }
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            wordViewModel.playWordAudio(requireActivity())
         }
 
 
@@ -69,24 +63,8 @@ class AnsFragment : Fragment() {
         }
 
         binding.accentBtn.setOnClickListener {
-            word?.let { it1 ->
-                if (it1.word != "Ciallo"){
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        val audioFile = word.let { java.io.File(requireActivity().cacheDir, "${it.word}_audio.mp3") }
-                        audioFile.let {
-                            if (it.exists()) {
-                                wordViewModel.playAudio(audioFile)
-                            }
-                            else {
-                                wordViewModel.downloadAndPlayAudio(word.word, requireActivity())
-                            }
-                        }
-                    }
-                }
-                else {
-                    // 还得加东西
-                }
-
+            lifecycleScope.launch(Dispatchers.IO) {
+                wordViewModel.playWordAudio(requireActivity())
             }
         }
 

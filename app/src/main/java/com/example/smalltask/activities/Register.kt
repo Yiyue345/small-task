@@ -1,6 +1,7 @@
 package com.example.smalltask.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -25,11 +26,9 @@ class Register : BaseActivity() {
             insets
         }
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-        binding.back.setOnClickListener{
-            finish()
-        }
         binding.cancelButton.setOnClickListener{
             finish()
         }
@@ -71,5 +70,12 @@ class Register : BaseActivity() {
                 finish()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return true
     }
 }

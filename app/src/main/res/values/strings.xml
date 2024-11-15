@@ -51,4 +51,22 @@
     </string>
     <string name="login">Login Successful</string>
     <string name="wrong_password">Wrong password</string>
+    <string name="username_hint">Your username</string>
+    <string name="password_hint">Your password</string>
+    <string name="username_is_empty_textview">Username cannot be empty</string>
+    <string name="password_is_empty_textview">Password cannot be empty</string>
+    <string name="remember_password_hint">Remember me</string>
+    <string name="re_password_hint">Type your password again</string>
+    <string name="sign_up_textview">Sign up</string>
+    <string name="different_password">Different password</string>
+    <string name="learn">Learn</string>
+    <string name="review">Review</string>
+    <string name="new_password_hint">New password</string>
+    <string name="old_password_hint">Your current password</string>
+    <string name="choose_tip_textview">Recall the meaning of the word before choosing, and look at the answer if you can\'t think of it.</string>
+    <string name="show_ans_text">Show answer</string>
+    <string name="password_cannot_empty">Cannot be empty</string>
+    <string name="wrong_old_password_hint">Wrong password</string>
+    <string name="same_password_hint">You cannot set a same password.</string>
+    <string name="continue_text">Continue</string>
 </resources>

@@ -1,8 +1,10 @@
 package com.example.smalltask.activities
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -96,6 +98,8 @@ class LearningActivity : BaseActivity() {
         wordViewModel.startId = startId
         wordViewModel.endId = endId
 
+        wordViewModel.startTime = System.currentTimeMillis()
+
 //            for (word in wordViewModel.words.value!!) {
 //
 //            }
@@ -128,7 +132,23 @@ class LearningActivity : BaseActivity() {
                             replaceFragment(OnlyEnFragment())
                         }
                         else if (it1[wordViewModel.number] == 3) {
+                            db.execSQL("UPDATE UserInfo SET learnWords = ? WHERE username = ?", arrayOf(learnWords + wordViewModel.counts, userName))
+                            val values = ContentValues().apply { // 这也太长了……
+                                wordViewModel.words.value?.get(wordViewModel.number)?.let { it2 ->
+                                    put("word", it2.word) }
+                                put("lastTime", System.currentTimeMillis())
+                            }
+
+                            db.insert("UserWord", null, values)
                             if (wordViewModel.counts == learnWordsEachTime) {
+                                wordViewModel.endTime = System.currentTimeMillis()
+                                val values = ContentValues().apply {
+                                    put("type", "learning")
+                                    put("date", (System.currentTimeMillis() / 86400000L) * 86400000L)
+                                    put("duration", wordViewModel.endTime - wordViewModel.startTime)
+                                    put("words", learnWordsEachTime)
+                                } // 学习记录
+                                db.insert("LearningRecords", null, values)
                                 replaceFragment(FinishFragment())
                             }
                             else {
@@ -147,20 +167,29 @@ class LearningActivity : BaseActivity() {
 
         }
         replaceFragment(ChooseFragment())
+
+        wordViewModel.finish.observe(this) { it ->
+            if (it) {
+                val intent = Intent(this, FinishActivity::class.java)
+                startActivity(intent)
+
+                finish()
+            }
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.test_menu, menu)
-        return true
-    }
-
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.test_menu, menu)
+//        return true
+//    }
+//
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
-            R.id.test -> {
-                val intent = Intent(this, InitializeActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.test -> {
+//                val intent = Intent(this, InitializeActivity::class.java)
+//                startActivity(intent)
+//            }
         }
         return true
     }

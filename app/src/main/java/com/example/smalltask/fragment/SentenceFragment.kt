@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.databinding.FragmentSentenceBinding
 import com.example.smalltask.learning.WordViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SentenceFragment : Fragment() {
     private var _binding: FragmentSentenceBinding? = null
@@ -30,6 +33,10 @@ class SentenceFragment : Fragment() {
 
         val word = wordViewModel.words.value?.get(wordViewModel.number)
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            wordViewModel.playWordAudio(requireActivity())
+        }
+
         word?.let { binding.wordName.text = it.word }
         word?.let { binding.accentTextView.text = it.accent }
         word?.let { binding.sentenceTextView.text = it.sentence }
@@ -37,6 +44,7 @@ class SentenceFragment : Fragment() {
 
         binding.showHintBtn.setOnClickListener {
             binding.sentenceTransTextView.visibility = View.VISIBLE
+            binding.showHintBtn.visibility = View.GONE
         }
 
         binding.yesBtn.setOnClickListener {
@@ -49,6 +57,11 @@ class SentenceFragment : Fragment() {
             wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
         }
 
+        binding.accentBtn.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                wordViewModel.playWordAudio(requireActivity())
+            }
+        }
 
     }
 
