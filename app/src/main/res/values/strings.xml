@@ -69,4 +69,6 @@
     <string name="wrong_old_password_hint">Wrong password</string>
     <string name="same_password_hint">You cannot set a same password.</string>
     <string name="continue_text">Continue</string>
+    <string name="how_many_days_learn">You have learned for %d day(s) in a row.</string>
+    <string name="no_learn_today">You haven\'t learned today.</string>
 </resources>

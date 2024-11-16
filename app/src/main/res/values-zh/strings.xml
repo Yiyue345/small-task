@@ -69,4 +69,6 @@
     <string name="wrong_old_password_hint">旧密码错误</string>
     <string name="same_password_hint">旧密码与新密码重复</string>
     <string name="continue_text">继续</string>
+    <string name="how_many_days_learn">你已经连续学习了%d天</string>
+    <string name="no_learn_today">你今天还没背单词</string>
 </resources>

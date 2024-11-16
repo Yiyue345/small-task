@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/informationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/todayCountsValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="@+id/todayCounts"
+            app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
+
+        <TextView
+            android:id="@+id/statsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="88dp"
+            android:text="@string/stats_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/todayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="@string/today_time_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/todayCounts"
+            app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
+
+        <TextView
+            android:id="@+id/allTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_time_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/allCounts"
+            app:layout_constraintTop_toTopOf="@+id/todayTime" />
+
+        <TextView
+            android:id="@+id/todayCounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="116dp"
+            android:text="@string/today_counts"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/allCounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="244dp"
+            android:text="@string/all_counts_title"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/todayCounts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/todayCounts"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/allCountsValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="@+id/allCounts"
+            app:layout_constraintTop_toBottomOf="@+id/allCounts" />
+
+        <TextView
+            android:id="@+id/todayTimeValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="@+id/todayTime"
+            app:layout_constraintTop_toBottomOf="@+id/todayTime" />
+
+        <TextView
+            android:id="@+id/allTimeValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="@+id/allTime"
+            app:layout_constraintTop_toBottomOf="@+id/allTime" />
+
+        <TextView
+            android:id="@+id/daysLearnInRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/how_many_days_learn"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="257dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn" />
+
+        <Button
+            android:id="@+id/showAllWordsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="展示所有学习过的词汇"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:layout_editor_absoluteX="54dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allWordsList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

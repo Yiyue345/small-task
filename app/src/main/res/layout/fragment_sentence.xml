@@ -7,6 +7,15 @@
     tools:context=".fragment.SentenceFragment">
 
 
+    <ImageView
+        android:id="@+id/soundImageView2"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/play_sound_black"
+        app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
+        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintTop_toTopOf="@+id/accentTextView" />
+
     <TextView
         android:id="@+id/wordName"
         android:layout_width="wrap_content"
@@ -35,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/test/"
-        app:layout_constraintStart_toStartOf="@+id/accentBtn"
+        app:layout_constraintStart_toEndOf="@+id/soundImageView2"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
     <TextView

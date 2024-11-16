@@ -1,13 +1,12 @@
 package com.example.smalltask.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.smalltask.R
 import com.example.smalltask.databinding.FragmentOnlyEnBinding
 import com.example.smalltask.learning.WordViewModel
 import kotlinx.coroutines.Dispatchers
@@ -58,6 +57,11 @@ class OnlyEnFragment : Fragment() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
