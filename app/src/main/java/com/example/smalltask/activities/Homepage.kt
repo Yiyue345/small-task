@@ -1,16 +1,33 @@
 package com.example.smalltask.activities
 
+import android.Manifest
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.graphics.colorspace.RenderIntent
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.smalltask.BaseActivity
+import com.example.smalltask.HomepageViewModel
+import com.example.smalltask.NotificationReceiver
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
 import com.example.smalltask.fragment.HomepageFragment
-import com.example.smalltask.fragment.NothingFragment
+import com.example.smalltask.fragment.StatsFragment
 import com.example.smalltask.fragment.SettingsFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,10 +35,12 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.util.Calendar
 
 class Homepage : BaseActivity() {
 
     lateinit var binding: ActivityHomepageBinding
+    private lateinit var homepageViewModel: HomepageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +71,11 @@ class Homepage : BaseActivity() {
         initWordsDatabase(this) // words你在吗？
         initCiallo(this)
 
+        homepageViewModel = ViewModelProvider(this)[HomepageViewModel::class.java]
+
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
-        val userName = getInfo.getString("username", "")
+        val userName = getInfo.getString("username", "")!!
+        homepageViewModel.username = userName
         val databaseFile = this.getDatabasePath("Database${userName}.db") // 居然还省了一步
 
         if (!databaseFile.exists()) {
@@ -81,13 +103,29 @@ class Homepage : BaseActivity() {
                     true
                 }
                 R.id.nothing -> {
-                    replaceFragment(NothingFragment())
+                    replaceFragment(StatsFragment())
                     true
                 }
                 else -> false
             }
 
         }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { //Android13你怎么回事
+                    ActivityCompat.requestPermissions(this,
+                        arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+
+                }
+            }
+        }
+
+        scheduleDailyNotification(this) // 这会带来一个bug，但可以治标不治本
+        // 就这样吧，除非很闲不然不会优化了
 
     }
 
@@ -134,5 +172,27 @@ class Homepage : BaseActivity() {
         }
     }
 
+    private fun scheduleDailyNotification(context: Context) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+
+        if (calendar.timeInMillis < System.currentTimeMillis() || homepageViewModel.getTodayTime(this) > 0) {
+            // 如果过了十二点或者已经完成了，就不催命了
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+
+        val intent = Intent(context, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP, // 设备休眠亦能触发
+            calendar.timeInMillis, // 设置第一次触发时间
+            AlarmManager.INTERVAL_DAY, // 一天一次
+            pendingIntent
+        )
+    }
 
 }

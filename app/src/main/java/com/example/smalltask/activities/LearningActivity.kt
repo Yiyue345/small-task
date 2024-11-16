@@ -3,9 +3,8 @@ package com.example.smalltask.activities
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.util.Log.d
-import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -43,7 +42,7 @@ class LearningActivity : BaseActivity() {
             insets
         }
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
-        val userName = getInfo.getString("username", "")
+        val userName = getInfo.getString("username", "")!!
 
         val dbHelper = MyDatabaseHelper(this, "Database${userName}.db", 1)
         val db = dbHelper.writableDatabase
@@ -65,7 +64,7 @@ class LearningActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]
-
+        wordViewModel.username = userName
         wordViewModel.setLearningList(learnWordsEachTime) // 所有单词初始学习次数为0
 
         val startId = learnWords
@@ -133,15 +132,10 @@ class LearningActivity : BaseActivity() {
                         }
                         else if (it1[wordViewModel.number] == 3) {
                             db.execSQL("UPDATE UserInfo SET learnWords = ? WHERE username = ?", arrayOf(learnWords + wordViewModel.counts, userName))
-                            val values = ContentValues().apply { // 这也太长了……
-                                wordViewModel.words.value?.get(wordViewModel.number)?.let { it2 ->
-                                    put("word", it2.word) }
-                                put("lastTime", System.currentTimeMillis())
-                            }
 
-                            db.insert("UserWord", null, values)
+
                             if (wordViewModel.counts == learnWordsEachTime) {
-                                wordViewModel.endTime = System.currentTimeMillis()
+                                wordViewModel.refreshEndTime()
                                 val values = ContentValues().apply {
                                     put("type", "learning")
                                     put("date", (System.currentTimeMillis() / 86400000L) * 86400000L)
@@ -157,6 +151,7 @@ class LearningActivity : BaseActivity() {
                         }
                     }
                 }
+
                 else if (fragment != null){
                     supportFragmentManager.beginTransaction()
                         .remove(fragment)
@@ -176,6 +171,16 @@ class LearningActivity : BaseActivity() {
                 finish()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        wordViewModel.refreshEndTime()
+        val duration = wordViewModel.endTime - wordViewModel.startTime
+        val dbHelper = MyDatabaseHelper(this, "Database${wordViewModel.username}.db", 1)
+        val db = dbHelper.writableDatabase
+        db.execSQL("UPDATE UserInfo SET learnHours = learnHours + ? WHERE username = ?", arrayOf(duration, wordViewModel.username))
+
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {

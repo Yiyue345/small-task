@@ -1,17 +1,16 @@
 package com.example.smalltask.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.R
 import com.example.smalltask.databinding.FragmentFinishBinding
 import com.example.smalltask.items.WordAdapter
-import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
 
 class FinishFragment : Fragment() {
@@ -44,6 +43,9 @@ class FinishFragment : Fragment() {
     }
 
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }
