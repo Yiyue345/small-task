@@ -3,7 +3,7 @@ package com.example.smalltask.activities
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -22,6 +22,7 @@ import com.example.smalltask.fragment.SentenceFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
+import java.io.File
 
 class LearningActivity : BaseActivity() {
 
@@ -161,13 +162,14 @@ class LearningActivity : BaseActivity() {
             }
 
         }
+        check()
+
         replaceFragment(ChooseFragment())
 
         wordViewModel.finish.observe(this) { it ->
             if (it) {
                 val intent = Intent(this, FinishActivity::class.java)
                 startActivity(intent)
-
                 finish()
             }
         }
@@ -217,5 +219,16 @@ class LearningActivity : BaseActivity() {
 //        val word = jsonAdapter.fromJson(jsonData)
 //        return word
 //    }
+
+    private fun check() {
+        val file = File(this.filesDir, "background.png")
+        if (file.exists()) {
+            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+            binding.backgroundImage.setImageBitmap(bitmap)
+        }
+        else {
+            binding.backgroundImage.setImageBitmap(null)
+        }
+    }
 
 }

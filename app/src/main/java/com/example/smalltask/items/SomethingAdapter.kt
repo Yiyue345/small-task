@@ -1,7 +1,6 @@
 package com.example.smalltask.items
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +37,7 @@ class SomethingAdapter(private val context: Context, private val somethingList: 
         holder.somethingTextView.text = something.name
 
         holder.somethingButton.setOnClickListener{
-            val intent = Intent(context, something.jumpTo)
-            context.startActivity(intent)
+            context.startActivity(something.jumpTo)
         }
 
     }
