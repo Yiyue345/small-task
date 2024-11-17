@@ -18,13 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmallTask"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.SetBackgroundActivity"
+            android:exported="false" />
 
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
-            android:exported="false">
-
-        </receiver>
+            android:exported="false"></receiver>
 
         <activity
             android:name=".activities.FinishActivity"

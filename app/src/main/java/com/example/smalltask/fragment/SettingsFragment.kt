@@ -1,5 +1,6 @@
 package com.example.smalltask.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.EndAll
 import com.example.smalltask.R
 import com.example.smalltask.activities.ResetPassword
+import com.example.smalltask.activities.SetBackgroundActivity
 import com.example.smalltask.items.Something
 import com.example.smalltask.items.SomethingAdapter
 import com.example.smalltask.databinding.SettingsFragmentBinding
@@ -41,9 +43,16 @@ class SettingsFragment : Fragment() {
     }
 
     private fun initSomething(){
-        somethingList.add(Something("修改密码", R.drawable.user, ResetPassword::class.java))
-        somethingList.add(Something("关掉", R.drawable.leave, EndAll::class.java))
+        val endAllIntent = Intent(requireActivity(), EndAll::class.java)
+        val resetPasswordIntent = Intent(requireActivity(), ResetPassword::class.java)
+        val userSettingsIntent = Intent(requireActivity(), SetBackgroundActivity::class.java)
+        somethingList.add(Something("背景设置", R.drawable.settings, userSettingsIntent))
+        somethingList.add(Something("修改密码", R.drawable.user, resetPasswordIntent))
+        somethingList.add(Something("关掉", R.drawable.leave, endAllIntent))
+
+
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

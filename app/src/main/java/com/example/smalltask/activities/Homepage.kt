@@ -2,20 +2,14 @@ package com.example.smalltask.activities
 
 import android.Manifest
 import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.ui.graphics.colorspace.RenderIntent
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -27,8 +21,8 @@ import com.example.smalltask.NotificationReceiver
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityHomepageBinding
 import com.example.smalltask.fragment.HomepageFragment
-import com.example.smalltask.fragment.StatsFragment
 import com.example.smalltask.fragment.SettingsFragment
+import com.example.smalltask.fragment.StatsFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.File
@@ -186,7 +180,7 @@ class Homepage : BaseActivity() {
         val intent = Intent(context, NotificationReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmManager = context.getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP, // 设备休眠亦能触发
             calendar.timeInMillis, // 设置第一次触发时间

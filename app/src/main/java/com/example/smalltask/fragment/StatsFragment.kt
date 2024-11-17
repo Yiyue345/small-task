@@ -74,7 +74,6 @@ class StatsFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.allWordsList)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        wordList = wordList.reversed() as java.util.ArrayList<Word>
         recyclerView.adapter = WordAdapter(wordList)
 
         var showList = false
