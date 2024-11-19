@@ -64,10 +64,10 @@ class MainActivity : ComponentActivity() {
                 val checker = prefs.getString(inputUsername, "")
 
                 if (checker?.isBlank() == true) {
-                    Toast.makeText(this, "用户不存在", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.user_not_exist_toast), Toast.LENGTH_SHORT).show()
                 }
                 else if (checker != inputPassword) {
-                    Toast.makeText(this, "密码错误", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                 }
                 else {
                     binding.usernameIsEmpty.visibility = View.GONE

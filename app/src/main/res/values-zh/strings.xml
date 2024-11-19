@@ -71,4 +71,17 @@
     <string name="continue_text">继续</string>
     <string name="how_many_days_learn">你已经连续学习了%d天</string>
     <string name="no_learn_today">你今天还没背单词</string>
+    <string name="user_not_exist_toast">用户不存在</string>
+    <string name="cannot_empty">用户名与密码不可为空</string>
+    <string name="search_empty">输入为空</string>
+    <string name="no_exist_word">未查找到%s</string>
+    <string name="fail_to_search">查找失败，可能是网络问题</string>
+    <string name="words_amount">%d次</string>
+    <string name="time_amount">%d分</string>
+    <string name="show_all_learned_words">展示所有学习过的词汇</string>
+    <string name="unshow_all_learned_words">收起所有学习过的词汇</string>
+    <string name="search_word_at_here">在此搜索单词</string>
+    <string name="quit_text">退出</string>
+    <string name="change_password_text">修改密码</string>
+    <string name="background_opition">学习背景设置</string>
 </resources>

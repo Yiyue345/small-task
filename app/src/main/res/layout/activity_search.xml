@@ -2,51 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.AnsFragment">
+    tools:context=".activities.SearchActivity">
+
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Learning background"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <WebView
         android:id="@+id/cialloView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <View
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="96dp" />
-
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="96dp"
         android:background="@android:color/transparent"
-        android:text="下一词"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/test_menu"
+        />
+
 
     <TextView
         android:id="@+id/wordName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="100dp"
-        android:text="TEST"
+        android:layout_marginTop="36dp"
+        android:text=""
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
 
     <Button
         android:id="@+id/accentBtn"
@@ -63,17 +70,18 @@
         android:id="@+id/accentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/test/"
+        android:text=""
         app:layout_constraintStart_toEndOf="@+id/soundImageView"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
     <TextView
         android:id="@+id/meaningTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="n.测试"
+        android:layout_marginEnd="48dp"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/wordName"
         app:layout_constraintTop_toBottomOf="@+id/wordName" />
 
@@ -84,7 +92,6 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="48dp"
-        android:text="If you study for the test, it will be easy."
         android:gravity="start"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +105,6 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:gravity="start"
-        android:text="如果认真准备了，考试会很简单。"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,10 +116,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="48dp"
         android:gravity="start"
         android:textSize="16sp"
-        android:layout_marginEnd="48dp"
-        android:text="a set of questions or problems that are designed to measure a person's knowledge, skills, or abilities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +129,25 @@
         android:layout_width="20dp"
         android:layout_height="0dp"
         android:src="@drawable/play_sound_black"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/accentTextView"
         app:layout_constraintStart_toStartOf="@+id/accentBtn"
         app:layout_constraintTop_toTopOf="@+id/accentTextView" />
 
-
-
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:textSize="24sp"
+        android:visibility="visible"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

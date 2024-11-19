@@ -29,11 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="16dp"
             android:text="@string/stats_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/daysLearnInRow" />
 
         <TextView
             android:id="@+id/todayTime"
@@ -59,11 +59,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="4dp"
             android:text="@string/today_counts"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
 
         <TextView
             android:id="@+id/allCounts"
@@ -103,10 +103,13 @@
 
         <TextView
             android:id="@+id/daysLearnInRow"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="48dp"
+            android:layout_marginEnd="48dp"
             android:text="@string/how_many_days_learn"
+            android:gravity="center"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="257dp" />
+            app:layout_constraintGuide_begin="281dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -133,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="展示所有学习过的词汇"
+            android:text="@string/show_all_learned_words"
             android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             tools:layout_editor_absoluteX="54dp" />

@@ -46,9 +46,9 @@ class SettingsFragment : Fragment() {
         val endAllIntent = Intent(requireActivity(), EndAll::class.java)
         val resetPasswordIntent = Intent(requireActivity(), ResetPassword::class.java)
         val userSettingsIntent = Intent(requireActivity(), SetBackgroundActivity::class.java)
-        somethingList.add(Something("背景设置", R.drawable.settings, userSettingsIntent))
-        somethingList.add(Something("修改密码", R.drawable.user, resetPasswordIntent))
-        somethingList.add(Something("关掉", R.drawable.leave, endAllIntent))
+        somethingList.add(Something(getString(R.string.background_opition), R.drawable.settings, userSettingsIntent))
+        somethingList.add(Something(getString(R.string.change_password_text), R.drawable.user, resetPasswordIntent))
+        somethingList.add(Something(getString(R.string.quit_text), R.drawable.leave, endAllIntent))
 
 
     }

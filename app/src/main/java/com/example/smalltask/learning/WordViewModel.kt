@@ -30,6 +30,8 @@ class WordViewModel : ViewModel(){
     var finish = MutableLiveData<Boolean>(false)
 
     lateinit var wordLearningList: MutableLiveData<MutableList<Int>>
+    lateinit var wordReviewList: MutableLiveData<MutableList<Int>>
+    lateinit var wordReviewTimesList: MutableLiveData<MutableList<Int>> // 认识一分，模糊两分，不认识三分
 
     fun addWord(word: Word) {
         words.value?.add(word)
@@ -42,6 +44,11 @@ class WordViewModel : ViewModel(){
     }
     fun wrongAnswer(index: Int) {
         wordLearningList.value?.let { it[index] = 0 }
+    }
+
+    fun setReviewList(number: Int) {
+        wordReviewList = MutableLiveData(MutableList(number) {0})
+        wordReviewTimesList = MutableLiveData(MutableList(number) {0})
     }
 
     private suspend fun downloadAndPlayAudio(wordName: String, context: Context) {
