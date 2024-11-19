@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.smalltask.activities.LearningActivity
+import com.example.smalltask.activities.SearchActivity
 import com.example.smalltask.databinding.HomepageFragmentBinding
 import com.example.smalltask.learning.MyDatabaseHelper
+import com.example.smalltask.R
 
 class HomepageFragment : Fragment() {
 
@@ -32,6 +35,25 @@ class HomepageFragment : Fragment() {
             val intent = Intent(requireContext(), LearningActivity::class.java)
             requireContext().startActivity(intent)
         }
+
+        binding.searchWord.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    val intent = Intent(requireActivity(), SearchActivity::class.java)
+                    intent.putExtra("word", query)
+                    startActivity(intent)
+                }
+                else {
+                    Toast.makeText(requireActivity(), getString(R.string.search_empty), Toast.LENGTH_SHORT).show()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
 
         val wordDbHelper = MyDatabaseHelper(requireActivity(), "words.db", 1)
         val wordDb = wordDbHelper.readableDatabase

@@ -44,10 +44,10 @@ class StatsFragment : Fragment() {
         val allWords = homepageViewModel.getAllWords(requireActivity())
         val allTime = homepageViewModel.getAllTime(requireActivity())
 
-        binding.todayCountsValues.text = "${counts}个"
-        binding.todayTimeValues.text = "${TimeUnit.MILLISECONDS.toMinutes(todayTime)}分"
-        binding.allCountsValues.text = "${allWords}个"
-        binding.allTimeValues.text = "${TimeUnit.MILLISECONDS.toMinutes(allTime)}分" // 你别急
+        binding.todayCountsValues.text = getString(R.string.words_amount, counts)
+        binding.todayTimeValues.text = getString(R.string.time_amount, TimeUnit.MILLISECONDS.toMinutes(todayTime))
+        binding.allCountsValues.text = getString(R.string.words_amount, allWords)
+        binding.allTimeValues.text = getString(R.string.time_amount, TimeUnit.MILLISECONDS.toMinutes(allTime))
 
         var wordList = ArrayList<Word>()
         val cursor = db.query("Word",
@@ -81,11 +81,11 @@ class StatsFragment : Fragment() {
             showList = !showList
             if (showList) {
                 binding.allWordsList.visibility = View.VISIBLE
-                binding.showAllWordsBtn.text = "收起所有学习过的词汇"
+                binding.showAllWordsBtn.text = getString(R.string.unshow_all_learned_words)
             }
             else {
                 binding.allWordsList.visibility = View.GONE
-                binding.showAllWordsBtn.text = "展示所有学习过的词汇" // 得改
+                binding.showAllWordsBtn.text = getString(R.string.show_all_learned_words)
             }
         }
     }

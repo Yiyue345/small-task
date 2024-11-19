@@ -105,7 +105,6 @@ class InitializeActivity : BaseActivity() { // 生成words数据库的
                     val allWords = jsonAdapter.fromJson(responseData)
 
                     allWords?.let {
-                        Log.d("cia?", it.list[0])
                         while (i <= total) {
                             if (allWords.list[i] == "ciallo"){
                                 allWords.let { Log.d("cia?", it.list[0]) }

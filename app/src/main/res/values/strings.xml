@@ -71,4 +71,17 @@
     <string name="continue_text">Continue</string>
     <string name="how_many_days_learn">You have learned for %d day(s) in a row.</string>
     <string name="no_learn_today">You haven\'t learned today.</string>
+    <string name="user_not_exist_toast">User does not exist</string>
+    <string name="cannot_empty">Username and password cannot be empty</string>
+    <string name="search_empty">Search input empty\nSearch input empty</string>
+    <string name="no_exist_word">%s isn\'t a available word</string>
+    <string name="fail_to_search">Check your internet and try again.</string>
+    <string name="words_amount">%d words</string>
+    <string name="time_amount">%d mins</string>
+    <string name="show_all_learned_words">Show all you learned words</string>
+    <string name="unshow_all_learned_words">Close</string>
+    <string name="search_word_at_here">Search...</string>
+    <string name="quit_text">Quit</string>
+    <string name="change_password_text">Change your password</string>
+    <string name="background_opition">Set learning background</string>
 </resources>
