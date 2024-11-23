@@ -61,21 +61,39 @@ class AnsFragment : Fragment() {
 
         binding.nextBtn.setOnClickListener {
 
-            wordViewModel.wordLearningList.value?.let { it1 ->
-                if (it1[wordViewModel.number] == 3) {
-                    val dbHelper = MyDatabaseHelper(requireActivity(), "Database${wordViewModel.username}.db", 1)
-                    val db = dbHelper.writableDatabase
-                    val values = ContentValues().apply { // 这也太长了……
-                        wordViewModel.words.value?.get(wordViewModel.number)?.let { it ->
-                            put("word", it.word) }
-                        put("lastTime", (System.currentTimeMillis() / 86400000L) * 86400000L)
-                    }
-                    db.insertWithOnConflict("UserWord", null, values, SQLiteDatabase.CONFLICT_IGNORE) // 忽略相同词
+            if (wordViewModel.mode == "learning") {
+                wordViewModel.wordLearningList.value?.let { it1 ->
+                    if (it1[wordViewModel.number] == 3) {
+                        val dbHelper = MyDatabaseHelper(requireActivity(), "Database${wordViewModel.username}.db", 1)
+                        val db = dbHelper.writableDatabase
+                        val values = ContentValues().apply { // 这也太长了……
+                            wordViewModel.words.value?.get(wordViewModel.number)?.let { it ->
+                                put("word", it.word) }
+                            put("lastTime", (System.currentTimeMillis() / 86400000L) * 86400000L)
+                        }
+                        db.insertWithOnConflict("UserWord", null, values, SQLiteDatabase.CONFLICT_IGNORE) // 忽略相同词
 
+                    }
                 }
+
+                wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+            }
+            else if (wordViewModel.mode == "review") {
+                wordViewModel.wordReviewList.value?.let {
+                    if (it[wordViewModel.number] > 6) {
+
+                        val dbHelper = MyDatabaseHelper(requireActivity(), "Database${wordViewModel.username}.db", 1)
+                        val db = dbHelper.writableDatabase
+                        wordViewModel.counts++
+                        db.execSQL("UPDATE UserWord SET lastTime = ?, times = times + ? WHERE word = ?",
+                            arrayOf(wordViewModel.today, 1, wordViewModel.words.value?.get(wordViewModel.number)?.word)
+                            // 暂时这样
+                        )
+                    }
+                }
+                wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
             }
 
-            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
         }
 
         binding.accentBtn.setOnClickListener {

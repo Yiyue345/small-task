@@ -7,7 +7,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="today_counts">Today learned words</string>
+    <string name="today_counts">Today words</string>
     <string name="stats_title">Stats</string>
     <string name="today_time_title">Study time today</string>
     <string name="all_time_title">Cumulative hours</string>
@@ -84,4 +84,7 @@
     <string name="quit_text">Quit</string>
     <string name="change_password_text">Change your password</string>
     <string name="background_opition">Set learning background</string>
+    <string name="study_progress" translatable="false">%d/%d</string>
+    <string name="no_word_can_review_toast">There\'s no more words to review.</string>
+    <string name="en_mean_text">English meaning</string>
 </resources>

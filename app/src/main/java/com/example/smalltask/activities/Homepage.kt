@@ -88,7 +88,7 @@ class Homepage : BaseActivity() {
 
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.me ->{
+                R.id.options ->{
                     replaceFragment(SettingsFragment())
                     true
                 }
@@ -96,7 +96,7 @@ class Homepage : BaseActivity() {
                     replaceFragment(HomepageFragment())
                     true
                 }
-                R.id.nothing -> {
+                R.id.stats -> {
                     replaceFragment(StatsFragment())
                     true
                 }

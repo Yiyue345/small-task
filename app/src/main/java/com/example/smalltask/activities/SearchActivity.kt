@@ -87,6 +87,7 @@ class SearchActivity : BaseActivity() {
             wordViewModel.words.value?.let { binding.sentenceTransTextView.text = it[0].sentenceTrans }
 
             binding.soundImageView.visibility = View.VISIBLE
+            binding.enMeanHint.visibility = View.VISIBLE
             binding.accentBtn.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.IO) {
                     wordViewModel.playWordAudio(applicationContext)
