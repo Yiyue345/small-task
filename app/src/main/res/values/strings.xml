@@ -7,7 +7,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="today_counts">Today learned words</string>
+    <string name="today_counts">Today words</string>
     <string name="stats_title">Stats</string>
     <string name="today_time_title">Study time today</string>
     <string name="all_time_title">Cumulative hours</string>
@@ -73,7 +73,7 @@
     <string name="no_learn_today">You haven\'t learned today.</string>
     <string name="user_not_exist_toast">User does not exist</string>
     <string name="cannot_empty">Username and password cannot be empty</string>
-    <string name="search_empty">Search input empty\nSearch input empty</string>
+    <string name="search_empty">Search input empty</string>
     <string name="no_exist_word">%s isn\'t a available word</string>
     <string name="fail_to_search">Check your internet and try again.</string>
     <string name="words_amount">%d words</string>
@@ -84,4 +84,12 @@
     <string name="quit_text">Quit</string>
     <string name="change_password_text">Change your password</string>
     <string name="background_opition">Set learning background</string>
+    <string name="study_progress">%d/%d</string>
+    <string name="no_word_can_review_toast">There\'s no more words to review.</string>
+    <string name="en_mean_text">English meaning</string>
+    <string name="no_study_today">You haven\'t studied today.</string>
+    <string name="show_hint">Hint</string>
+    <string name="en_us">English(current)</string>
+    <string name="zh_cn">简体中文（中国）</string>
+    <string name="zh_me">梗体中文（天朝）</string>
 </resources>

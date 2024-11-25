@@ -39,6 +39,11 @@ class StatsFragment : Fragment() {
         val dbHelper = MyDatabaseHelper(requireActivity(), "words.db", 1)
         val db = dbHelper.readableDatabase
 
+        val userDbHelper  = MyDatabaseHelper(requireActivity(), "Database${homepageViewModel.username}.db", 1)
+        val userDb = userDbHelper.readableDatabase
+        val today = System.currentTimeMillis() / 86400000L * 86400000L
+        val oneDay = 86400000L
+
         val counts = homepageViewModel.getTodayCounts(requireActivity())
         val todayTime = homepageViewModel.getTodayTime(requireActivity())
         val allWords = homepageViewModel.getAllWords(requireActivity())
@@ -71,6 +76,38 @@ class StatsFragment : Fragment() {
             } while (cursor.moveToNext())
         }
         cursor.close()
+
+        val learningDaysCursor = userDb.query("LearningRecords",
+            null,
+            null,
+            null,
+            null,
+            null,
+            "id DESC")
+
+        var i = 0
+        if (learningDaysCursor.moveToFirst()) {
+            do {
+                val date = learningDaysCursor.getLong(learningDaysCursor.getColumnIndexOrThrow("date"))
+                if (date == today - oneDay * i) {
+                    i++
+                }
+                else if (date > today - oneDay * i) {
+                    continue
+                }
+                else {
+                    break
+                }
+            } while (learningDaysCursor.moveToNext())
+        }
+        learningDaysCursor.close()
+
+        if (i > 0) {
+            binding.daysLearnInRow.text = getString(R.string.how_many_days_learn, i)
+        }
+        else {
+            binding.daysLearnInRow.text = getString(R.string.no_study_today)
+        }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.allWordsList)
         recyclerView.layoutManager = LinearLayoutManager(context)

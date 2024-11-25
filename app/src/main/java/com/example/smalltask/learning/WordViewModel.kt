@@ -15,6 +15,7 @@ import java.io.FileOutputStream
 
 class WordViewModel : ViewModel(){
     var username = ""
+    var today = 0L
 
     val words = MutableLiveData<MutableList<Word>>(mutableListOf()) // 为啥我要套个livedata
     var number = 0 // 在学第几个
@@ -47,9 +48,26 @@ class WordViewModel : ViewModel(){
     }
 
     fun setReviewList(number: Int) {
-        wordReviewList = MutableLiveData(MutableList(number) {0})
+        wordReviewList = MutableLiveData(MutableList(number) {4})
         wordReviewTimesList = MutableLiveData(MutableList(number) {0})
     }
+
+    fun makeReviewProgress(index: Int, score: Int) {
+        /**
+         * 认识一分，模糊两分，不认识三分
+         */
+        if (score == 3) {
+            wordReviewList.value?.let { it[index] = 0 }
+        }
+        else if (score == 2){
+            wordReviewList.value?.let { it[index]++ }
+        }
+        else if (score == 1) {
+            wordReviewList.value?.let { it[index] += 3 }
+        }
+        wordReviewTimesList.value?.let { it[index] += score }
+    }
+
 
     private suspend fun downloadAndPlayAudio(wordName: String, context: Context) {
         val audioFile = java.io.File(context.cacheDir, "${wordName}_audio.mp3".replace(Regex("[ /\\\\:*?\"<>|]+"), "_"))
@@ -88,14 +106,37 @@ class WordViewModel : ViewModel(){
         }
     }
 
+    private var mediaPlayer: MediaPlayer? = null
+
     private fun playAudio(file: java.io.File) {
-        val mediaPlayer = MediaPlayer()
-        mediaPlayer.setDataSource(file.absolutePath)
-        mediaPlayer.setOnCompletionListener {
-            mediaPlayer.release()
+        if (!file.exists()) {
+            return
         }
-        mediaPlayer.prepare()
-        mediaPlayer.start()
+
+        stopAudio()
+        try {
+            mediaPlayer = MediaPlayer().apply {
+                setDataSource(file.absolutePath)
+                setOnCompletionListener {
+                    stopAudio()
+                }
+                prepare()
+                start()
+            }
+        } catch (e: Exception) {
+            Log.d("playAudio", "fail:$e")
+            stopAudio()
+        }
+    }
+
+    fun stopAudio() {
+        mediaPlayer?.apply {
+            if (isPlaying) {
+                stop()
+            }
+            release()
+        }
+        mediaPlayer = null
     }
 
     fun playWordAudio(context: Context) {

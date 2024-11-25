@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="@string/show_all_learned_words"
-            android:textColor="@color/black"
+            android:textColor="@color/textColorPrimary"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             tools:layout_editor_absoluteX="54dp" />
 

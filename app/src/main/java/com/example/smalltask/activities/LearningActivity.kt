@@ -110,7 +110,7 @@ class LearningActivity : BaseActivity() {
             val ansFragment = supportFragmentManager.findFragmentByTag("ansFragment")
             val fragment = supportFragmentManager.findFragmentByTag("learningFragment")
 
-            binding.progress.text = "${wordViewModel.counts}/${learnWordsEachTime}"
+            binding.progress.text = getString(R.string.study_progress, wordViewModel.counts, learnWordsEachTime)
 
             if (flag == 1) { // 第一次别覆盖掉了
                 flag = 0
@@ -169,6 +169,7 @@ class LearningActivity : BaseActivity() {
         wordViewModel.finish.observe(this) { it ->
             if (it) {
                 val intent = Intent(this, FinishActivity::class.java)
+                intent.putExtra("mode", "learning")
                 startActivity(intent)
                 finish()
             }

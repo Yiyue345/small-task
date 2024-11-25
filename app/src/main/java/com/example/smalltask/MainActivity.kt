@@ -1,6 +1,8 @@
 package com.example.smalltask
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import com.example.smalltask.activities.Homepage
 import com.example.smalltask.activities.Register
 import com.example.smalltask.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
 
@@ -25,6 +28,7 @@ class MainActivity : ComponentActivity() {
         setContentView(binding.root)
 
         val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+
         if (getPassword.getBoolean("isChecked", false)){
             binding.username.setText(getPassword.getString("username", ""))
             binding.password.setText(getPassword.getString("password", ""))
@@ -42,6 +46,8 @@ class MainActivity : ComponentActivity() {
         else{
             binding.username.setText(getPassword.getString("username", ""))
         }
+
+
 
         binding.register.setOnClickListener {
             val intent = Intent(this, Register::class.java)
@@ -107,11 +113,16 @@ class MainActivity : ComponentActivity() {
         val inputPassword = password.text.toString()
         val rememberPassword : CheckBox = findViewById(R.id.remember_password)
 
+        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getPassword.getString("language", "zh")
+        val region = getPassword.getString("region", "CN")
         if (rememberPassword.isChecked){
             val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()
             savePassword.putBoolean("isChecked", true)
             savePassword.putString("username", inputUsername)
             savePassword.putString("password", inputPassword)
+            savePassword.putString("language", language)
+            savePassword.putString("region", region)
             savePassword.apply()
         }
         else{
@@ -119,8 +130,27 @@ class MainActivity : ComponentActivity() {
             savePassword.putBoolean("isChecked", false)
             savePassword.putString("username", inputUsername)
             savePassword.putString("password", "")
+            savePassword.putString("language", language)
+            savePassword.putString("region", region)
             savePassword.apply()
         }
+    }
+
+//    override fun attachBaseContext(newBase: Context?) {
+//        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+//        val language = getPassword.getString("language", "zh")!!
+//        val region = getPassword.getString("region", "CN")!!
+//        newBase?.let { super.attachBaseContext(it.updateLocate(language, region)) }
+//    }
+
+    fun Context.updateLocate(language: String, region: String): Context {
+        val locale = Locale(language, region)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+
+        return createConfigurationContext(configuration)
     }
 
 }

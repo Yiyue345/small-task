@@ -12,7 +12,7 @@ import com.example.smalltask.learning.WordViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SentenceFragment : Fragment() {
+class SentenceFragment : Fragment() { // learning限定
     private var _binding: FragmentSentenceBinding? = null
     private val binding get() = _binding!!
 
@@ -63,6 +63,11 @@ class SentenceFragment : Fragment() {
             }
         }
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        wordViewModel.stopAudio()
     }
 
     override fun onDestroy() {

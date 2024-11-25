@@ -26,8 +26,6 @@ class ChooseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentChooseBinding.inflate(inflater, container, false)
-
-
         return binding.root
     }
 
@@ -98,6 +96,10 @@ class ChooseFragment : Fragment() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        wordViewModel.stopAudio()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -105,13 +107,25 @@ class ChooseFragment : Fragment() {
     }
 
     private fun judge() { // 判断
-        if (choose == ans) {
-            wordViewModel.makeProgress(wordViewModel.number) // 对应进度++
+        if (wordViewModel.mode == "learning") {
+            if (choose == ans) {
+                wordViewModel.makeProgress(wordViewModel.number) // 对应进度++
+            }
+            else {
+                wordViewModel.wrongAnswer(wordViewModel.number) // 错了就重来
+            }
+            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
         }
-        else {
-            wordViewModel.wrongAnswer(wordViewModel.number) // 错了就重来
+
+        else if (wordViewModel.mode == "review") {
+            if (choose == ans) {
+                wordViewModel.wordReviewList.value?.let { it[wordViewModel.number] = 6 }
+            }
+            else {
+                wordViewModel.wordReviewTimesList.value?.let { it[wordViewModel.number] += 3 } // 进度不变
+            }
         }
-        wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+
     }
 
     private fun getOneWordMeaningInZh(index: Int): String { // 丑陋，但能跑就行

@@ -41,14 +41,34 @@ class OnlyEnFragment : Fragment() {
         word?.let { binding.wordName.text = it.word }
         word?.let { binding.accentTextView.text = it.accent }
 
-        binding.yesBtn.setOnClickListener {
-            wordViewModel.makeProgress(wordViewModel.number)
-            wordViewModel.counts++
-            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+
+        if (wordViewModel.mode  == "learning") {
+            binding.fuzzyBtn.visibility = View.GONE
+            binding.yesBtn.width = 180
+            binding.noBtn.width = 180
+            binding.yesBtn.setOnClickListener {
+                wordViewModel.makeProgress(wordViewModel.number)
+                wordViewModel.counts++
+                wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+            }
+            binding.noBtn.setOnClickListener {
+                wordViewModel.wrongAnswer(wordViewModel.number)
+                wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+            }
         }
-        binding.noBtn.setOnClickListener {
-            wordViewModel.wrongAnswer(wordViewModel.number)
-            wordViewModel.wordLearningList.value = wordViewModel.wordLearningList.value
+        else if (wordViewModel.mode == "review") {
+            binding.yesBtn.setOnClickListener {
+                wordViewModel.makeReviewProgress(wordViewModel.number, 1)
+                wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
+            }
+            binding.fuzzyBtn.setOnClickListener {
+                wordViewModel.makeReviewProgress(wordViewModel.number, 2)
+                wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
+            }
+            binding.noBtn.setOnClickListener {
+                wordViewModel.makeReviewProgress(wordViewModel.number, 3)
+                wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
+            }
         }
 
         binding.accentBtn.setOnClickListener {
@@ -59,9 +79,16 @@ class OnlyEnFragment : Fragment() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        wordViewModel.stopAudio()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
+
 
 }

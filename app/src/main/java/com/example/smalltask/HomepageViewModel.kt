@@ -7,6 +7,8 @@ import com.example.smalltask.learning.MyDatabaseHelper
 class HomepageViewModel : ViewModel() {
     var username = ""
 
+    var reviewWords = 0
+
     fun getTodayCounts(context: Context): Int {
         val dbHelper = MyDatabaseHelper(context, "Database${username}.db", 1)
         val db = dbHelper.readableDatabase

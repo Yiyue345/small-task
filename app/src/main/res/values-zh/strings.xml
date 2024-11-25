@@ -7,7 +7,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">下一步</string>
     <string name="previous">Previous</string>
-    <string name="today_counts">今日学习数</string>
+    <string name="today_counts">今日学习/复习数</string>
     <string name="stats_title">统计</string>
     <string name="today_time_title">今日总时长</string>
     <string name="all_time_title">累计学习时长</string>
@@ -76,7 +76,7 @@
     <string name="search_empty">输入为空</string>
     <string name="no_exist_word">未查找到%s</string>
     <string name="fail_to_search">查找失败，可能是网络问题</string>
-    <string name="words_amount">%d次</string>
+    <string name="words_amount">%d词</string>
     <string name="time_amount">%d分</string>
     <string name="show_all_learned_words">展示所有学习过的词汇</string>
     <string name="unshow_all_learned_words">收起所有学习过的词汇</string>
@@ -84,4 +84,12 @@
     <string name="quit_text">退出</string>
     <string name="change_password_text">修改密码</string>
     <string name="background_opition">学习背景设置</string>
+    <string name="study_progress">%d/%d</string>
+    <string name="no_word_can_review_toast">已经复习完了</string>
+    <string name="en_mean_text">英文释义</string>
+    <string name="no_study_today">今天还没有学习</string>
+    <string name="show_hint">提示一下</string>
+    <string name="en_us">English</string>
+    <string name="zh_cn">简体中文（中国）</string>
+    <string name="zh_me">梗体中文（天朝）</string>
 </resources>

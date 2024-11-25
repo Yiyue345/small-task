@@ -11,17 +11,20 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_elaina"
         android:label=""
         android:networkSecurityConfig="@xml/network_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_elaina_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmallTask"
         tools:targetApi="31">
         <activity
+            android:name=".activities.LanguageActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SearchActivity"
             android:exported="false"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity
             android:name=".activities.SetBackgroundActivity"
             android:exported="false" />
@@ -29,11 +32,13 @@
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
-            android:exported="false">
-        </receiver>
+            android:exported="false"></receiver>
 
         <activity
             android:name=".activities.FinishActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ReviewActivity"
             android:exported="false" />
         <activity
             android:name=".activities.InitializeActivity"
@@ -41,10 +46,6 @@
         <activity
             android:name=".activities.LearningActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.EditingActivity"
-            android:exported="false"
-            android:theme="@style/Theme.SmallTask" />
         <activity
             android:name=".EndAll"
             android:exported="false" />
