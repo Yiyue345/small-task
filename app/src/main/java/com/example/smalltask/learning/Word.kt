@@ -8,5 +8,6 @@ data class Word(
     @Json(name = "mean_cn") val meanCn: String,
     @Json(name = "mean_en") val meanEn: String,
     @Json(name = "sentence") val sentence: String,
-    @Json(name = "sentence_trans") val sentenceTrans: String
+    @Json(name = "sentence_trans") val sentenceTrans: String,
+    var showDetails: Boolean? = false
 )

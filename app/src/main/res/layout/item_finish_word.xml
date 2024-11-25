@@ -20,25 +20,75 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/cardBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/light_gray"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wordCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
+
         <TextView
-            android:id="@+id/wordName2"
+            android:id="@+id/meanCn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="0dp"
             android:text="233"
+            android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="invisible"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/meanCn"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <TextView
+        android:id="@+id/accent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="233"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/wordName"
+        app:layout_constraintStart_toEndOf="@+id/wordName"
+        app:layout_constraintTop_toTopOf="@+id/wordName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

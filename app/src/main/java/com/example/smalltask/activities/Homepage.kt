@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -46,6 +47,7 @@ class Homepage : BaseActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Log.d("LocaleCheck", resources.configuration.locales.toString())
 
 //        setSupportActionBar(binding.toolbar)
 
@@ -122,6 +124,10 @@ class Homepage : BaseActivity() {
         // 就这样吧，除非很闲不然不会优化了
 
     }
+
+//    override fun attachBaseContext(newBase: Context?) { // 语言！
+//        newBase?.let { super.attachBaseContext(it.updateLocate("zh", "ME")) }
+//    }
 
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()

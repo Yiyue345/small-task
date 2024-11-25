@@ -84,6 +84,12 @@
     <string name="quit_text">退出</string>
     <string name="change_password_text">修改密码</string>
     <string name="background_opition">学习背景设置</string>
+    <string name="study_progress">%d/%d</string>
     <string name="no_word_can_review_toast">已经复习完了</string>
     <string name="en_mean_text">英文释义</string>
+    <string name="no_study_today">今天还没有学习</string>
+    <string name="show_hint">提示一下</string>
+    <string name="en_us">English</string>
+    <string name="zh_cn">简体中文（中国）</string>
+    <string name="zh_me">梗体中文（天朝）</string>
 </resources>

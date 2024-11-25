@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Small Task</string>
+    <string name="app_name">拙劣模仿</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
@@ -7,11 +7,11 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">下一步</string>
     <string name="previous">Previous</string>
-    <string name="today_counts">今日学习数</string>
-    <string name="stats_title">统计</string>
-    <string name="today_time_title">今日总时长</string>
+    <string name="today_counts">今天居然学了</string>
+    <string name="stats_title">这都是朕背下的江山</string>
+    <string name="today_time_title">今天又自我感动了</string>
     <string name="all_time_title">累计学习时长</string>
-    <string name="all_counts_title">累计学习</string>
+    <string name="all_counts_title">一共才学了</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -49,6 +49,40 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="login">登录成功</string>
-    <string name="wrong_password">密码错误</string>
+    <string name="login">欢迎业主回家</string>
+    <string name="wrong_password">密码不对人等不得入内</string>
+    <string name="username_hint">你姓甚名谁</string>
+    <string name="password_hint">给我一个让你登录的理由</string>
+    <string name="username_is_empty_textview">您是无名氏还是佚名？</string>
+    <string name="password_is_empty_textview">这算哪门子理由……</string>
+    <string name="remember_password_hint">自动开门</string>
+    <string name="re_password_hint">复读密码</string>
+    <string name="sign_up_textview">登记</string>
+    <string name="different_password">失去同步</string>
+    <string name="learn">第一次学，比较紧张</string>
+    <string name="review">前面的忘了，再学一遍</string>
+    <string name="wrong_old_password_hint">你无法寻回过去了吗？</string>
+    <string name="same_password_hint">多此一举</string>
+    <string name="continue_text">冲冲冲！</string>
+    <string name="show_ans_text">我不会，球球你饶了我吧</string>
+    <string name="password_cannot_empty">不给空着</string>
+    <string name="cannot_empty">锁与匙缺一不可</string>
+    <string name="search_empty">我怎么知道你要查啥</string>
+    <string name="no_exist_word">没找到%s ，Ciallo～</string>
+    <string name="fail_to_search">找不到，怎么想都是网络问题吧！</string>
+    <string name="words_amount">%d个词</string>
+    <string name="time_amount">%d分钟</string>
+    <string name="show_all_learned_words">看看都学过了什么</string>
+    <string name="unshow_all_learned_words">不看了</string>
+    <string name="user_not_exist_toast">这真是让人尴尬，目前我们找不到这个人</string>
+    <string name="background_opition">切换覆盖层</string>
+    <string name="search_word_at_here">让我找找</string>
+    <string name="quit_text">夺门而出</string>
+    <string name="study_progress">%d=%d</string>
+    <string name="no_word_can_review_toast">好棒！今天也是完成学习任务的一天</string>
+    <string name="en_mean_text">老米字旗都这么说</string>
+    <string name="show_hint">偷偷看看</string>
+    <string name="new_password_hint">我赠予未来</string>
+    <string name="old_password_hint">我驻留往昔</string>
+    <string name="en_us">小不列颠官方语言</string>
 </resources>
