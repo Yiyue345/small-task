@@ -23,6 +23,13 @@ open class BaseActivity : AppCompatActivity(){
         ActivityCollector.removeActivity(this)
     }
 
+    override fun attachBaseContext(base: Context) {
+        val getLanguage = base.getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getLanguage.getString("language", "zh") ?: "zh"
+        val region = getLanguage.getString("region", "CN") ?: "CN"
+        super.attachBaseContext(base.updateLocate(language, region))
+    }
+
 
     fun Context.updateLocate(language: String, region: String): Context { // 就是重新设置了语言和地区然后重新那啥
         val locale = Locale(language, region)

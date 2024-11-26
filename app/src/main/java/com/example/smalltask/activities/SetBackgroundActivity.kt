@@ -1,5 +1,6 @@
 package com.example.smalltask.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -24,6 +25,10 @@ class SetBackgroundActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getLanguage.getString("language", "zh") ?: "zh"
+        val region = getLanguage.getString("region", "CN") ?: "CN"
+        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivitySetBackgroundBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -63,6 +68,8 @@ class SetBackgroundActivity : BaseActivity() {
 
 
     }
+
+
     private fun getBitmapFromUri(uri: Uri): Bitmap? {
         return try {
             val inputStream = this.contentResolver.openInputStream(uri)

@@ -16,18 +16,22 @@ import com.example.smalltask.activities.Register
 import com.example.smalltask.databinding.ActivityMainBinding
 import java.util.Locale
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
 
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MainActivity", "Ciallo!")
+        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+//        val language = getPassword.getString("language", "zh") ?: "zh"
+//        val region = getPassword.getString("region", "CN") ?: "CN"
+//        updateLocate(language, region)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+//        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
 
         if (getPassword.getBoolean("isChecked", false)){
             binding.username.setText(getPassword.getString("username", ""))
@@ -136,22 +140,17 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-//    override fun attachBaseContext(newBase: Context?) {
-//        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
-//        val language = getPassword.getString("language", "zh")!!
-//        val region = getPassword.getString("region", "CN")!!
-//        newBase?.let { super.attachBaseContext(it.updateLocate(language, region)) }
+
+
+//    fun Context.updateLocate(language: String, region: String): Context {
+//        val locale = Locale(language, region)
+//        Locale.setDefault(locale)
+//
+//        val configuration = Configuration(resources.configuration)
+//        configuration.setLocale(locale)
+//
+//        return createConfigurationContext(configuration)
 //    }
-
-    fun Context.updateLocate(language: String, region: String): Context {
-        val locale = Locale(language, region)
-        Locale.setDefault(locale)
-
-        val configuration = Configuration(resources.configuration)
-        configuration.setLocale(locale)
-
-        return createConfigurationContext(configuration)
-    }
 
 }
 

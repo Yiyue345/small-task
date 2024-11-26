@@ -89,7 +89,21 @@
     <string name="en_mean_text">English meaning</string>
     <string name="no_study_today">You haven\'t studied today.</string>
     <string name="show_hint">Hint</string>
-    <string name="en_us">English(current)</string>
-    <string name="zh_cn">简体中文（中国）</string>
+    <string name="en_us_show">English(current)</string>
+    <string name="zh_cn_show">简体中文（中国）</string>
+    <string name="zh_me_show">梗体中文（天朝）</string>
+    <string name="choose_language_text">Language</string>
+    <string name="yes">Yes</string>
+    <string name="not_now">Not right now</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="switch_language_title">Sure?</string>
+    <string name="switch_language_message">Want to switch the language to %s? Switching the language will cause the app to restart</string>
+    <string name="same_language_hint">Your application language is %s already</string>
+    <string name="en_us">English</string>
+    <string name="zh">简体中文（中国）</string>
     <string name="zh_me">梗体中文（天朝）</string>
+    <string name="study">Learning</string>
+    <string name="stats">Stats</string>
+    <string name="options">Options</string>
 </resources>

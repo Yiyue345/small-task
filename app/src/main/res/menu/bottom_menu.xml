@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/homepage"
-        android:title="房子"
+        android:title="@string/study"
         android:icon="@drawable/homepage"/>
     <item
         android:id="@+id/stats"
-        android:title="这不是一个圆"
+        android:title="@string/stats"
         android:icon="@drawable/stats"/>
     <item
         android:id="@+id/options"
-        android:title="齿轮"
+        android:title="@string/options"
         android:icon="@drawable/settings"/>
 </menu>

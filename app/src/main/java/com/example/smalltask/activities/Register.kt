@@ -1,5 +1,6 @@
 package com.example.smalltask.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -17,6 +18,10 @@ class Register : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getLanguage.getString("language", "zh") ?: "zh"
+        val region = getLanguage.getString("region", "CN") ?: "CN"
+        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -78,4 +83,5 @@ class Register : BaseActivity() {
         }
         return true
     }
+
 }

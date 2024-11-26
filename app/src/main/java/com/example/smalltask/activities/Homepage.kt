@@ -49,21 +49,6 @@ class Homepage : BaseActivity() {
         }
         Log.d("LocaleCheck", resources.configuration.locales.toString())
 
-//        setSupportActionBar(binding.toolbar)
-
-//        val dbHelper = MyDatabaseHelper(this, "words.db", 1)
-//        val db = dbHelper.writableDatabase
-
-//        runBlocking {
-//            val cursor = db.query("Word", null, null, null, null, null, null)
-//            if (cursor.moveToFirst()) {
-//                do {
-//                    val word = cursor.getString(cursor.getColumnIndex("word"))
-//                    val id = cursor.getInt(cursor.getColumnIndex("id"))
-//                    Log.d(id.toString(), word)
-//                } while (cursor.moveToNext())
-//            }
-//        }
         initWordsDatabase(this) // words你在吗？
         initCiallo(this)
 
@@ -125,8 +110,11 @@ class Homepage : BaseActivity() {
 
     }
 
-//    override fun attachBaseContext(newBase: Context?) { // 语言！
-//        newBase?.let { super.attachBaseContext(it.updateLocate("zh", "ME")) }
+//    override fun attachBaseContext(newBase: Context?) {
+//        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
+//        val language = getPassword.getString("language", "zh")!!
+//        val region = getPassword.getString("region", "CN")!!
+//        newBase?.let { super.attachBaseContext(it.updateLocate(language, region)) }
 //    }
 
     private fun replaceFragment(fragment: Fragment){

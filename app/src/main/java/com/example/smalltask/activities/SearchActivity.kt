@@ -1,5 +1,6 @@
 package com.example.smalltask.activities
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.MenuItem
@@ -31,6 +32,10 @@ class SearchActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getLanguage.getString("language", "zh") ?: "zh"
+        val region = getLanguage.getString("region", "CN") ?: "CN"
+        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -184,9 +189,9 @@ class SearchActivity : BaseActivity() {
 
 
         wordCursor.close()
-
-
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -194,6 +199,7 @@ class SearchActivity : BaseActivity() {
         }
         return true
     }
+
 
     private fun check() {
         val file = File(this.filesDir, "background.png")

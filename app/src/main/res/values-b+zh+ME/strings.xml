@@ -75,6 +75,7 @@
     <string name="show_all_learned_words">看看都学过了什么</string>
     <string name="unshow_all_learned_words">不看了</string>
     <string name="user_not_exist_toast">这真是让人尴尬，目前我们找不到这个人</string>
+    <string name="change_password_text">换锁</string>
     <string name="background_opition">切换覆盖层</string>
     <string name="search_word_at_here">让我找找</string>
     <string name="quit_text">夺门而出</string>
@@ -84,5 +85,20 @@
     <string name="show_hint">偷偷看看</string>
     <string name="new_password_hint">我赠予未来</string>
     <string name="old_password_hint">我驻留往昔</string>
+    <string name="en_us_show">小不列颠官方语言</string>
+    <string name="zh_cn_show">这个中文味道不正！</string>
+    <string name="zh_me_show">我们已经在说中文了！</string>
+    <string name="choose_language_text">我会八国语言！</string>
+    <string name="cancel">算了</string>
+    <string name="switch_language_title">真的要这样吗……</string>
+    <string name="yes">就这样吧</string>
+    <string name="no">打咩</string>
+    <string name="same_language_hint">让我们说%s</string>
     <string name="en_us">小不列颠官方语言</string>
+    <string name="zh">味道不正的中文</string>
+    <string name="zh_me">我们已经在说中文了！</string>
+    <string name="switch_language_message">真的要把语言切换到%s吗……切换之后你真的还会回来吗QAQ……</string>
+    <string name="study">我要学习！</string>
+    <string name="stats">到底学了多少</string>
+    <string name="options">可能会用到的东西</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.smalltask.activities
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -32,7 +33,6 @@ class LearningActivity : BaseActivity() {
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityLearningBinding.inflate(layoutInflater)
@@ -213,6 +213,7 @@ class LearningActivity : BaseActivity() {
             .replace(R.id.learningLayout, fragment, "ansFragment") // 这是tag！
             .commit()
     }
+
 
 //    private fun parseWordWithMoshi(jsonData: String): Word? {
 //        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
