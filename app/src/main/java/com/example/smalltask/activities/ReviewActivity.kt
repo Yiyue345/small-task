@@ -1,6 +1,7 @@
 package com.example.smalltask.activities
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -34,6 +35,10 @@ class ReviewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
+        val language = getLanguage.getString("language", "zh") ?: "zh"
+        val region = getLanguage.getString("region", "CN") ?: "CN"
+        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivityReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -203,6 +208,8 @@ class ReviewActivity : BaseActivity() {
         }
         return true
     }
+
+
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

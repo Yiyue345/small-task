@@ -43,24 +43,36 @@ class HomepageFragment : Fragment() {
         }
 
 
+        var i = 0
+        val dbHelper = homepageViewModel?.let { MyDatabaseHelper(requireActivity(), "Database${it.username}.db", 1) }
+        val db = dbHelper?.writableDatabase
+        val userWordCursor = db!!.query("UserWord", null, null, null, null, null, null)
 
+
+        if (userWordCursor.moveToFirst()) {
+
+            do {
+                val lastTime = userWordCursor.getLong(userWordCursor.getColumnIndexOrThrow("lastTime"))
+                val times = userWordCursor.getInt(userWordCursor.getColumnIndexOrThrow("times"))
+                val today = (System.currentTimeMillis() / 86400000L) * 86400000L
+                if (today > lastTime + (times - 1) * (times - 1) * today) { // (time-1)^2 还要修改
+                    i++
+                }
+            } while (userWordCursor.moveToNext())
+        }
+        userWordCursor.close()
+
+        val cursor = db.query("UserInfo", null, null, null, null, null, null)
+        var learnWords = 0
+        if (cursor.moveToFirst()) {
+            learnWords = cursor.getInt(cursor.getColumnIndexOrThrow("learnWords"))
+        }
+        cursor.close()
+        val total = 10928
+        binding.reviewNumber.text = "$i"
+        binding.learningNumber.text = "${total - learnWords}"
         binding.review.setOnClickListener {
-            val dbHelper = homepageViewModel?.let { MyDatabaseHelper(requireActivity(), "Database${it.username}.db", 1) }
-            val db = dbHelper?.writableDatabase
-            val userWordCursor = db!!.query("UserWord", null, null, null, null, null, null)
-            var i = 0
-            if (userWordCursor.moveToFirst()) { // word列表初始化
 
-                do {
-                    val lastTime = userWordCursor.getLong(userWordCursor.getColumnIndexOrThrow("lastTime"))
-                    val times = userWordCursor.getInt(userWordCursor.getColumnIndexOrThrow("times"))
-                    val today = (System.currentTimeMillis() / 86400000L) * 86400000L
-                    if (today > lastTime + (times - 1) * (times - 1) * today) { // (time-1)^2 还要修改
-                        i++
-                    }
-                } while (userWordCursor.moveToNext())
-            }
-            userWordCursor.close()
             if (i > 0) {
                 val intent = Intent(requireActivity(), ReviewActivity::class.java)
                 startActivity(intent)

@@ -23,6 +23,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/languageList"
         android:layout_width="409dp"
         android:layout_height="665dp"
         app:layout_constraintStart_toStartOf="parent"

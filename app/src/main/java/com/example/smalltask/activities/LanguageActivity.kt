@@ -3,14 +3,18 @@ package com.example.smalltask.activities
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityLanguageBinding
+import com.example.smalltask.items.LanguageAdapter
+import com.example.smalltask.items.UserLanguage
 
 class LanguageActivity : BaseActivity() {
+
+    private val userLanguageList = ArrayList<UserLanguage>()
 
     lateinit var binding: ActivityLanguageBinding
 
@@ -27,6 +31,10 @@ class LanguageActivity : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        initUserLanguage()
+        binding.languageList.layoutManager = LinearLayoutManager(this)
+        binding.languageList.adapter = LanguageAdapter(this, userLanguageList)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -34,5 +42,12 @@ class LanguageActivity : BaseActivity() {
             android.R.id.home -> finish()
         }
         return true
+    }
+    
+
+    private fun initUserLanguage() {
+        userLanguageList.add(UserLanguage(getString(R.string.en_us), getString(R.string.en_us_show), "en", "US"))
+        userLanguageList.add(UserLanguage(getString(R.string.zh), getString(R.string.zh_cn_show), "zh", ""))
+        userLanguageList.add(UserLanguage(getString(R.string.zh_me), getString(R.string.zh_me_show), "zh", "ME"))
     }
 }
