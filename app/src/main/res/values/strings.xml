@@ -78,7 +78,7 @@
     <string name="fail_to_search">Check your internet and try again.</string>
     <string name="words_amount">%d words</string>
     <string name="time_amount">%d mins</string>
-    <string name="show_all_learned_words">Show all you learned words</string>
+    <string name="show_all_learned_words">See all you learned words</string>
     <string name="unshow_all_learned_words">Close</string>
     <string name="search_word_at_here">Search...</string>
     <string name="quit_text">Quit</string>
@@ -89,7 +89,7 @@
     <string name="en_mean_text">English meaning</string>
     <string name="no_study_today">You haven\'t studied today.</string>
     <string name="show_hint">Hint</string>
-    <string name="en_us_show">English(current)</string>
+    <string name="en_us_show">English(United States)(current)</string>
     <string name="zh_cn_show">简体中文（中国）</string>
     <string name="zh_me_show">梗体中文（天朝）</string>
     <string name="choose_language_text">Language</string>
@@ -106,4 +106,7 @@
     <string name="study">Learning</string>
     <string name="stats">Stats</string>
     <string name="options">Options</string>
+    <string name="same_password_toast">Same password</string>
+    <string name="wrong_pass_word_toast">Wrong password</string>
+    <string name="modified_successfully">Modified successfully</string>
 </resources>

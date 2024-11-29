@@ -1,14 +1,10 @@
 package com.example.smalltask
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Region
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import org.intellij.lang.annotations.Language
 import java.util.Locale
 
 open class BaseActivity : AppCompatActivity(){

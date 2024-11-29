@@ -9,11 +9,11 @@ class HomepageViewModel : ViewModel() {
 
     var reviewWords = 0
 
-    fun getTodayCounts(context: Context): Int {
+    fun getTodayCounts(context: Context, today: Long): Int {
         val dbHelper = MyDatabaseHelper(context, "Database${username}.db", 1)
         val db = dbHelper.readableDatabase
 
-        val currentDate = (System.currentTimeMillis() / 86400000L) * 86400000L
+        val currentDate = (today / 86400000L) * 86400000L
         val todayCountsCursor = db.query("UserWord",
             null,
             "lastTime = ?",
@@ -29,6 +29,15 @@ class HomepageViewModel : ViewModel() {
         }
         todayCountsCursor.close()
         return counts
+    }
+
+    fun getSevenDaysCounts(context: Context): MutableList<Int> {
+        val sevenDaysCounts = MutableList(7) {0}
+        val today = System.currentTimeMillis() / 86400000L * 86400000L
+        for (i in 0 until 7) {
+            sevenDaysCounts[6 - i] = getTodayCounts(context, today - 86400000L * i)
+        }
+        return sevenDaysCounts
     }
 
     fun getTodayTime(context: Context): Long {

@@ -18,10 +18,6 @@ class ResetPassword : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
-        val language = getLanguage.getString("language", "zh") ?: "zh"
-        val region = getLanguage.getString("region", "CN") ?: "CN"
-        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -58,10 +54,10 @@ class ResetPassword : BaseActivity() {
 
 
             if (inputOldPassword.isBlank() or inputNewPassword.isBlank()){
-                Toast.makeText(this, "两个框都要有东西！", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.cannot_empty), Toast.LENGTH_SHORT).show()
             }
             else if(inputOldPassword == inputNewPassword){
-                Toast.makeText(this, "新旧密码相同……\n你在干什么？", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.same_password_toast), Toast.LENGTH_SHORT).show()
                 binding.samePassword.visibility = View.VISIBLE
             }
             else{
@@ -71,7 +67,7 @@ class ResetPassword : BaseActivity() {
                 val password = prefs.getString(username, "")
                 if (inputOldPassword != password){
                     binding.wrongPassword.visibility = View.VISIBLE
-                    Toast.makeText(this, "旧密码错误",  Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.wrong_pass_word_toast),  Toast.LENGTH_SHORT).show()
                 }
                 else{
                     binding.wrongPassword.visibility = View.GONE
@@ -80,7 +76,7 @@ class ResetPassword : BaseActivity() {
                     editor.putString(username, inputNewPassword)
                     editor.apply()
                     editorL.apply()
-                    Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.modified_successfully), Toast.LENGTH_SHORT).show()
                     finish()
                 }
 

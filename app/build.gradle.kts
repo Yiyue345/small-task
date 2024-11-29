@@ -97,6 +97,9 @@ dependencies {
     implementation(libs.androidx.work)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
+    implementation(libs.mpandroidchart)
+    implementation(libs.github.anychart.android)
+
 //    implementation(libs.androidx.room.compiler.v210)
 
 
