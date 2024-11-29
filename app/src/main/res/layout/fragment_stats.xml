@@ -5,149 +5,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/informationLayout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/todayCountsValues"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintStart_toStartOf="@+id/todayCounts"
-            app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
-
-        <TextView
-            android:id="@+id/statsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/stats_title"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daysLearnInRow" />
-
-        <TextView
-            android:id="@+id/todayTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:text="@string/today_time_title"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/todayCounts"
-            app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
-
-        <TextView
-            android:id="@+id/allTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all_time_title"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/allCounts"
-            app:layout_constraintTop_toTopOf="@+id/todayTime" />
-
-        <TextView
-            android:id="@+id/todayCounts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/today_counts"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
-
-        <TextView
-            android:id="@+id/allCounts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="244dp"
-            android:text="@string/all_counts_title"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/todayCounts"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/todayCounts"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/allCountsValues"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintStart_toStartOf="@+id/allCounts"
-            app:layout_constraintTop_toBottomOf="@+id/allCounts" />
-
-        <TextView
-            android:id="@+id/todayTimeValues"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintStart_toStartOf="@+id/todayTime"
-            app:layout_constraintTop_toBottomOf="@+id/todayTime" />
-
-        <TextView
-            android:id="@+id/allTimeValues"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintStart_toStartOf="@+id/allTime"
-            app:layout_constraintTop_toBottomOf="@+id/allTime" />
-
-        <TextView
-            android:id="@+id/daysLearnInRow"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="48dp"
-            android:text="@string/how_many_days_learn"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/informationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="281dp" />
+            <TextView
+                android:id="@+id/todayCountsValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/todayCounts"
+                app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn" />
+            <TextView
+                android:id="@+id/statsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/stats_title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/daysLearnInRow" />
 
-        <Button
-            android:id="@+id/showAllWordsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="@string/show_all_learned_words"
-            android:textColor="@color/textColorPrimary"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            tools:layout_editor_absoluteX="54dp" />
+            <TextView
+                android:id="@+id/todayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:text="@string/today_time_title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/todayCounts"
+                app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/allWordsList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            <TextView
+                android:id="@+id/allTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_time_title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/allCounts"
+                app:layout_constraintTop_toTopOf="@+id/todayTime" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/todayCounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/today_counts"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
+
+            <TextView
+                android:id="@+id/allCounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="244dp"
+                android:text="@string/all_counts_title"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/todayCounts"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/todayCounts"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/allCountsValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/allCounts"
+                app:layout_constraintTop_toBottomOf="@+id/allCounts" />
+
+            <TextView
+                android:id="@+id/todayTimeValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/todayTime"
+                app:layout_constraintTop_toBottomOf="@+id/todayTime" />
+
+            <TextView
+                android:id="@+id/allTimeValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/allTime"
+                app:layout_constraintTop_toBottomOf="@+id/allTime" />
+
+            <TextView
+                android:id="@+id/daysLearnInRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="48dp"
+                android:text="@string/how_many_days_learn"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn" />
+
+            <Button
+                android:id="@+id/showAllWordsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="184dp"
+                android:background="@android:color/transparent"
+                android:text="@string/show_all_learned_words"
+                android:textColor="@color/textColorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/daysLearnInRow"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/everyDayLearns"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn"
+                tools:layout_editor_absoluteX="0dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

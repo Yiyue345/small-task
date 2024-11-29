@@ -60,7 +60,7 @@
     <string name="sign_up_textview">登记</string>
     <string name="different_password">失去同步</string>
     <string name="learn">第一次学，比较紧张</string>
-    <string name="review">前面的忘了，再学一遍</string>
+    <string name="review">差点忘了，再学一遍</string>
     <string name="wrong_old_password_hint">你无法寻回过去了吗？</string>
     <string name="same_password_hint">多此一举</string>
     <string name="continue_text">冲冲冲！</string>
@@ -69,19 +69,21 @@
     <string name="cannot_empty">锁与匙缺一不可</string>
     <string name="search_empty">我怎么知道你要查啥</string>
     <string name="no_exist_word">没找到%s ，Ciallo～</string>
-    <string name="fail_to_search">找不到，怎么想都是网络问题吧！</string>
+    <string name="fail_to_search">找不到，怎么想都应该是网络问题吧！</string>
     <string name="words_amount">%d个词</string>
     <string name="time_amount">%d分钟</string>
-    <string name="show_all_learned_words">看看都学过了什么</string>
+    <string name="show_all_learned_words">看看都学过了什么词</string>
     <string name="unshow_all_learned_words">不看了</string>
+    <string name="no_learn_today">今天还没背单词你是怎么睡得着的？！</string>
     <string name="user_not_exist_toast">这真是让人尴尬，目前我们找不到这个人</string>
-    <string name="change_password_text">换锁</string>
+    <string name="change_password_text">更换通过凭证</string>
     <string name="background_opition">切换覆盖层</string>
     <string name="search_word_at_here">让我找找</string>
     <string name="quit_text">夺门而出</string>
     <string name="study_progress">%d=%d</string>
     <string name="no_word_can_review_toast">好棒！今天也是完成学习任务的一天</string>
     <string name="en_mean_text">老米字旗都这么说</string>
+    <string name="no_study_today">今天还没背单词你是怎么睡得着的？！</string>
     <string name="show_hint">偷偷看看</string>
     <string name="new_password_hint">我赠予未来</string>
     <string name="old_password_hint">我驻留往昔</string>
@@ -92,6 +94,7 @@
     <string name="cancel">算了</string>
     <string name="switch_language_title">真的要这样吗……</string>
     <string name="yes">就这样吧</string>
+    <string name="not_now">现在不要啦</string>
     <string name="no">打咩</string>
     <string name="same_language_hint">让我们说%s</string>
     <string name="en_us">小不列颠官方语言</string>
@@ -99,6 +102,9 @@
     <string name="zh_me">我们已经在说中文了！</string>
     <string name="switch_language_message">真的要把语言切换到%s吗……切换之后你真的还会回来吗QAQ……</string>
     <string name="study">我要学习！</string>
-    <string name="stats">到底学了多少</string>
-    <string name="options">可能会用到的东西</string>
+    <string name="stats">收集爱好者狂喜</string>
+    <string name="options">可能没用的东西</string>
+    <string name="same_password_toast">杂鱼❤️~连新旧密码都设置成一样的杂鱼❤️~</string>
+    <string name="wrong_pass_word_toast">啊，旧密码不对哦</string>
+    <string name="modified_successfully">修改成功了喵</string>
 </resources>

@@ -116,6 +116,11 @@ class HomepageFragment : Fragment() {
         wordCursor.close()
 
         binding.randomWord.text = randWord
+        binding.randomWordBtn.setOnClickListener {
+            val intent = Intent(requireActivity(), SearchActivity::class.java)
+            intent.putExtra("word", randWord)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

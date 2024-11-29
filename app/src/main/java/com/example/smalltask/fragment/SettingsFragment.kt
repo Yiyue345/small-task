@@ -37,6 +37,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         initSomething()
         val recyclerView : RecyclerView = view.findViewById(R.id.settingsList)
         recyclerView.layoutManager = LinearLayoutManager(context)

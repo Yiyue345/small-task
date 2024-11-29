@@ -1,19 +1,25 @@
 package com.example.smalltask.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.HomepageViewModel
 import com.example.smalltask.R
+import com.example.smalltask.activities.LearnedWordsActivity
 import com.example.smalltask.databinding.FragmentStatsBinding
-import com.example.smalltask.items.WordAdapter
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class StatsFragment : Fragment() {
@@ -44,7 +50,7 @@ class StatsFragment : Fragment() {
         val today = System.currentTimeMillis() / 86400000L * 86400000L
         val oneDay = 86400000L
 
-        val counts = homepageViewModel.getTodayCounts(requireActivity())
+        val counts = homepageViewModel.getTodayCounts(requireActivity(), today)
         val todayTime = homepageViewModel.getTodayTime(requireActivity())
         val allWords = homepageViewModel.getAllWords(requireActivity())
         val allTime = homepageViewModel.getAllTime(requireActivity())
@@ -109,22 +115,59 @@ class StatsFragment : Fragment() {
             binding.daysLearnInRow.text = getString(R.string.no_study_today)
         }
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.allWordsList)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = WordAdapter(wordList)
-
-        var showList = false
         binding.showAllWordsBtn.setOnClickListener {
-            showList = !showList
-            if (showList) {
-                binding.allWordsList.visibility = View.VISIBLE
-                binding.showAllWordsBtn.text = getString(R.string.unshow_all_learned_words)
-            }
-            else {
-                binding.allWordsList.visibility = View.GONE
-                binding.showAllWordsBtn.text = getString(R.string.show_all_learned_words)
+            val intent = Intent(requireActivity(), LearnedWordsActivity::class.java)
+            startActivity(intent)
+        }
+
+        val date = MutableList<String>(7) {""}
+        for (i in 0 until 7) {
+            date[i] = SimpleDateFormat("MM-dd", Locale.getDefault()).format(today - (6 - i) * oneDay)
+        }
+
+        val sevenDaysCount = homepageViewModel.getSevenDaysCounts(requireActivity())
+        val entries = ArrayList<BarEntry>()
+        for (i in 0 until 7) {
+            entries.add(BarEntry(i.toFloat(), sevenDaysCount[i].toFloat()))
+        }
+
+        val dataSet = BarDataSet(entries, "")
+        val data = BarData(dataSet)
+
+        binding.everyDayLearns.data = data
+
+        binding.everyDayLearns.xAxis.setDrawGridLines(false) // 网格线
+        binding.everyDayLearns.xAxis.setDrawAxisLine(false)
+        binding.everyDayLearns.axisLeft.isEnabled = false // 左边的Y轴
+        binding.everyDayLearns.axisRight.isEnabled = false // 右边的Y轴
+
+
+
+        val valueFormatter = object : ValueFormatter() { // 顶部显示整数
+            override fun getFormattedValue(value: Float): String? {
+                return String.format("%.0f", value)
             }
         }
+
+        dataSet.valueFormatter = valueFormatter
+        dataSet.setDrawValues(true)
+        dataSet.valueTextSize = 10f // 柱子顶部字体大小
+
+//        binding.everyDayLearns.description.text = getString(R.string.stats)
+        binding.everyDayLearns.xAxis.valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String? {
+                return date[value.toInt()]
+            }
+        }
+        binding.everyDayLearns.setScaleEnabled(false) // 缩放
+        binding.everyDayLearns.barData.barWidth = 0.5f // 宽度
+        binding.everyDayLearns.legend.isEnabled = false // 图例
+        binding.everyDayLearns.description.isEnabled = false // 介绍
+        binding.everyDayLearns.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        binding.everyDayLearns.xAxis.setDrawLabels(true) // 柱子底下的标签
+//        binding.everyDayLearns.setTouchEnabled(false) // 触摸
+        binding.everyDayLearns.animateY(1000) // Y轴动画
+        binding.everyDayLearns.invalidate() // 刷新
     }
 
     override fun onDestroy() {
