@@ -24,21 +24,24 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="认识"
-        android:textColor="@color/black"
+        android:text="@string/remember_text"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fuzzyBtn"
         app:layout_constraintEnd_toStartOf="@+id/fuzzyBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fuzzyBtn" />
 
     <Button
         android:id="@+id/fuzzyBtn"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="模糊"
-        android:textColor="@color/black"
+        android:layout_marginBottom="4dp"
         android:background="@android:color/transparent"
+        android:text="@string/confused_text"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/noBtn"
         app:layout_constraintHorizontal_bias="0.5"
@@ -49,12 +52,13 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="不认识"
-        android:textColor="@color/black"
+        android:text="@string/no_remember_text"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fuzzyBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fuzzyBtn" />
+        app:layout_constraintStart_toEndOf="@+id/fuzzyBtn"
+        app:layout_constraintTop_toTopOf="@+id/fuzzyBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

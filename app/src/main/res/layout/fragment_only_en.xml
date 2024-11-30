@@ -8,6 +8,20 @@
 
 
     <TextView
+        android:id="@+id/tipTextView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="100dp"
+        android:text="ciallo"
+        android:gravity="center"
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/wordName" />
+
+    <TextView
         android:id="@+id/wordName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,9 +56,10 @@
         android:id="@+id/yesBtn"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:background="@android:color/transparent"
-        android:text="认识"
-        android:textColor="@color/black"
+        android:text="@string/remember_text"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fuzzyBtn"
@@ -55,26 +70,30 @@
         android:id="@+id/fuzzyBtn"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="模糊"
-        android:textColor="@color/black"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/confused_text"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/yesBtn"
         app:layout_constraintEnd_toStartOf="@+id/noBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/yesBtn" />
+        app:layout_constraintStart_toEndOf="@+id/yesBtn"
+        app:layout_constraintTop_toTopOf="@+id/yesBtn" />
 
     <Button
         android:id="@+id/noBtn"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="不认识"
-        android:textColor="@color/black"
+        android:text="@string/no_remember_text"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/yesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fuzzyBtn" />
+        app:layout_constraintStart_toEndOf="@+id/fuzzyBtn"
+        app:layout_constraintTop_toTopOf="@+id/yesBtn"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/soundImageView"

@@ -14,9 +14,9 @@ class HomepageViewModel : ViewModel() {
         val db = dbHelper.readableDatabase
 
         val currentDate = (today / 86400000L) * 86400000L
-        val todayCountsCursor = db.query("UserWord",
+        val todayCountsCursor = db.query("LearningRecords",
             null,
-            "lastTime = ?",
+            "date = ?",
             arrayOf("$currentDate"),
             null,
             null, // 倒序查找
@@ -24,7 +24,7 @@ class HomepageViewModel : ViewModel() {
         var counts = 0
         if (todayCountsCursor.moveToFirst()) { // 今天学了多少词
             do {
-                counts++
+                counts += todayCountsCursor.getInt(todayCountsCursor.getColumnIndexOrThrow("words"))
             } while (todayCountsCursor.moveToNext())
         }
         todayCountsCursor.close()

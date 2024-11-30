@@ -166,7 +166,7 @@ class StatsFragment : Fragment() {
         binding.everyDayLearns.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.everyDayLearns.xAxis.setDrawLabels(true) // 柱子底下的标签
 //        binding.everyDayLearns.setTouchEnabled(false) // 触摸
-        binding.everyDayLearns.animateY(1000) // Y轴动画
+        binding.everyDayLearns.animateY(200) // Y轴动画
         binding.everyDayLearns.invalidate() // 刷新
     }
 

@@ -32,7 +32,8 @@
         android:layout_marginEnd="96dp"
         android:background="@android:color/transparent"
         android:text="下一词"
-        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textColor="@color/textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

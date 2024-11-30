@@ -1,7 +1,6 @@
 package com.example.smalltask.activities
 
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -19,7 +18,6 @@ import com.example.smalltask.fragment.ChooseFragment
 import com.example.smalltask.fragment.FinishFragment
 import com.example.smalltask.fragment.OnlyEnFragment
 import com.example.smalltask.fragment.OnlyZhFragment
-import com.example.smalltask.fragment.SentenceFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
@@ -186,6 +184,7 @@ class ReviewActivity : BaseActivity() {
             if (it) {
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("mode", "review")
+                intent.putExtra("counts", wordViewModel.counts)
                 startActivity(intent)
                 finish()
             }

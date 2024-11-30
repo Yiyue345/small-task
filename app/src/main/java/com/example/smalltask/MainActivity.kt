@@ -1,20 +1,16 @@
 package com.example.smalltask
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import com.example.smalltask.activities.Homepage
 import com.example.smalltask.activities.Register
 import com.example.smalltask.databinding.ActivityMainBinding
-import java.util.Locale
 
 class MainActivity : BaseActivity() {
 
@@ -23,9 +19,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MainActivity", "Ciallo!")
         val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
-//        val language = getPassword.getString("language", "zh") ?: "zh"
-//        val region = getPassword.getString("region", "CN") ?: "CN"
-//        updateLocate(language, region)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
@@ -67,7 +60,7 @@ class MainActivity : BaseActivity() {
             else binding.passwordIsEmpty.visibility = View.GONE
 
             if (inputUsername.isBlank() or inputPassword.isBlank()) {
-                Toast.makeText(this, "用户名与密码不可为空", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.password_cannot_empty), Toast.LENGTH_SHORT).show()
             }
             else {
                 val prefs = getSharedPreferences("password", MODE_PRIVATE)
