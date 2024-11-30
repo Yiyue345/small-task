@@ -1,8 +1,6 @@
 package com.example.smalltask.activities
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -31,7 +29,7 @@ class LearningActivity : BaseActivity() {
 
     private lateinit var wordViewModel: WordViewModel
 
-    @SuppressLint("Range")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -53,8 +51,8 @@ class LearningActivity : BaseActivity() {
         var learnWords = 0
 
         if (cursor.moveToFirst()) {
-            learnWords = cursor.getInt(cursor.getColumnIndex("learnWords"))
-            learnWordsEachTime = cursor.getInt(cursor.getColumnIndex("learnWordsEachTime"))
+            learnWords = cursor.getInt(cursor.getColumnIndexOrThrow("learnWords"))
+            learnWordsEachTime = cursor.getInt(cursor.getColumnIndexOrThrow("learnWordsEachTime"))
         }
         cursor.close()
 
@@ -170,6 +168,7 @@ class LearningActivity : BaseActivity() {
             if (it) {
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("mode", "learning")
+                intent.putExtra("counts", wordViewModel.counts)
                 startActivity(intent)
                 finish()
             }
@@ -214,13 +213,6 @@ class LearningActivity : BaseActivity() {
             .commit()
     }
 
-
-//    private fun parseWordWithMoshi(jsonData: String): Word? {
-//        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-//        val jsonAdapter = moshi.adapter(Word::class.java)
-//        val word = jsonAdapter.fromJson(jsonData)
-//        return word
-//    }
 
     private fun check() {
         val file = File(this.filesDir, "background.png")

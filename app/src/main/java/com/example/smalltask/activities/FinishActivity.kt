@@ -6,7 +6,6 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.bumptech.glide.annotation.GlideOption
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityFinishBinding
@@ -26,6 +25,9 @@ class FinishActivity : BaseActivity() {
             insets
         }
         val mode = intent.getStringExtra("mode")
+        val counts = intent.getIntExtra("counts", 0)
+
+        binding.finishCountsText.text = getString(R.string.finish_counts, counts)
 
         binding.finishBtn.setOnClickListener {
             finish()

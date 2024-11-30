@@ -10,7 +10,7 @@
     <string name="today_counts">今天居然学了</string>
     <string name="stats_title">这都是朕背下的江山</string>
     <string name="today_time_title">今天又自我感动了</string>
-    <string name="all_time_title">累计学习时长</string>
+    <string name="all_time_title">总共兢兢业业背单词</string>
     <string name="all_counts_title">一共才学了</string>
 
     <string name="lorem_ipsum">
@@ -64,20 +64,22 @@
     <string name="wrong_old_password_hint">你无法寻回过去了吗？</string>
     <string name="same_password_hint">多此一举</string>
     <string name="continue_text">冲冲冲！</string>
+    <string name="choose_tip_textview">想不起来就乖乖认输吧~</string>
     <string name="show_ans_text">我不会，球球你饶了我吧</string>
     <string name="password_cannot_empty">不给空着</string>
     <string name="cannot_empty">锁与匙缺一不可</string>
     <string name="search_empty">我怎么知道你要查啥</string>
-    <string name="no_exist_word">没找到%s ，Ciallo～</string>
+    <string name="no_exist_word">没找到%s \nCiallo～(∠・ω&lt; )⌒☆</string>
     <string name="fail_to_search">找不到，怎么想都应该是网络问题吧！</string>
-    <string name="words_amount">%d个词</string>
-    <string name="time_amount">%d分钟</string>
+    <string name="words_amount">%d</string>
+    <string name="time_amount">%d</string>
     <string name="show_all_learned_words">看看都学过了什么词</string>
     <string name="unshow_all_learned_words">不看了</string>
+    <string name="how_many_days_learn">学了%d天呐（赞赏）</string>
     <string name="no_learn_today">今天还没背单词你是怎么睡得着的？！</string>
     <string name="user_not_exist_toast">这真是让人尴尬，目前我们找不到这个人</string>
     <string name="change_password_text">更换通过凭证</string>
-    <string name="background_opition">切换覆盖层</string>
+    <string name="background_option">切换覆盖层</string>
     <string name="search_word_at_here">让我找找</string>
     <string name="quit_text">夺门而出</string>
     <string name="study_progress">%d=%d</string>
@@ -107,4 +109,26 @@
     <string name="same_password_toast">杂鱼❤️~连新旧密码都设置成一样的杂鱼❤️~</string>
     <string name="wrong_pass_word_toast">啊，旧密码不对哦</string>
     <string name="modified_successfully">修改成功了喵</string>
+    <string name="everyday_learned_text">七天以来居然学了……</string>
+    <string name="words_text">个词</string>
+    <string name="time_text">分钟</string>
+    <string name="finish_learning_text">缪缪觉得很赞</string>
+    <string name="finish_review_text">缪缪觉得非常赞</string>
+    <string name="stop_study_text">阿伟，休息一下吧</string>
+    <string name="continue_study_text">你不要烦好不好</string>
+    <string name="no_remember_text">寄！</string>
+    <string name="login_text">这是一个登录界面</string>
+    <string name="set_background">把背景搞得花花绿绿的</string>
+    <string name="reset_background">后悔了？那就还原吧</string>
+    <string name="finish_counts">又学了%d个单词</string>
+    <string name="remember_text">我记得！</string>
+    <string name="confused_text">记得？</string>
+    <string name="all_learned_words_text">已学单词大赏</string>
+    <string name="apply_numbers">就这么愉快地决定了！</string>
+    <string name="empty_number">哦我的老天爷啊，你是忘记填一个数字进去了吗？</string>
+    <string name="illegal_number">哦我的老天爷啊，如果你敢这么偷懒，我就要用靴子狠狠地踢你的屁股！</string>
+    <string name="max_number_each_learning">一次学这么多</string>
+    <string name="max_number_each_review">一次复习这么多</string>
+    <string name="apply_successful">哦，新的计划制定好了</string>
+    <string name="study_settings">我是微操学习高手！</string>
 </resources>

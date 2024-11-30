@@ -89,7 +89,7 @@
         android:id="@+id/yesBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="认识"
+        android:text="@string/remember_text"
         android:textColor="@color/black"
         android:background="@android:color/transparent"
         android:textStyle="bold"
@@ -102,14 +102,16 @@
         android:id="@+id/noBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="不认识"
-        android:textColor="@color/black"
         android:background="@android:color/transparent"
+        android:text="@string/no_remember_text"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/yesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/yesBtn" />
+        app:layout_constraintStart_toEndOf="@+id/yesBtn"
+        app:layout_constraintTop_toTopOf="@+id/yesBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/showHintBtn"
