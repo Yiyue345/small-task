@@ -34,31 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/login"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/register"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@drawable/register3"
-        app:layout_constraintBottom_toBottomOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/login"
-        app:layout_constraintTop_toTopOf="@+id/login" />
-
     <TextView
         android:id="@+id/username_is_empty"
         android:layout_width="wrap_content"
@@ -97,5 +72,27 @@
         android:text="@string/remember_password_hint"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="@string/login"
+        app:layout_constraintEnd_toStartOf="@+id/register"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_text"
+        app:layout_constraintBottom_toBottomOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/login"
+        app:layout_constraintTop_toTopOf="@+id/login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

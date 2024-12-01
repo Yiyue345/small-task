@@ -33,6 +33,7 @@ class LearnedWordsActivity : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         val dbHelper = MyDatabaseHelper(this, "words.db", 1)
         val db = dbHelper.readableDatabase

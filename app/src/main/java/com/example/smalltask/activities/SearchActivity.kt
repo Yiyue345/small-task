@@ -47,6 +47,7 @@ class SearchActivity : BaseActivity() {
 
         setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         check()
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]

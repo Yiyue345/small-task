@@ -61,6 +61,7 @@ class LearningActivity : BaseActivity() {
 
         setSupportActionBar(binding.toolbar3)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]
         wordViewModel.username = userName

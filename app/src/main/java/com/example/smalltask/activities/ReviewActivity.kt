@@ -49,8 +49,10 @@ class ReviewActivity : BaseActivity() {
         val today = (System.currentTimeMillis() / oneDay) * oneDay
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
         val userName = getInfo.getString("username", "")!!
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         wordViewModel = ViewModelProvider(this)[WordViewModel::class.java]
 

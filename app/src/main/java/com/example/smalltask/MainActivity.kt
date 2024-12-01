@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
                 savePassword.apply()
                 val intent = Intent(this, Homepage::class.java)
                 startActivity(intent)
-                Toast.makeText(this, getString(R.string.login), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
@@ -75,7 +75,7 @@ class MainActivity : BaseActivity() {
                 else {
                     binding.usernameIsEmpty.visibility = View.GONE
                     binding.passwordIsEmpty.visibility = View.GONE
-                    Toast.makeText(this, getString(R.string.login), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Homepage::class.java)
                     if (binding.rememberPassword.isChecked){
                         val savePassword = getSharedPreferences("latest", MODE_PRIVATE).edit()

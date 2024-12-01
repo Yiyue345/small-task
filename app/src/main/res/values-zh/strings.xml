@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">小试牛刀</string>
+    <string name="app_name">背不背单词</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
@@ -49,7 +49,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="login">登录成功</string>
+    <string name="login_successful">登录成功</string>
     <string name="wrong_password">密码错误</string>
     <string name="username_hint">用户名</string>
     <string name="password_hint">密码</string>
@@ -57,7 +57,7 @@
     <string name="password_is_empty_textview">密码不能为空</string>
     <string name="remember_password_hint">记住密码</string>
     <string name="re_password_hint">重复密码</string>
-    <string name="sign_up_textview">注册</string>
+    <string name="sign_up_text">注册</string>
     <string name="different_password">两次输入密码不同</string>
     <string name="learn">学习</string>
     <string name="review">复习</string>
@@ -131,4 +131,7 @@
     <string name="max_number_each_review">单次复习最大数量</string>
     <string name="apply_successful">应用成功</string>
     <string name="study_settings">学习设置</string>
+    <string name="daily_study_minutes_text">每日学习时长</string>
+    <string name="login">登录</string>
+    <string name="only_en_hint">瞬间想起词义，选「认识」\n思考后想起词义，选「模糊」</string>
 </resources>

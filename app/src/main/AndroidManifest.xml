@@ -12,12 +12,15 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_elaina"
-        android:label=""
+        android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_elaina_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmallTask"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.AboutActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.LearnedWordsActivity"
             android:exported="false" />
@@ -70,7 +73,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/Theme.SmallTask">
             <intent-filter>
