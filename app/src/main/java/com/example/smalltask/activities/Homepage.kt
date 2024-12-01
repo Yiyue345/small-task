@@ -165,8 +165,9 @@ class Homepage : BaseActivity() {
         calendar.set(Calendar.HOUR_OF_DAY, 12)
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
+        val today = System.currentTimeMillis() / 86400000L * 86400000L
 
-        if (calendar.timeInMillis < System.currentTimeMillis() || homepageViewModel.getTodayTime(this) > 0) {
+        if (calendar.timeInMillis < System.currentTimeMillis() || homepageViewModel.getTodayTime(this, today) > 0) {
             // 如果过了十二点或者已经完成了，就不催命了
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }

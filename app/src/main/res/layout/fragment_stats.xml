@@ -8,7 +8,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/informationLayout"
             android:layout_width="match_parent"
@@ -28,17 +30,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/todayCounts"
                 app:layout_constraintTop_toBottomOf="@+id/todayCounts" />
-
-            <TextView
-                android:id="@+id/statsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/stats_title"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/daysLearnInRow" />
 
             <TextView
                 android:id="@+id/todayTime"
@@ -63,12 +54,12 @@
                 android:id="@+id/todayCounts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="124dp"
                 android:text="@string/today_counts"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/allCounts"
@@ -119,8 +110,8 @@
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="48dp"
-                android:text="@string/how_many_days_learn"
                 android:gravity="center"
+                android:text="@string/how_many_days_learn"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -152,8 +143,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn"
-                tools:layout_editor_absoluteX="16dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/showAllWordsBtn" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/everyDayTime"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastWeekLearnTimeText" />
 
             <TextView
                 android:id="@+id/lastWeekLearnText"
@@ -201,6 +206,16 @@
                 android:text="@string/time_text"
                 app:layout_constraintBottom_toBottomOf="@+id/allTimeValues"
                 app:layout_constraintStart_toEndOf="@+id/allTimeValues" />
+
+            <TextView
+                android:id="@+id/lastWeekLearnTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/daily_study_minutes_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/everyDayLearns" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

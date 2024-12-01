@@ -41,6 +41,7 @@ class StudySettingsActivity : BaseActivity() {
         }
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         val file = File(this.filesDir, "background.png")
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)

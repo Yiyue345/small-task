@@ -33,6 +33,7 @@ class Register : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         binding.cancelButton.setOnClickListener{
             finish()

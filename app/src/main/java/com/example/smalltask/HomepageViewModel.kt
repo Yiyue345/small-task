@@ -40,11 +40,20 @@ class HomepageViewModel : ViewModel() {
         return sevenDaysCounts
     }
 
-    fun getTodayTime(context: Context): Long {
+    fun getSevenDaysTime(context: Context): MutableList<Int> {
+        val sevenDaysTime = MutableList(7) {0}
+        val today = System.currentTimeMillis() / 86400000L * 86400000L
+        for (i in 0 until 7) {
+            sevenDaysTime[6 - i] = (getTodayTime(context, today - 86400000L * i) / 60000L).toInt()
+        }
+        return sevenDaysTime
+    }
+
+    fun getTodayTime(context: Context, today: Long): Long {
         val dbHelper = MyDatabaseHelper(context, "Database${username}.db", 1)
         val db = dbHelper.readableDatabase
 
-        val currentDate = (System.currentTimeMillis() / 86400000L) * 86400000L
+        val currentDate = (today / 86400000L) * 86400000L
         val todayTimeCursor = db.query("LearningRecords",
             null,
             "date = ?",

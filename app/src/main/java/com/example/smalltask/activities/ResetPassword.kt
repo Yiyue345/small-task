@@ -29,6 +29,7 @@ class ResetPassword : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         val getUsername = getSharedPreferences("latest", MODE_PRIVATE)
         val username = getUsername.getString("username", "")

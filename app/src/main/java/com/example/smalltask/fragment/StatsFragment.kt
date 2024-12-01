@@ -17,6 +17,9 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -51,7 +54,7 @@ class StatsFragment : Fragment() {
         val oneDay = 86400000L
 
         val counts = homepageViewModel.getTodayCounts(requireActivity(), today)
-        val todayTime = homepageViewModel.getTodayTime(requireActivity())
+        val todayTime = homepageViewModel.getTodayTime(requireActivity(), today)
         val allWords = homepageViewModel.getAllWords(requireActivity())
         val allTime = homepageViewModel.getAllTime(requireActivity())
 
@@ -125,14 +128,20 @@ class StatsFragment : Fragment() {
             date[i] = SimpleDateFormat("MM-dd", Locale.getDefault()).format(today - (6 - i) * oneDay)
         }
 
-        val sevenDaysCount = homepageViewModel.getSevenDaysCounts(requireActivity())
+        val sevenDaysCount = homepageViewModel.getSevenDaysCounts(requireActivity()) // 七日学习数
+        val sevenDaysTime = homepageViewModel.getSevenDaysTime(requireActivity())
         val entries = ArrayList<BarEntry>()
+        val timeEntries = ArrayList<Entry>()
         for (i in 0 until 7) {
             entries.add(BarEntry(i.toFloat(), sevenDaysCount[i].toFloat()))
+            timeEntries.add(Entry(i.toFloat(), sevenDaysTime[i].toFloat()))
         }
 
         val dataSet = BarDataSet(entries, "")
         val data = BarData(dataSet)
+
+
+
 
         binding.everyDayLearns.data = data
 
@@ -154,7 +163,7 @@ class StatsFragment : Fragment() {
         dataSet.valueTextSize = 10f // 柱子顶部字体大小
 
 //        binding.everyDayLearns.description.text = getString(R.string.stats)
-        binding.everyDayLearns.xAxis.valueFormatter = object : ValueFormatter() {
+        binding.everyDayLearns.xAxis.valueFormatter = object : ValueFormatter() { // 底部显示日期
             override fun getFormattedValue(value: Float): String? {
                 return date[value.toInt()]
             }
@@ -165,9 +174,41 @@ class StatsFragment : Fragment() {
         binding.everyDayLearns.description.isEnabled = false // 介绍
         binding.everyDayLearns.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.everyDayLearns.xAxis.setDrawLabels(true) // 柱子底下的标签
+        binding.everyDayLearns.xAxis.granularity = 1f // 柱子间距
+        binding.everyDayLearns.axisLeft.axisMinimum = 0f
 //        binding.everyDayLearns.setTouchEnabled(false) // 触摸
-        binding.everyDayLearns.animateY(200) // Y轴动画
+
+        val timeDataset = LineDataSet(timeEntries, "")
+        val timeData = LineData(timeDataset)
+
+        timeDataset.valueTextSize = 10f // 柱子顶部字体大小
+        timeDataset.valueFormatter = valueFormatter
+
+        binding.everyDayTime.data = timeData
+        binding.everyDayTime.xAxis.valueFormatter = object : ValueFormatter() { // 底部显示日期
+            override fun getFormattedValue(value: Float): String? {
+                return date[value.toInt()]
+            }
+        }
+
+        binding.everyDayTime.xAxis.setDrawGridLines(false) // 网格线
+        binding.everyDayTime.xAxis.setDrawAxisLine(false)
+        binding.everyDayTime.axisLeft.isEnabled = false // 左边的Y轴
+        binding.everyDayTime.axisRight.isEnabled = false // 右边的Y轴
+        binding.everyDayTime.legend.isEnabled = false // 图例
+        binding.everyDayTime.description.isEnabled = false // 介绍
+        binding.everyDayTime.xAxis.granularity = 0.5f
+        binding.everyDayTime.axisLeft.axisMinimum = 0f
+        binding.everyDayTime.xAxis.position = XAxis.XAxisPosition.BOTTOM // 日期到底部
+
+
+
+        binding.everyDayTime.setTouchEnabled(false) // 触摸
+
         binding.everyDayLearns.invalidate() // 刷新
+        binding.everyDayTime.invalidate()
+
+
     }
 
     override fun onDestroy() {

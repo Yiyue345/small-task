@@ -31,6 +31,7 @@ class LanguageActivity : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         initUserLanguage()
         binding.languageList.layoutManager = LinearLayoutManager(this)
