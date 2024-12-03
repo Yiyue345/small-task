@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -194,13 +195,17 @@ class LearningActivity : BaseActivity() {
 //
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> quitLearning()
 //            R.id.test -> {
 //                val intent = Intent(this, InitializeActivity::class.java)
 //                startActivity(intent)
 //            }
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        quitLearning()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -225,6 +230,20 @@ class LearningActivity : BaseActivity() {
         else {
             binding.backgroundImage.setImageBitmap(null)
         }
+    }
+
+    private fun quitLearning() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.close_page_title))
+            .setMessage(getString(R.string.close_page_message))
+            .setPositiveButton(getString(R.string.close_page_yes)) { _, _ ->
+                super.onBackPressed()
+            }
+            .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
+
+            }
+            .create()
+            .show()
     }
 
 }

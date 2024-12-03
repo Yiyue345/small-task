@@ -118,8 +118,8 @@
     <string name="continue_study_text">你不要烦好不好</string>
     <string name="no_remember_text">寄！</string>
     <string name="login_text">这是一个登录界面</string>
-    <string name="set_background">把背景搞得花花绿绿的</string>
-    <string name="reset_background">后悔了？那就还原吧</string>
+    <string name="set_background">设置覆盖层</string>
+    <string name="reset_background">还原覆盖层</string>
     <string name="finish_counts">又学了%d个单词</string>
     <string name="remember_text">我记得！</string>
     <string name="confused_text">记得？</string>
@@ -135,4 +135,10 @@
     <string name="login">开门</string>
     <string name="only_zh_hint">记得就记得\n不记得就寄得</string>
     <string name="only_en_hint">最后一题没提示🤔\n忘记还得再来次😭</string>
+    <string name="close_toast">再滑，再滑就把我关掉！</string>
+    <string name="close_page_title">半途而废是不对的！</string>
+    <string name="close_page_message">不然你将进入本次学习进度丢失的危险境地</string>
+    <string name="close_page_yes">我去意已决！！！</string>
+    <string name="close_page_no">那还是老老实实背吧</string>
+    <string name="no_word_can_learn_toast">什么？难道你就是传说中的背单词领域大神？！</string>
 </resources>

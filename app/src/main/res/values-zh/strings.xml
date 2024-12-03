@@ -135,4 +135,10 @@
     <string name="login">登录</string>
     <string name="only_zh_hint">瞬间想起词义，选「认识」\n思考后想起词义，选「模糊」</string>
     <string name="only_en_hint">本词最后一关😙，请在无提示的情况下判断</string>
+    <string name="close_toast">再按一次退出应用</string>
+    <string name="close_page_title">真的要在此时退出吗？</string>
+    <string name="close_page_message">这时退出会导致失去学习进度</string>
+    <string name="close_page_yes">我知道我在做什么！</string>
+    <string name="close_page_no">我手滑了</string>
+    <string name="no_word_can_learn_toast">所有单词已经学习完了</string>
 </resources>
