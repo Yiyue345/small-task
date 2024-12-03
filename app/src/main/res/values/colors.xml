@@ -11,4 +11,5 @@
     <color name="light_gray">#C0C0C0</color>
     <color name="textColorPrimary">#FF000000</color>
     <color name="buttonColor">#6750A4</color>
+    <color name="backgroundColor">#FFFFFFFF</color>
 </resources>
