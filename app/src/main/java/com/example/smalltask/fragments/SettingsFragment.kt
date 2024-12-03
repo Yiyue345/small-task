@@ -1,4 +1,4 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
 import android.content.Intent
 import android.os.Bundle

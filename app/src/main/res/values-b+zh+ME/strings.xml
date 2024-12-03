@@ -129,9 +129,10 @@
     <string name="illegal_number">哦我的老天爷啊，如果你敢这么偷懒，我就要用靴子狠狠地踢你的屁股！</string>
     <string name="max_number_each_learning">一次学这么多</string>
     <string name="max_number_each_review">一次复习这么多</string>
-    <string name="apply_successful">哦，新的计划制定好了</string>
+    <string name="apply_successful">哦~，新的计划制定好了</string>
     <string name="study_settings">我是微操学习高手！</string>
     <string name="daily_study_minutes_text">以及……</string>
     <string name="login">开门</string>
-    <string name="only_en_hint">记得就记得\\n不记得就寄得</string>
+    <string name="only_zh_hint">记得就记得\n不记得就寄得</string>
+    <string name="only_en_hint">最后一题没提示🤔\n忘记还得再来次😭</string>
 </resources>

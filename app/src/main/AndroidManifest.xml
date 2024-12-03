@@ -59,7 +59,7 @@
             android:name=".activities.ResetPassword"
             android:exported="false" />
         <activity
-            android:name=".fragment.SettingsFragment"
+            android:name=".fragments.SettingsFragment"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity

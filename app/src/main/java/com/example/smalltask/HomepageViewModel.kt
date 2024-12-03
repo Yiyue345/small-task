@@ -1,6 +1,7 @@
 package com.example.smalltask
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.smalltask.learning.MyDatabaseHelper
 
@@ -8,6 +9,8 @@ class HomepageViewModel : ViewModel() {
     var username = ""
 
     var reviewWords = 0
+
+    val flag = MutableLiveData<Int>(0)
 
     fun getTodayCounts(context: Context, today: Long): Int {
         val dbHelper = MyDatabaseHelper(context, "Database${username}.db", 1)
@@ -110,5 +113,7 @@ class HomepageViewModel : ViewModel() {
 
         return allTime
     }
+
+
 
 }

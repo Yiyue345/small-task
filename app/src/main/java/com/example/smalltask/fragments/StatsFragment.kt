@@ -1,4 +1,4 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.HomepageViewModel
 import com.example.smalltask.R
 import com.example.smalltask.activities.LearnedWordsActivity
 import com.example.smalltask.databinding.FragmentStatsBinding
+import com.example.smalltask.fragments.HomepageFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.github.mikephil.charting.components.XAxis
@@ -21,6 +23,9 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -140,9 +145,6 @@ class StatsFragment : Fragment() {
         val dataSet = BarDataSet(entries, "")
         val data = BarData(dataSet)
 
-
-
-
         binding.everyDayLearns.data = data
 
         binding.everyDayLearns.xAxis.setDrawGridLines(false) // 网格线
@@ -208,11 +210,47 @@ class StatsFragment : Fragment() {
         binding.everyDayLearns.invalidate() // 刷新
         binding.everyDayTime.invalidate()
 
+        homepageViewModel.flag.observe(requireActivity()) { _ -> // 刷新数据
+            val sevenDaysCount = homepageViewModel.getSevenDaysCounts(requireActivity()) // 七日学习数
+            val sevenDaysTime = homepageViewModel.getSevenDaysTime(requireActivity())
+            val entries = ArrayList<BarEntry>()
+            val timeEntries = ArrayList<Entry>()
+            for (i in 0 until 7) {
+                entries.add(BarEntry(i.toFloat(), sevenDaysCount[i].toFloat()))
+                timeEntries.add(Entry(i.toFloat(), sevenDaysTime[i].toFloat()))
+            }
 
+            val dataSet = BarDataSet(entries, "")
+            val data = BarData(dataSet)
+
+            binding.everyDayLearns.data = data
+
+            val timeDataset = LineDataSet(timeEntries, "")
+            val timeData = LineData(timeDataset)
+            binding.everyDayTime.data = timeData
+
+            dataSet.valueFormatter = valueFormatter
+            dataSet.setDrawValues(true)
+            dataSet.valueTextSize = 10f // 柱子顶部字体大小
+            binding.everyDayLearns.barData.barWidth = 0.5f // 宽度
+
+            timeDataset.valueTextSize = 10f // 柱子顶部字体大小
+            timeDataset.valueFormatter = valueFormatter
+
+            binding.everyDayLearns.invalidate() // 刷新
+            binding.everyDayTime.invalidate()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    fun reloadFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .detach(fragment)
+            .attach(fragment)
+            .commit()
     }
 }

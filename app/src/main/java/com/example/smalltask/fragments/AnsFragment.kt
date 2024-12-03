@@ -1,4 +1,4 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -64,7 +64,11 @@ class AnsFragment : Fragment() {
             if (wordViewModel.mode == "learning") {
                 wordViewModel.wordLearningList.value?.let { it1 ->
                     if (it1[wordViewModel.number] == 3) {
-                        val dbHelper = MyDatabaseHelper(requireActivity(), "Database${wordViewModel.username}.db", 1)
+                        val dbHelper = MyDatabaseHelper(
+                            requireActivity(),
+                            "Database${wordViewModel.username}.db",
+                            1
+                        )
                         val db = dbHelper.writableDatabase
                         val values = ContentValues().apply { // 这也太长了……
                             wordViewModel.words.value?.get(wordViewModel.number)?.let { it ->
@@ -82,13 +86,25 @@ class AnsFragment : Fragment() {
                 wordViewModel.wordReviewList.value?.let {
                     if (it[wordViewModel.number] > 6) {
 
-                        val dbHelper = MyDatabaseHelper(requireActivity(), "Database${wordViewModel.username}.db", 1)
-                        val db = dbHelper.writableDatabase
-                        wordViewModel.counts++
-                        db.execSQL("UPDATE UserWord SET lastTime = ?, times = times + ? WHERE word = ?",
-                            arrayOf(wordViewModel.today, 1, wordViewModel.words.value?.get(wordViewModel.number)?.word)
-                            // 暂时这样
+                        val dbHelper = MyDatabaseHelper(
+                            requireActivity(),
+                            "Database${wordViewModel.username}.db",
+                            1
                         )
+
+                        val db = dbHelper.writableDatabase
+
+                        var times = (9 - (wordViewModel.wordReviewTimesList.value?.get(wordViewModel.counts)
+                            ?: 0)) / 3
+                        if (times < 0) {
+                            times = 0
+                        }
+
+                        db.execSQL("UPDATE UserWord SET lastTime = ?, times = times + ? WHERE word = ?",
+                            arrayOf(wordViewModel.today, times, wordViewModel.words.value?.get(wordViewModel.number)?.word)
+
+                        )
+                        wordViewModel.counts++
                     }
                 }
                 wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value

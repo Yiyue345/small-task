@@ -126,12 +126,13 @@
     <string name="all_learned_words_text">All learned words</string>
     <string name="apply_numbers">Apply</string>
     <string name="empty_number">Numbers cannot be empty</string>
-    <string name="illegal_number">Cannot less than 1</string>
+    <string name="illegal_number">Cannot less than 5</string>
     <string name="max_number_each_learning">Max number each learning</string>
     <string name="max_number_each_review">Max number each review</string>
     <string name="apply_successful">Successful</string>
     <string name="study_settings">Study settings</string>
     <string name="daily_study_minutes_text">Daily study minutes</string>
     <string name="login">Login</string>
-    <string name="only_en_hint">Choose 「Remember」if you instantly recall the meaning of the word\nIf the meaning of the word comes to mind after thinking, choose 「Confused」</string>
+    <string name="only_zh_hint">Choose 「Remember」if you instantly recall the meaning of the word\nIf the meaning of the word comes to mind after thinking, choose 「Confused」</string>
+    <string name="only_en_hint">Last time for this word😙, please judge without prompts</string>
 </resources>

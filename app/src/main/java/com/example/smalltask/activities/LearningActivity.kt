@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityLearningBinding
-import com.example.smalltask.fragment.AnsFragment
-import com.example.smalltask.fragment.ChooseFragment
-import com.example.smalltask.fragment.FinishFragment
-import com.example.smalltask.fragment.OnlyEnFragment
-import com.example.smalltask.fragment.SentenceFragment
+import com.example.smalltask.fragments.AnsFragment
+import com.example.smalltask.fragments.ChooseFragment
+import com.example.smalltask.fragments.FinishFragment
+import com.example.smalltask.fragments.OnlyEnFragment
+import com.example.smalltask.fragments.SentenceFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
@@ -171,6 +171,7 @@ class LearningActivity : BaseActivity() {
                 intent.putExtra("mode", "learning")
                 intent.putExtra("counts", wordViewModel.counts)
                 startActivity(intent)
+                setResult(RESULT_OK)
                 finish()
             }
         }
@@ -183,7 +184,7 @@ class LearningActivity : BaseActivity() {
         val dbHelper = MyDatabaseHelper(this, "Database${wordViewModel.username}.db", 1)
         val db = dbHelper.writableDatabase
         db.execSQL("UPDATE UserInfo SET learnHours = learnHours + ? WHERE username = ?", arrayOf(duration, wordViewModel.username))
-
+        setResult(RESULT_OK)
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {

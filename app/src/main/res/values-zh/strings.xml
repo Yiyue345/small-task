@@ -126,12 +126,13 @@
     <string name="all_learned_words_text">所有学习过的词</string>
     <string name="apply_numbers">应用</string>
     <string name="empty_number">数值不可为空</string>
-    <string name="illegal_number">数值不能小于1</string>
+    <string name="illegal_number">数值不能小于5</string>
     <string name="max_number_each_learning">单次学习最大数量</string>
     <string name="max_number_each_review">单次复习最大数量</string>
     <string name="apply_successful">应用成功</string>
     <string name="study_settings">学习设置</string>
     <string name="daily_study_minutes_text">每日学习时长</string>
     <string name="login">登录</string>
-    <string name="only_en_hint">瞬间想起词义，选「认识」\n思考后想起词义，选「模糊」</string>
+    <string name="only_zh_hint">瞬间想起词义，选「认识」\n思考后想起词义，选「模糊」</string>
+    <string name="only_en_hint">本词最后一关😙，请在无提示的情况下判断</string>
 </resources>

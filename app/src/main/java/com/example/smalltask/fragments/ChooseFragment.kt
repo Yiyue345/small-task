@@ -1,4 +1,4 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
