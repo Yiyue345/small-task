@@ -32,20 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="144dp"
-
-        android:background="@drawable/yes_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cancel_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -59,17 +45,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/test_menu"
         />
-
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@drawable/no_blue"
-        app:layout_constraintBottom_toBottomOf="@+id/register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/register"
-        app:layout_constraintTop_toTopOf="@+id/register" />
 
     <TextView
         android:id="@+id/username_is_empty"
@@ -122,6 +97,18 @@
         android:visibility="gone"
         android:textColor="#EB3324"
         app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/password1" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/sign_up_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password1" />
 
 

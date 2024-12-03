@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log.d
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -13,11 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.R
 import com.example.smalltask.databinding.ActivityReviewBinding
-import com.example.smalltask.fragment.AnsFragment
-import com.example.smalltask.fragment.ChooseFragment
-import com.example.smalltask.fragment.FinishFragment
-import com.example.smalltask.fragment.OnlyEnFragment
-import com.example.smalltask.fragment.OnlyZhFragment
+import com.example.smalltask.fragments.AnsFragment
+import com.example.smalltask.fragments.ChooseFragment
+import com.example.smalltask.fragments.FinishFragment
+import com.example.smalltask.fragments.OnlyEnFragment
+import com.example.smalltask.fragments.OnlyZhFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.example.smalltask.learning.WordViewModel
@@ -33,10 +34,6 @@ class ReviewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        val getLanguage = getSharedPreferences("latest", MODE_PRIVATE)
-        val language = getLanguage.getString("language", "zh") ?: "zh"
-        val region = getLanguage.getString("region", "CN") ?: "CN"
-        updateLocate(language, region)
         enableEdgeToEdge()
         binding = ActivityReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -92,7 +89,7 @@ class ReviewActivity : BaseActivity() {
                 val lastTime = userWordCursor.getLong(userWordCursor.getColumnIndexOrThrow("lastTime"))
                 val times = userWordCursor.getInt(userWordCursor.getColumnIndexOrThrow("times"))
 
-                if (today > lastTime + (times - 1) * (times - 1) * today) { // (time-1)^2 还要修改
+                if (today > lastTime + (times - 1) / 2 * today) { // (time-1)/2
                     val wordCursor = wordDb.query("word",
                         null,
                         "word = ?",
@@ -149,7 +146,6 @@ class ReviewActivity : BaseActivity() {
                             replaceFragment(OnlyZhFragment())
                         }
                         else if (it1[wordViewModel.number] > 6) {
-                            // 更新单词学习次数
 
                             if (wordViewModel.counts == reviewWordsEachTime) {
                                 wordViewModel.refreshEndTime()
@@ -160,6 +156,7 @@ class ReviewActivity : BaseActivity() {
                                     put("words", reviewWordsEachTime)
                                 } // 学习记录
                                 db.insert("LearningRecords", null, values)
+
                                 replaceFragment(FinishFragment())
                             }
                             else {
@@ -188,6 +185,7 @@ class ReviewActivity : BaseActivity() {
                 intent.putExtra("mode", "review")
                 intent.putExtra("counts", wordViewModel.counts)
                 startActivity(intent)
+                setResult(RESULT_OK)
                 finish()
             }
         }
@@ -201,6 +199,7 @@ class ReviewActivity : BaseActivity() {
         val dbHelper = MyDatabaseHelper(this, "Database${wordViewModel.username}.db", 1)
         val db = dbHelper.writableDatabase
         db.execSQL("UPDATE UserInfo SET learnHours = learnHours + ? WHERE username = ?", arrayOf(duration, wordViewModel.username))
+        setResult(RESULT_OK)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

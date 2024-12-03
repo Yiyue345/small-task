@@ -93,7 +93,7 @@ class StudySettingsActivity : BaseActivity() {
             if (!binding.editLearnEachTime.text.toString().isBlank() && !binding.editLearnEachTime.text.toString().isBlank()) {
                 learnWordsEachTime = binding.editLearnEachTime.text.toString().toInt()
                 reviewWordsEachTime = binding.editReviewEachTime.text.toString().toInt()
-                if (learnWordsEachTime <= 0 || reviewWordsEachTime <= 0) {
+                if (learnWordsEachTime < 5 || reviewWordsEachTime < 5) {
                     Toast.makeText(this, getString(R.string.illegal_number), Toast.LENGTH_SHORT).show()
                 }
                 else {

@@ -35,9 +35,6 @@ class Register : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
-        binding.cancelButton.setOnClickListener{
-            finish()
-        }
 
         binding.register.setOnClickListener{
             val inputUsername = binding.username.text.toString()

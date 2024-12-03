@@ -16,14 +16,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.example.smalltask.BaseActivity
 import com.example.smalltask.HomepageViewModel
 import com.example.smalltask.NotificationReceiver
 import com.example.smalltask.R
+import com.example.smalltask.ViewPagerAdapter
 import com.example.smalltask.databinding.ActivityHomepageBinding
-import com.example.smalltask.fragment.HomepageFragment
-import com.example.smalltask.fragment.SettingsFragment
-import com.example.smalltask.fragment.StatsFragment
+import com.example.smalltask.fragments.HomepageFragment
+import com.example.smalltask.fragments.SettingsFragment
+import com.example.smalltask.fragments.StatsFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.File
@@ -71,28 +73,6 @@ class Homepage : BaseActivity() {
 
         val navigation : BottomNavigationView = findViewById<BottomNavigationView>(R.id.navigationView)
 
-        replaceFragment(HomepageFragment())
-
-        navigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.options ->{
-                    replaceFragment(SettingsFragment())
-                    true
-                }
-                R.id.homepage -> {
-                    replaceFragment(HomepageFragment())
-                    true
-                }
-                R.id.stats -> {
-                    replaceFragment(StatsFragment())
-                    true
-                }
-                else -> false
-            }
-
-        }
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             if (ContextCompat.checkSelfPermission(this,
@@ -108,20 +88,45 @@ class Homepage : BaseActivity() {
         scheduleDailyNotification(this) // 这会带来一个bug，但可以治标不治本
         // 就这样吧，除非很闲不然不会优化了
 
+        val adapter = ViewPagerAdapter(this)
+        binding.switchFragment.adapter = adapter
+
+        binding.switchFragment.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            // 绑定navigation
+            override fun onPageSelected(position: Int) {
+                navigation.menu.getItem(position).isChecked = true
+            }
+        })
+//        binding.switchFragment.isUserInputEnabled = false // 禁用滑动切换
+        binding.switchFragment.currentItem = 0
+
+        navigation.selectedItemId = R.id.homepage
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.options ->{
+                    binding.switchFragment.setCurrentItem(2, true)
+
+                }
+                R.id.homepage -> {
+                    binding.switchFragment.setCurrentItem(0, true)
+
+                }
+                R.id.stats -> {
+                    binding.switchFragment.setCurrentItem(1, true)
+
+                }
+
+            }
+            true
+        }
     }
 
-//    override fun attachBaseContext(newBase: Context?) {
-//        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
-//        val language = getPassword.getString("language", "zh")!!
-//        val region = getPassword.getString("region", "CN")!!
-//        newBase?.let { super.attachBaseContext(it.updateLocate(language, region)) }
+
+//    private fun replaceFragment(fragment: Fragment){
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.switchFragment, fragment)
+//            .commit()
 //    }
-
-    private fun replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.mainLayout, fragment)
-            .commit()
-    }
 
     private fun initWordsDatabase(context: Context) {
         val dbFile = context.getDatabasePath("words.db")

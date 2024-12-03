@@ -1,13 +1,20 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.graphics.Path
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.HomepageViewModel
 import com.example.smalltask.activities.LearningActivity
 import com.example.smalltask.activities.SearchActivity
@@ -15,7 +22,9 @@ import com.example.smalltask.databinding.HomepageFragmentBinding
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.R
 import com.example.smalltask.activities.ReviewActivity
-import com.example.smalltask.learning.Word
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomepageFragment : Fragment() {
 
@@ -23,6 +32,8 @@ class HomepageFragment : Fragment() {
 
     private val binding get() = _binding!!
     private var homepageViewModel: HomepageViewModel? = null
+
+    private lateinit var reviewLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,16 +48,24 @@ class HomepageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         homepageViewModel = ViewModelProvider(requireActivity())[HomepageViewModel::class.java]
 
-        binding.learn.setOnClickListener {
-            val intent = Intent(requireContext(), LearningActivity::class.java)
-            requireContext().startActivity(intent)
-        }
+
+
 
 
         var i = 0
         val dbHelper = homepageViewModel?.let { MyDatabaseHelper(requireActivity(), "Database${it.username}.db", 1) }
         val db = dbHelper?.writableDatabase
         val userWordCursor = db!!.query("UserWord", null, null, null, null, null, null)
+
+        reviewLauncher = registerForActivityResult( // 代替某个过时的onActivityResult
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                homepageViewModel!!.flag.value = 0
+                Log.d("111", "222")
+            }
+        }
+
 
 
         if (userWordCursor.moveToFirst()) {
@@ -55,7 +74,7 @@ class HomepageFragment : Fragment() {
                 val lastTime = userWordCursor.getLong(userWordCursor.getColumnIndexOrThrow("lastTime"))
                 val times = userWordCursor.getInt(userWordCursor.getColumnIndexOrThrow("times"))
                 val today = (System.currentTimeMillis() / 86400000L) * 86400000L
-                if (today > lastTime + (times - 1) * (times - 1) * today) { // (time-1)^2 还要修改
+                if (today > lastTime + (times - 1) / 2 * today) { // (time-1)/2 可能还能改
                     i++
                 }
             } while (userWordCursor.moveToNext())
@@ -71,17 +90,52 @@ class HomepageFragment : Fragment() {
         val total = 10928
         binding.reviewNumber.text = "$i"
         binding.learningNumber.text = "${total - learnWords}"
+
+        homepageViewModel!!.flag.observe(requireActivity()) { _ -> // 刷新数据
+            val userWordCursor = db.query("UserWord", null, null, null, null, null, null)
+            i = 0
+            if (userWordCursor.moveToFirst()) {
+
+                do {
+                    val lastTime = userWordCursor.getLong(userWordCursor.getColumnIndexOrThrow("lastTime"))
+                    val times = userWordCursor.getInt(userWordCursor.getColumnIndexOrThrow("times"))
+                    val today = (System.currentTimeMillis() / 86400000L) * 86400000L
+                    if (today > lastTime + (times - 1) / 2 * today) { // (time-1)/2 可能还能改
+                        i++
+                    }
+                } while (userWordCursor.moveToNext())
+            }
+            userWordCursor.close()
+
+            val cursor = db.query("UserInfo", null, null, null, null, null, null)
+            var learnWords = 0
+            if (cursor.moveToFirst()) {
+                learnWords = cursor.getInt(cursor.getColumnIndexOrThrow("learnWords"))
+            }
+            cursor.close()
+
+            binding.reviewNumber.text = "$i"
+            binding.learningNumber.text = "${total - learnWords}"
+        }
+
         binding.review.setOnClickListener {
 
             if (i > 0) {
                 val intent = Intent(requireActivity(), ReviewActivity::class.java)
-                startActivity(intent)
+                reviewLauncher.launch(intent)
             }
             else {
                 Toast.makeText(requireActivity(), getString(R.string.no_word_can_review_toast),
                     Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.learn.setOnClickListener {
+            val intent = Intent(requireContext(), LearningActivity::class.java)
+            reviewLauncher.launch(intent)
+        }
+
+
 
         binding.searchWord.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
 
@@ -121,10 +175,18 @@ class HomepageFragment : Fragment() {
             intent.putExtra("word", randWord)
             startActivity(intent)
         }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun reloadFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .detach(fragment)
+            .attach(fragment)
+            .commit()
     }
 }

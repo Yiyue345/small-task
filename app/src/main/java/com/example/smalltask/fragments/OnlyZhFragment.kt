@@ -1,14 +1,12 @@
-package com.example.smalltask.fragment
+package com.example.smalltask.fragments
 
 import android.os.Bundle
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.smalltask.databinding.FragmentOnlyZhBinding
-import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.WordViewModel
 
 
