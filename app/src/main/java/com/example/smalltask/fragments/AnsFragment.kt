@@ -15,6 +15,7 @@ import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.WordViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.example.smalltask.R
 
 class AnsFragment : Fragment() {
 
@@ -44,6 +45,7 @@ class AnsFragment : Fragment() {
                 binding.cialloView.loadUrl("https://ciallo.cc/")
                 binding.cialloView.setOnTouchListener { _, _ -> true } // 禁用一切触摸事件
                 binding.cialloView.visibility = View.VISIBLE
+                binding.nextBtn.setTextColor(requireActivity().getColor(R.color.black))
             }
         }
 

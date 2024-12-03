@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start|bottom"
-        android:background="@color/white"
+        android:background="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu"
         tools:layout_editor_absoluteX="4dp" />

@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.HomepageViewModel
 import com.example.smalltask.R
 import com.example.smalltask.activities.LearnedWordsActivity
 import com.example.smalltask.databinding.FragmentStatsBinding
-import com.example.smalltask.fragments.HomepageFragment
 import com.example.smalltask.learning.MyDatabaseHelper
 import com.example.smalltask.learning.Word
 import com.github.mikephil.charting.components.XAxis
@@ -23,9 +21,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -211,6 +206,16 @@ class StatsFragment : Fragment() {
         binding.everyDayTime.invalidate()
 
         homepageViewModel.flag.observe(requireActivity()) { _ -> // 刷新数据
+            val counts = homepageViewModel.getTodayCounts(requireActivity(), today)
+            val todayTime = homepageViewModel.getTodayTime(requireActivity(), today)
+            val allWords = homepageViewModel.getAllWords(requireActivity())
+            val allTime = homepageViewModel.getAllTime(requireActivity())
+
+            binding.todayCountsValues.text = getString(R.string.words_amount, counts)
+            binding.todayTimeValues.text = getString(R.string.time_amount, TimeUnit.MILLISECONDS.toMinutes(todayTime))
+            binding.allCountsValues.text = getString(R.string.words_amount, allWords)
+            binding.allTimeValues.text = getString(R.string.time_amount, TimeUnit.MILLISECONDS.toMinutes(allTime))
+
             val sevenDaysCount = homepageViewModel.getSevenDaysCounts(requireActivity()) // 七日学习数
             val sevenDaysTime = homepageViewModel.getSevenDaysTime(requireActivity())
             val entries = ArrayList<BarEntry>()
@@ -232,10 +237,14 @@ class StatsFragment : Fragment() {
             dataSet.valueFormatter = valueFormatter
             dataSet.setDrawValues(true)
             dataSet.valueTextSize = 10f // 柱子顶部字体大小
+            dataSet.valueTextColor = requireActivity().getColor(R.color.textColorPrimary)
             binding.everyDayLearns.barData.barWidth = 0.5f // 宽度
+            binding.everyDayLearns.xAxis.textColor = requireActivity().getColor(R.color.textColorPrimary)
 
             timeDataset.valueTextSize = 10f // 柱子顶部字体大小
             timeDataset.valueFormatter = valueFormatter
+            timeDataset.valueTextColor = requireActivity().getColor(R.color.textColorPrimary)
+            binding.everyDayTime.xAxis.textColor = requireActivity().getColor(R.color.textColorPrimary)
 
             binding.everyDayLearns.invalidate() // 刷新
             binding.everyDayTime.invalidate()
@@ -247,10 +256,4 @@ class StatsFragment : Fragment() {
         _binding = null
     }
 
-    fun reloadFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .detach(fragment)
-            .attach(fragment)
-            .commit()
-    }
 }
