@@ -135,4 +135,10 @@
     <string name="login">Login</string>
     <string name="only_zh_hint">Choose 「Remember」if you instantly recall the meaning of the word\nIf the meaning of the word comes to mind after thinking, choose 「Confused」</string>
     <string name="only_en_hint">Last time for this word😙, please judge without prompts</string>
+    <string name="close_toast">Press again to exit</string>
+    <string name="close_page_title">Sure?</string>
+    <string name="close_page_message">Exiting at this point will result in the loss of the current learning progress.</string>
+    <string name="close_page_yes">I know what I\'m doing!</string>
+    <string name="close_page_no">Oh, I hit it by mistake</string>
+    <string name="no_word_can_learn_toast">There\'s no more words to learn.</string>
 </resources>

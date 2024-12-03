@@ -2,7 +2,6 @@ package com.example.smalltask.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,20 +10,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.ui.graphics.Path
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.smalltask.HomepageViewModel
+import com.example.smalltask.R
 import com.example.smalltask.activities.LearningActivity
+import com.example.smalltask.activities.ReviewActivity
 import com.example.smalltask.activities.SearchActivity
 import com.example.smalltask.databinding.HomepageFragmentBinding
 import com.example.smalltask.learning.MyDatabaseHelper
-import com.example.smalltask.R
-import com.example.smalltask.activities.ReviewActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class HomepageFragment : Fragment() {
 
@@ -131,8 +125,13 @@ class HomepageFragment : Fragment() {
         }
 
         binding.learn.setOnClickListener {
-            val intent = Intent(requireContext(), LearningActivity::class.java)
-            reviewLauncher.launch(intent)
+            if (total - learnWords > 0) {
+                val intent = Intent(requireContext(), LearningActivity::class.java)
+                reviewLauncher.launch(intent)
+            }
+            else {
+                Toast.makeText(requireActivity(), getString(R.string.no_word_can_learn_toast), Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -183,10 +182,4 @@ class HomepageFragment : Fragment() {
         _binding = null
     }
 
-    fun reloadFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .detach(fragment)
-            .attach(fragment)
-            .commit()
-    }
 }

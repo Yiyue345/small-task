@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -38,6 +39,9 @@ class Homepage : BaseActivity() {
 
     lateinit var binding: ActivityHomepageBinding
     private lateinit var homepageViewModel: HomepageViewModel
+
+    private var backPressTime = 0L
+    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,12 +125,17 @@ class Homepage : BaseActivity() {
         }
     }
 
-
-//    private fun replaceFragment(fragment: Fragment){
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.switchFragment, fragment)
-//            .commit()
-//    }
+    override fun onBackPressed() {
+        if (backPressTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        }
+        else {
+            toast?.cancel()
+            toast = Toast.makeText(this, getString(R.string.close_toast), Toast.LENGTH_SHORT)
+            toast?.show()
+        }
+        backPressTime = System.currentTimeMillis()
+    }
 
     private fun initWordsDatabase(context: Context) {
         val dbFile = context.getDatabasePath("words.db")

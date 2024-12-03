@@ -17,11 +17,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/moreBtn" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/moreBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/continue_study_text"
+        android:textStyle="bold"
+        android:textColor="@color/buttonColor"
+        android:backgroundTint="@android:color/transparent"
+        app:strokeWidth="2.2dp"
+        app:strokeColor="@color/buttonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/finishBtn"
         app:layout_constraintHorizontal_bias="0.5"
