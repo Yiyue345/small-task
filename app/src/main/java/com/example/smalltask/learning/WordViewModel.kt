@@ -2,16 +2,22 @@ package com.example.smalltask.learning
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.FileOutputStream
+import com.example.smalltask.R
 
 class WordViewModel : ViewModel(){
     var username = ""
@@ -70,15 +76,25 @@ class WordViewModel : ViewModel(){
 
 
     private suspend fun downloadAndPlayAudio(wordName: String, context: Context) {
-        val audioFile = java.io.File(context.cacheDir, "${wordName}_audio.mp3".replace(Regex("[ /\\\\:*?\"<>|]+"), "_"))
-        val url = "http://dict.youdao.com/dictvoice?audio=$wordName"
+        try {
+            val audioFile = java.io.File(context.cacheDir, "${wordName}_audio.mp3".replace(Regex("[ /\\\\:*?\"<>|]+"), "_"))
+            val url = "http://dict.youdao.com/dictvoice?audio=$wordName"
 
-        val isDownloaded = downloadAudio(url, audioFile)
-        if (isDownloaded) {
-            playAudio(audioFile)
-        } else {
-            Log.e("AudioDownload", "Failed to download audio")
+            val isDownloaded = downloadAudio(url, audioFile)
+            if (isDownloaded) {
+                playAudio(audioFile)
+            } else {
+                Log.e("AudioDownload", "Failed to download audio")
+            }
+        } catch (e: Exception) {
+            Log.d("fail to download", "$e")
+            viewModelScope.launch(Dispatchers.Main) {
+                Toast.makeText(context, context.getString(R.string.fail_to_download_audio), Toast.LENGTH_SHORT).show()
+            }
+
         }
+
+
     }
 
     private suspend fun downloadAudio(url: String, file: java.io.File): Boolean { // 下载

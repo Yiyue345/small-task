@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">背不背单词</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -141,4 +140,7 @@
     <string name="close_page_yes">我知道我在做什么！</string>
     <string name="close_page_no">我手滑了</string>
     <string name="no_word_can_learn_toast">所有单词已经学习完了</string>
+    <string name="fail_to_download_audio">播放音频失败，可能是因为网络连接异常</string>
+    <string name="about_text">关于</string>
+    <string name="change_password">修改密码</string>
 </resources>
