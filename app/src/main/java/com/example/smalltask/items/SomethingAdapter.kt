@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.R
 
@@ -34,6 +35,8 @@ class SomethingAdapter(private val context: Context, private val somethingList: 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val something = somethingList[position]
         holder.somethingImage.setImageResource(something.imageId)
+        val colorStateList = ContextCompat.getColorStateList(context, R.color.iconColor)
+        holder.somethingImage.imageTintList = colorStateList
         holder.somethingTextView.text = something.name
 
         holder.somethingButton.setOnClickListener{

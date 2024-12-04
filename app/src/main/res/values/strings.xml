@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">To learn or not to learn</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -141,4 +141,7 @@
     <string name="close_page_yes">I know what I\'m doing!</string>
     <string name="close_page_no">Oh, I hit it by mistake</string>
     <string name="no_word_can_learn_toast">There\'s no more words to learn.</string>
+    <string name="fail_to_download_audio">Fail to play audio, it might cause by no Internet connection</string>
+    <string name="about_text">About</string>
+    <string name="change_password">Change password</string>
 </resources>

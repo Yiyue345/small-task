@@ -3,4 +3,5 @@
     <color name="textColorPrimary">#CAC4D0</color>
     <color name="buttonColor">#D0BCFF</color>
     <color name="backgroundColor">#FF000000</color>
+    <color name="iconColor">#13F3FF</color>
 </resources>

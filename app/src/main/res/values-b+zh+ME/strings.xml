@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">背不背单词</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -56,7 +55,7 @@
     <string name="username_is_empty_textview">您是无名氏还是佚名？</string>
     <string name="password_is_empty_textview">这算哪门子理由……</string>
     <string name="remember_password_hint">自动开门</string>
-    <string name="re_password_hint">复读密码</string>
+    <string name="re_password_hint">复读理由</string>
     <string name="sign_up_text">登记</string>
     <string name="different_password">失去同步</string>
     <string name="learn">第一次学，比较紧张</string>
@@ -108,7 +107,7 @@
     <string name="options">可能没用的东西</string>
     <string name="same_password_toast">杂鱼❤️~连新旧密码都设置成一样的杂鱼❤️~</string>
     <string name="wrong_pass_word_toast">啊，旧密码不对哦</string>
-    <string name="modified_successfully">修改成功了喵</string>
+    <string name="modified_successfully">\"You are the constant, you are me\"</string>
     <string name="everyday_learned_text">七天以来居然学了……</string>
     <string name="words_text">个词</string>
     <string name="time_text">分钟</string>
@@ -141,4 +140,7 @@
     <string name="close_page_yes">我去意已决！！！</string>
     <string name="close_page_no">那还是老老实实背吧</string>
     <string name="no_word_can_learn_toast">什么？难道你就是传说中的背单词领域大神？！</string>
+    <string name="fail_to_download_audio">与神经网络失去连接，于是便陷入了大静谧</string>
+    <string name="about_text">没用的信息</string>
+    <string name="change_password">我始终如一</string>
 </resources>

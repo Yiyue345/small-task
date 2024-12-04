@@ -41,6 +41,8 @@ class LearningActivity : BaseActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val total = 10928
+
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
         val userName = getInfo.getString("username", "")!!
 
@@ -69,7 +71,11 @@ class LearningActivity : BaseActivity() {
         wordViewModel.setLearningList(learnWordsEachTime) // 所有单词初始学习次数为0
 
         val startId = learnWords
-        val endId = learnWords + learnWordsEachTime - 1
+        var endId = learnWords + learnWordsEachTime - 1
+
+        if (endId > total) {
+            endId = total - 1
+        }
 
         val wordCursor = wordDb.query("Word", // GPT太强悍了
             null, // 我全都要
@@ -240,7 +246,6 @@ class LearningActivity : BaseActivity() {
                 super.onBackPressed()
             }
             .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
-
             }
             .create()
             .show()

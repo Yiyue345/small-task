@@ -35,11 +35,6 @@ class ResetPassword : BaseActivity() {
         val username = getUsername.getString("username", "")
 
 
-        binding.cancelButton2.setOnClickListener {
-            finish()
-        }
-
-
         binding.yesButton.setOnClickListener {
 
             binding.wrongPassword.visibility = View.GONE
