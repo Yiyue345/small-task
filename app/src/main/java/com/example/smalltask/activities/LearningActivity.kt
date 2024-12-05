@@ -30,6 +30,7 @@ class LearningActivity : BaseActivity() {
 
     private lateinit var wordViewModel: WordViewModel
 
+    private var learnWordsEachTime = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,7 @@ class LearningActivity : BaseActivity() {
         val db = dbHelper.writableDatabase
 
         val cursor = db.query("UserInfo", null, null, null, null, null, null)
-        var learnWordsEachTime = 10
+
         var learnWords = 0
 
         if (cursor.moveToFirst()) {
@@ -239,16 +240,25 @@ class LearningActivity : BaseActivity() {
     }
 
     private fun quitLearning() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.close_page_title))
-            .setMessage(getString(R.string.close_page_message))
-            .setPositiveButton(getString(R.string.close_page_yes)) { _, _ ->
-                super.onBackPressed()
-            }
-            .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
-            }
-            .create()
-            .show()
+        if (wordViewModel.counts == learnWordsEachTime) {
+            setResult(RESULT_OK)
+            finish()
+        }
+        else {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.close_page_title))
+                .setMessage(getString(R.string.close_page_message))
+                .setPositiveButton(getString(R.string.close_page_yes)) { _, _ ->
+                    setResult(RESULT_OK)
+                    finish()
+                    super.onBackPressed()
+                }
+                .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
+                }
+                .create()
+                .show()
+        }
+
     }
 
 }

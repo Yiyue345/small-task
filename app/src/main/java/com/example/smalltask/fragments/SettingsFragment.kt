@@ -1,12 +1,10 @@
 package com.example.smalltask.fragments
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +13,9 @@ import com.example.smalltask.R
 import com.example.smalltask.activities.LanguageActivity
 import com.example.smalltask.activities.ResetPassword
 import com.example.smalltask.activities.StudySettingsActivity
+import com.example.smalltask.databinding.SettingsFragmentBinding
 import com.example.smalltask.items.Something
 import com.example.smalltask.items.SomethingAdapter
-import com.example.smalltask.databinding.SettingsFragmentBinding
 
 class SettingsFragment : Fragment() {
 

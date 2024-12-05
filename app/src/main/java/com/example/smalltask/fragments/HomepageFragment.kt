@@ -115,7 +115,7 @@ class HomepageFragment : Fragment() {
         binding.review.setOnClickListener {
 
             if (i > 0) {
-                val intent = Intent(requireActivity(), ReviewActivity::class.java)
+                val intent = Intent(requireContext(), ReviewActivity::class.java)
                 reviewLauncher.launch(intent)
             }
             else {

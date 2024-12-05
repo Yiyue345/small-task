@@ -17,7 +17,6 @@ class WordAdapter(private val wordList: List<Word>):
             val wordName: TextView = view.findViewById(R.id.wordName)
             val cardBtn: Button = view.findViewById(R.id.cardBtn)
             val wordCard: ConstraintLayout = view.findViewById(R.id.wordCard)
-            val line2: View = view.findViewById(R.id.line2)
             val meanCn: TextView = view.findViewById(R.id.meanCn)
             val accent: TextView = view.findViewById(R.id.accent)
 
