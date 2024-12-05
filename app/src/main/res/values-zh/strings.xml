@@ -143,4 +143,8 @@
     <string name="fail_to_download_audio">播放音频失败，可能是因为网络连接异常</string>
     <string name="about_text">关于</string>
     <string name="change_password">修改密码</string>
+    <string name="version_text">版本：没有版本</string>
+    <string name="fun">" "</string>
+    <string name="update">检查更新</string>
+    <string name="no_update">没有更新</string>
 </resources>

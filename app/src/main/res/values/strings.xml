@@ -144,4 +144,8 @@
     <string name="fail_to_download_audio">Fail to play audio, it might cause by no Internet connection</string>
     <string name="about_text">About</string>
     <string name="change_password">Change password</string>
+    <string name="version_text">Version: No version</string>
+    <string name="fun"></string>
+    <string name="update">Check latest version</string>
+    <string name="no_update">No update</string>
 </resources>

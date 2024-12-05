@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smalltask.EndAll
 import com.example.smalltask.R
+import com.example.smalltask.activities.AboutActivity
 import com.example.smalltask.activities.LanguageActivity
 import com.example.smalltask.activities.ResetPassword
 import com.example.smalltask.activities.StudySettingsActivity
@@ -51,9 +52,11 @@ class SettingsFragment : Fragment() {
         val resetPasswordIntent = Intent(requireActivity(), ResetPassword::class.java)
         val userSettingsIntent = Intent(requireActivity(), StudySettingsActivity::class.java)
         val languageIntent = Intent(requireActivity(), LanguageActivity::class.java)
+        val aboutIntent = Intent(requireActivity(), AboutActivity::class.java)
         somethingList.add(Something(getString(R.string.study_settings), R.drawable.settings, userSettingsIntent))
         somethingList.add(Something(getString(R.string.change_password_text), R.drawable.user, resetPasswordIntent))
         somethingList.add(Something(getString(R.string.choose_language_text), R.drawable.language, languageIntent))
+        somethingList.add(Something(getString(R.string.about_text), R.drawable.about, aboutIntent))
         somethingList.add(Something(getString(R.string.quit_text), R.drawable.leave, endAllIntent))
 
     }
