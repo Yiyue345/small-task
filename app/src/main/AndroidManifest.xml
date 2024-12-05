@@ -65,6 +65,8 @@
         <activity
             android:name=".activities.Homepage"
             android:exported="false"
+
+            android:windowSoftInputMode="adjustPan"
             android:launchMode="singleTask" />
         <activity
             android:name=".activities.Register"

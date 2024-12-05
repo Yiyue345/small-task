@@ -143,4 +143,8 @@
     <string name="fail_to_download_audio">与神经网络失去连接，于是便陷入了大静谧</string>
     <string name="about_text">没用的信息</string>
     <string name="change_password">我始终如一</string>
+    <string name="version_text">现在版本：v114514.1919810.555</string>
+    <string name="fun">哇！你发现了一段只有在梗体中文下才能看到的文本！</string>
+    <string name="update">试图让这个软件的版本号+1</string>
+    <string name="no_update">然而你的尝试失败了</string>
 </resources>
