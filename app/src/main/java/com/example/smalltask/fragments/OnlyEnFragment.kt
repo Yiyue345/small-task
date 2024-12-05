@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.smalltask.R
 import com.example.smalltask.databinding.FragmentOnlyEnBinding
 import com.example.smalltask.learning.WordViewModel
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,28 @@ class OnlyEnFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         wordViewModel = ViewModelProvider(requireActivity())[WordViewModel::class.java]
+
+        if (wordViewModel.mode == "review") {
+            binding.circle1.visibility = View.GONE
+            binding.circle2.visibility = View.GONE
+            binding.circle3.visibility = View.GONE
+        }
+        else {
+            val score = wordViewModel.wordLearningList.value?.get(wordViewModel.number)
+            score?.let {
+                val colorStateList = ContextCompat.getColorStateList(requireActivity(), R.color.green)
+                if (it >= 1) {
+                    binding.circle1.imageTintList = colorStateList
+                }
+                if (it >= 2) {
+                    binding.circle2.imageTintList = colorStateList
+                }
+                if (it >= 3) {
+                    binding.circle3.imageTintList = colorStateList
+                }
+            }
+        }
+
 
         val word = wordViewModel.words.value?.get(wordViewModel.number)
 
@@ -62,7 +86,7 @@ class OnlyEnFragment : Fragment() {
                 wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
             }
             binding.fuzzyBtn.setOnClickListener {
-                wordViewModel.makeReviewProgress(wordViewModel.number, 2)
+                wordViewModel.makeReviewProgress(wordViewModel.number, 1)
                 wordViewModel.wordReviewList.value = wordViewModel.wordReviewList.value
             }
             binding.noBtn.setOnClickListener {

@@ -54,7 +54,7 @@ class WordViewModel : ViewModel(){
     }
 
     fun setReviewList(number: Int) {
-        wordReviewList = MutableLiveData(MutableList(number) {4})
+        wordReviewList = MutableLiveData(MutableList(number) {3})
         wordReviewTimesList = MutableLiveData(MutableList(number) {0})
     }
 
@@ -69,7 +69,14 @@ class WordViewModel : ViewModel(){
             wordReviewList.value?.let { it[index]++ }
         }
         else if (score == 1) {
-            wordReviewList.value?.let { it[index] += 3 }
+            wordReviewList.value?.let {
+                if (it[index] == 3) {
+                    it[index] += 5
+                }
+                else {
+                    it[index] += 3
+                }
+            }
         }
         wordReviewTimesList.value?.let { it[index] += score }
     }

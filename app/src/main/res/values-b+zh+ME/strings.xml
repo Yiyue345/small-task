@@ -136,7 +136,7 @@
     <string name="only_en_hint">最后一题没提示🤔\n忘记还得再来次😭</string>
     <string name="close_toast">再滑，再滑就把我关掉！</string>
     <string name="close_page_title">半途而废是不对的！</string>
-    <string name="close_page_message">不然你将进入本次学习进度丢失的危险境地</string>
+    <string name="close_page_message">不然你将进入本次学习进度丢失的危险境地！！！</string>
     <string name="close_page_yes">我去意已决！！！</string>
     <string name="close_page_no">那还是老老实实背吧</string>
     <string name="no_word_can_learn_toast">什么？难道你就是传说中的背单词领域大神？！</string>

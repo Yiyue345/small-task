@@ -13,4 +13,5 @@
     <color name="buttonColor">#6750A4</color>
     <color name="backgroundColor">#FFFFFFFF</color>
     <color name="iconColor">#1296DB</color>
+    <color name="green">#75F94D</color>
 </resources>

@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -30,6 +31,8 @@ class ReviewActivity : BaseActivity() {
 
     private lateinit var wordViewModel: WordViewModel
     private val oneDay = 86400000L
+
+    private var reviewWordsEachTime = 20
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -60,7 +63,7 @@ class ReviewActivity : BaseActivity() {
         val db = dbHelper.writableDatabase
 
         val cursor = db.query("UserInfo", null, null, null, null, null, null)
-        var reviewWordsEachTime = 20
+
 
         if (cursor.moveToFirst()) {
             reviewWordsEachTime = cursor.getInt(cursor.getColumnIndexOrThrow("reviewWordsEachTime"))
@@ -135,17 +138,25 @@ class ReviewActivity : BaseActivity() {
                         .commit()
                     wordViewModel.number = (wordViewModel.number + 1) % reviewWordsEachTime
 
-                    wordViewModel.wordReviewList.value?.let { it1 -> // 此处数值需改
+                    wordViewModel.wordReviewList.value?.let { it1 ->
                         if (it1[wordViewModel.number] == 0) {
                             replaceFragment(OnlyEnFragment())
                         }
-                        else if (it1[wordViewModel.number] >= 1 && it1[wordViewModel.number] < 4) {
-                            replaceFragment(ChooseFragment())
+                        else if (it1[wordViewModel.number] > 0 && it1[wordViewModel.number] <= 4) {
+                            wordViewModel.wordReviewTimesList.value?.let { it2 ->
+                                if (it2[wordViewModel.number] == 0) { // 第一次是中文
+                                    replaceFragment(OnlyZhFragment())
+                                }
+                                else {
+                                    replaceFragment(ChooseFragment())
+                                }
+                            }
+//                            replaceFragment(ChooseFragment())
                         }
-                        else if (it1[wordViewModel.number] >= 4 && it1[wordViewModel.number] <= 6) {
+                        else if (it1[wordViewModel.number] > 4 && it1[wordViewModel.number] <= 7) {
                             replaceFragment(OnlyZhFragment())
                         }
-                        else if (it1[wordViewModel.number] > 6) {
+                        else { // 我不理解为什么不能if (it1[wordViewModel.number] > 7)
 
                             if (wordViewModel.counts == reviewWordsEachTime) {
                                 wordViewModel.refreshEndTime()
@@ -237,16 +248,23 @@ class ReviewActivity : BaseActivity() {
     }
 
     private fun quitLearning() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.close_page_title))
-            .setMessage(getString(R.string.close_page_message))
-            .setPositiveButton(getString(R.string.close_page_yes)) { _, _ ->
-                super.onBackPressed()
-            }
-            .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
-
-            }
-            .create()
-            .show()
+        if (wordViewModel.counts == reviewWordsEachTime) {
+            setResult(RESULT_OK)
+            finish()
+        }
+        else {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.close_page_title))
+                .setMessage(getString(R.string.close_page_message))
+                .setPositiveButton(getString(R.string.close_page_yes)) { _, _ ->
+                    setResult(RESULT_OK)
+                    finish()
+                    super.onBackPressed()
+                }
+                .setNegativeButton(getString(R.string.close_page_no)) { _, _ ->
+                }
+                .create()
+                .show()
+        }
     }
 }
