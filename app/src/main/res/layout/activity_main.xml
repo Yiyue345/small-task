@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/loginBackground"
+        android:layout_width="match_parent"
+        android:layout_height="750dp"
+        android:layout_marginTop="-750dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_background"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="320dp"

@@ -1,5 +1,6 @@
 package com.example.smalltask
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,10 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        val animator = ObjectAnimator.ofFloat(binding.loginBackground, "translationY", 0f,  2000f)
+        animator.duration = 3500
+        animator.start()
 
 //        val getPassword = getSharedPreferences("latest", MODE_PRIVATE)
 

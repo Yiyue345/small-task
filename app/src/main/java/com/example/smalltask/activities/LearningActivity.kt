@@ -47,6 +47,9 @@ class LearningActivity : BaseActivity() {
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
         val userName = getInfo.getString("username", "")!!
 
+        val backGroundAlpha = getInfo.getInt("backGroundAlpha", 0)
+        binding.mask.alpha = backGroundAlpha.toFloat() / 100
+
         val dbHelper = MyDatabaseHelper(this, "Database${userName}.db", 1)
         val db = dbHelper.writableDatabase
 

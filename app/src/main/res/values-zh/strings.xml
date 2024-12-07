@@ -147,4 +147,10 @@
     <string name="fun">" "</string>
     <string name="update">检查更新</string>
     <string name="no_update">没有更新</string>
+    <string name="about_info">依月的绘蓝杯作品</string>
+    <string name="fun2">" "</string>
+    <string name="no_learned_any_word_text">你还没有学习任何词</string>
+    <string name="no_learn_today_notice_title">今日还未学习</string>
+    <string name="no_learn_today_notice_message">点击开始学习</string>
+    <string name="set_alpha">当前背景透明度：%d%%</string>
 </resources>
