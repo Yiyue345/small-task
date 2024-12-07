@@ -33,12 +33,13 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/what"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/fun"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -71,13 +72,36 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/nothingBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
         android:text="@string/update"
         android:textColor="@color/textColorPrimary"
-        android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/version" />
+
+    <TextView
+        android:id="@+id/authorInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_info"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/what"
+        app:layout_constraintEnd_toEndOf="@+id/what"
+        app:layout_constraintStart_toStartOf="@+id/what" />
+
+    <TextView
+        android:id="@+id/funTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/fun2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nothingBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

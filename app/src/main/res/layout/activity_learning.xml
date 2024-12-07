@@ -9,6 +9,26 @@
 
 
 
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Learning background"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.5"
+        android:src="@drawable/mask"
+        />
+
     <TextView
         android:id="@+id/progress"
         android:layout_width="wrap_content"
@@ -18,14 +38,6 @@
         android:textColor="@color/grey"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="Learning background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

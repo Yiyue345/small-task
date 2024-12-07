@@ -148,4 +148,10 @@
     <string name="fun"></string>
     <string name="update">Check latest version</string>
     <string name="no_update">No update</string>
+    <string name="about_info">By YiYue</string>
+    <string name="fun2"></string>
+    <string name="no_learned_any_word_text">You haven\'t learned any word</string>
+    <string name="no_learn_today_notice_title">You haven\'t studied yet today.</string>
+    <string name="no_learn_today_notice_message">Click to start Learning</string>
+    <string name="set_alpha">Background transparency: %d%%</string>
 </resources>

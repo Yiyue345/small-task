@@ -144,7 +144,13 @@
     <string name="about_text">没用的信息</string>
     <string name="change_password">我始终如一</string>
     <string name="version_text">现在版本：v114514.1919810.555</string>
-    <string name="fun">哇！你发现了一段只有在梗体中文下才能看到的文本！</string>
+    <string name="fun">tip: 这段文本只有在语言为梗体中文时才会出现</string>
     <string name="update">试图让这个软件的版本号+1</string>
     <string name="no_update">然而你的尝试失败了</string>
+    <string name="about_info">窥镜而视之，又弗如远甚</string>
+    <string name="fun2">点击输入文字</string>
+    <string name="no_learned_any_word_text">还没学怎么有勇气点进来的😡</string>
+    <string name="no_learn_today_notice_title">今天没背单词怎么睡得着的</string>
+    <string name="no_learn_today_notice_message">超多单词点击就送</string>
+    <string name="set_alpha">现在的背景有多透：%d%%</string>
 </resources>

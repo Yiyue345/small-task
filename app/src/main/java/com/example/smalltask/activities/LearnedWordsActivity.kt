@@ -3,6 +3,7 @@ package com.example.smalltask.activities
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -41,7 +42,7 @@ class LearnedWordsActivity : BaseActivity() {
         var wordList = ArrayList<Word>()
         val cursor = db.query("Word",
             null,
-            "id <= ?",
+            "id < ?",
             arrayOf("${getAllWords(this)}"),
             null,
             null,
@@ -60,6 +61,10 @@ class LearnedWordsActivity : BaseActivity() {
             } while (cursor.moveToNext())
         }
         cursor.close()
+
+        if (wordList.isEmpty()) {
+            binding.zeroWord.visibility = View.VISIBLE
+        }
 
         binding.allWordsList.layoutManager = LinearLayoutManager(this)
         binding.allWordsList.adapter = WordAdapter(wordList)

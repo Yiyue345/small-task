@@ -12,7 +12,32 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         />
+
+    <ImageView
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.5"
+        android:src="@drawable/mask"
+        />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="496dp"
+
+        android:layout_marginEnd="16dp"
+        android:max="100"
+        android:progress="50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImage" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -111,6 +136,14 @@
         android:text="@string/max_number_each_review"
         app:layout_constraintBottom_toTopOf="@+id/editReviewEachTime"
         app:layout_constraintStart_toStartOf="@+id/editReviewEachTime" />
+
+    <TextView
+        android:id="@+id/showAlpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_alpha"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="@+id/seekBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,7 +69,7 @@ class StatsFragment : Fragment() {
             var wordList = ArrayList<Word>()
             val cursor = db.query("Word",
                 null,
-                "id <= ?",
+                "id < ?",
                 arrayOf("${homepageViewModel.getAllWords(requireActivity())}"),
                 null,
                 null,

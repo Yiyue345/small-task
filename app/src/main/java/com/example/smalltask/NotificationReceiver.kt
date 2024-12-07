@@ -31,8 +31,8 @@ class NotificationReceiver : BroadcastReceiver() {
                 val pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
                 val notification = NotificationCompat.Builder(context, "normal")
-                    .setContentTitle("今天还没有学习")
-                    .setContentText("点击开始今日学习")
+                    .setContentTitle(context.getString(R.string.no_learn_today_notice_title))
+                    .setContentText(context.getString(R.string.no_learn_today_notice_message))
                     .setContentIntent(pi)
                     .setSmallIcon(R.drawable.book)
                     .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.elaina))

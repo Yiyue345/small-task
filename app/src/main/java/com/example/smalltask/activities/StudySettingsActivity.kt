@@ -5,8 +5,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -46,6 +48,11 @@ class StudySettingsActivity : BaseActivity() {
         val file = File(this.filesDir, "background.png")
         val getInfo = getSharedPreferences("latest", MODE_PRIVATE)
         val userName = getInfo.getString("username", "")!!
+
+        val backGroundAlpha = getInfo.getInt("backGroundAlpha", 0)
+        binding.mask.alpha = backGroundAlpha.toFloat() / 100
+        binding.seekBar.progress = backGroundAlpha
+        binding.showAlpha.text = getString(R.string.set_alpha, backGroundAlpha)
 
         val dbHelper = MyDatabaseHelper(this, "Database${userName}.db", 1)
         val db = dbHelper.writableDatabase
@@ -107,6 +114,21 @@ class StudySettingsActivity : BaseActivity() {
 
         }
 
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.mask.alpha = progress.toFloat() / 100
+                binding.showAlpha.text = getString(R.string.set_alpha, progress)
+                val editor = getSharedPreferences("latest", MODE_PRIVATE).edit()
+                editor.putInt("backGroundAlpha", progress)
+                editor.apply()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
+
     }
 
 
@@ -123,7 +145,7 @@ class StudySettingsActivity : BaseActivity() {
     private fun handleSelectedImage(imageUri: Uri): File {
         val directory= this.filesDir
         val file = File(directory, "background.png")
-        val bitmap = getBitmapFromUri(imageUri)
+        val bitmap = getBitmapFromUri(imageUri) 
         if (bitmap != null) {
             file.outputStream().use { outputStream ->
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -138,10 +160,14 @@ class StudySettingsActivity : BaseActivity() {
             binding.resetBackgroundBtn.visibility = View.VISIBLE
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             binding.backgroundImage.setImageBitmap(bitmap)
+            binding.seekBar.visibility = View.VISIBLE
+            binding.showAlpha.visibility = View.VISIBLE
         }
         else {
             binding.resetBackgroundBtn.visibility = View.GONE
             binding.backgroundImage.setImageBitmap(null)
+            binding.seekBar.visibility = View.GONE
+            binding.showAlpha.visibility = View.GONE
         }
     }
 
